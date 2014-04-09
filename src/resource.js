@@ -1,12 +1,14 @@
-var s_HelloWorld = "HelloWorld.jpg";
-var s_CloseNormal = "CloseNormal.png";
-var s_CloseSelected = "CloseSelected.png";
+var bg_MainMenu = "bg_Main.png";
+var btn_MainMenu_png = "menu.png";
+var bg_Game_png = "bg_Game.png";
+
+
+
 
 var g_resources = [
     //image
-    {src:s_HelloWorld},
-    {src:s_CloseNormal},
-    {src:s_CloseSelected}
+    {src:bg_MainMenu},
+    {src:btn_MainMenu_png}
 
     //plist
 
