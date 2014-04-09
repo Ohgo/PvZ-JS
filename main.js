@@ -2,7 +2,7 @@
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2008-2010 Ricardo Quesada
  Copyright (c) 2011      Zynga Inc.
-ssssswe
+ ssssswe
  http://www.cocos2d-x.org
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,13 +23,14 @@ ssssswe
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+
 var cocos2dApp = cc.Application.extend({
     config:document['ccConfig'],
     ctor:function (scene) {
         this._super();
         this.startScene = scene;
         cc.COCOS2D_DEBUG = this.config['COCOS2D_DEBUG'];
-        cc.initDebugSetting();
+        // cc.initDebugSetting();
         cc.setup(this.config['tag']);
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
     },
@@ -39,8 +40,8 @@ var cocos2dApp = cc.Application.extend({
 
         cc.EGLView.getInstance()._adjustSizeToBrowser();
         var screenSize = cc.EGLView.getInstance().getFrameSize();
-        var resourceSize = cc.size(480, 800);
-        var designSize = cc.size(480, 800);
+        var resourceSize = cc.size(960, 640);
+        var designSize = cc.size(960, 640);
 
         var searchPaths = [];
         var resDirOrders = [];
@@ -50,17 +51,18 @@ var cocos2dApp = cc.Application.extend({
 
         var platform = cc.Application.getInstance().getTargetPlatform();
         if (platform == cc.TARGET_PLATFORM.MOBILE_BROWSER) {
+
             resDirOrders.push("HD");
+            cc.log("HD");
+
+            //resourceSize = cc.size(320, 480);
+            //designSize = cc.size(320, 480);
+            //resDirOrders.push("Normal");
+            //cc.log("Normal");
         }
         else if (platform == cc.TARGET_PLATFORM.PC_BROWSER) {
-            if (screenSize.height >= 800) {
-                resDirOrders.push("HD");
-            }
-            else {
-                resourceSize = cc.size(320, 480);
-                designSize = cc.size(320, 480);
-                resDirOrders.push("Normal");
-            }
+            resDirOrders.push("HD");
+            cc.log("HD");
         }
 
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);

@@ -39,7 +39,8 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',
-            'src/myApp.js'//add your own files in order here
+            'src/MainMenuLayer.js',
+            'src/GameLayer.js'//add your own files in order here
         ]
     };
 
@@ -68,6 +69,7 @@
         }
         else if (c.engineDir && !c.SingleEngineFile) {
             s.src = c.engineDir + 'jsloader.js';
+            
         }
         else {
             alert('You must specify either the single engine file OR the engine directory in "cocos2d.js"');

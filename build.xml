@@ -7,8 +7,8 @@
     <target name="compile">
         <jscomp compilationLevel="simple" warning="quiet"
                 debug="false" output="myTemplate.js">
-                <!--sourceMapOutputFile="sourcemap"
-                sourceMapFormat="V3">-->
+            <!--sourceMapOutputFile="sourcemap"
+            sourceMapFormat="V3">-->
             <externs dir="${basedir}/../cocos2d">
                 <file name="core/cocos2d_externs.js"/>
             </externs>
@@ -217,7 +217,8 @@
             </sources>
             <sources dir="${basedir}">
                 <file name="src/resource.js"/>
-                <file name="src/myApp.js"/>
+                <file name="src/MainMenuLayer.js"/>
+                <file name="src/GameLayer.js"/>
                 <file name="main.js"/>
             </sources>
         </jscomp>
