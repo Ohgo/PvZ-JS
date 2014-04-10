@@ -9,9 +9,9 @@ var MainMenuLayer = cc.Layer.extend({
     circle:null,
     sprite:null,
 
-    init:function () {
+    ctor:function () {
 
-        if(!this._super()) return false;
+        this._super();
 
         var winSize = cc.Director.getInstance().getWinSize();
 

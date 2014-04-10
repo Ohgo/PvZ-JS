@@ -28,8 +28,8 @@
 var MainMenuScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
-        var layer = new MainMenuLayer();
-        this.addChild(layer);
-        layer.init();
+        var mmlayer = new MainMenuLayer();
+        this.addChild(mmlayer);
+        mmlayer.ctor();
     }
 });

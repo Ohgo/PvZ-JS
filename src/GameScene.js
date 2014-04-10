@@ -12,8 +12,8 @@ var GameScene = cc.Scene.extend({
         var gCharacterLayer = new GameCharacterLayer();
         this.addChild(gBGLayer);
         this.addChild(gCharacterLayer);
-        gBGLayer.init();
-        gCharacterLayer.init();
+        gBGLayer.ctor();
+        gCharacterLayer.ctor();
     },
 
     onBackCallback:function (pSender) {
