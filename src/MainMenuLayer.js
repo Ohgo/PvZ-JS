@@ -55,10 +55,10 @@ var MainMenuLayer = cc.Layer.extend({
     },
     onButtonEffect:function(){
         // TODO: Play sound effects
-        cc.log("onButtonEffect");
+        // cc.log("onButtonEffect");
     },
     onPlayGame:function (pSender) {
-        cc.log("Play Game!");
+        // cc.log("Play Game!");
         this.onButtonEffect();
 
         var scene = new GameScene();
@@ -66,9 +66,10 @@ var MainMenuLayer = cc.Layer.extend({
 
     },
     onOption:function (pSender) {
-        cc.log("Option");
+        // cc.log("Option");
         this.onButtonEffect();
-        // TODO: Go to option scene
+        var scene = new mmScene();
+        scene.showOptionLayer();
     },
     onAbout:function (pSender) {
         cc.log("About");

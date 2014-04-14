@@ -25,11 +25,21 @@
  ****************************************************************************/
 
 
-var MainMenuScene = cc.Scene.extend({
+var mmScene = cc.Scene.extend({
+    _mainLayer:null,
+    _optionLayer:null,
+
     onEnter:function () {
         this._super();
-        var mmlayer = new MainMenuLayer();
-        this.addChild(mmlayer);
-        mmlayer.ctor();
+        this._mainLayer = new MainMenuLayer();
+        this.addChild(this._mainLayer, 2);
+        //mmlayer.ctor();
+    },
+
+    showOptionLayer:function () {
+        this._optionLayer = new MainOptionLayer();
+        this.addChild(this._optionLayer, 1);
+        cc.log("Show");
     }
+
 });

@@ -218,6 +218,7 @@
             <sources dir="${basedir}">
                 <file name="src/resource.js"/>
                 <file name="src/MainMenuLayer.js"/>
+                <file name="src/MainOptionLayer.js"/>
                 <file name="src/GameLayer.js"/>
                 <file name="main.js"/>
             </sources>
