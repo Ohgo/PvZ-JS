@@ -40,7 +40,13 @@
         appFiles:[
             'src/resource.js',
             'src/MainMenuLayer.js',
-            'src/GameLayer.js'//add your own files in order here
+            'src/MainMenuScene.js',
+            'src/GameScene.js',//add your own files in order here
+            'src/GameBGLayer.js',
+            'src/GameCharacterLayer.js',
+            'src/BacteriaSprite.js',
+            'src/LevelManager.js'
+            //'src/Level.js'
         ]
     };
 
