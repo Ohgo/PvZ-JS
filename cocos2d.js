@@ -38,9 +38,14 @@
         engineDir:'../cocos2d/',
         //SingleEngineFile:'',
         appFiles:[
-            'src/resource.js',
+            'src/resource.js',//add your own files in order here
+            'src/BacteriaSprite.js',
+            'src/GameBGLayer.js',
+            'src/GameCharacterLayer.js',
+            'src/GameScene.js',
+            'src/MainMenuScene.js',
             'src/MainMenuLayer.js',
-            'src/GameLayer.js'//add your own files in order here
+            'src/MainOptionLayer.js'
         ]
     };
 
