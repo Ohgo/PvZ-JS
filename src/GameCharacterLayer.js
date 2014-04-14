@@ -27,7 +27,4 @@ var GameCharacterLayer = cc.Layer.extend({
         cc.log("add bacteria");
     }
 
-//    update:function(dt){
-//        this.bacteria.update(dt);
-//    }
 });
