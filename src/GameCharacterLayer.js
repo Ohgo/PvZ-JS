@@ -1,6 +1,3 @@
-/**
- * Created by YingjieChen on 14-4-10.
- */
 var GameCharacterLayer = cc.Layer.extend({
 
     init:function(){
