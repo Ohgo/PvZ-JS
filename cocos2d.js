@@ -39,7 +39,7 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',//add your own files in order here
-            'src/Game/BacteriaSprite.js',
+            'src/Game/Bacteria.js',
             'src/Game/Coffee.js',
             'src/Game/Doctor.js',
             'src/Game/LayerGameBg.js',

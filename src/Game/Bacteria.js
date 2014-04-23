@@ -2,13 +2,13 @@
  * Created by YingjieChen on 14-4-9.
  */
 
-var BacteriaSprite = cc.Sprite.extend({
+var Bacteria = cc.Sprite.extend({
     isHit: false,   //for collision detection
     HP:0,
     radius:0    //collision radius
 });
 
-var BacteriaHappyGray = BacteriaSprite.extend({
+var BacteriaHappyGray = Bacteria.extend({
     ctor: function () {
         this._super();
         this.initWithFile(s_BacteriaHappyGray);

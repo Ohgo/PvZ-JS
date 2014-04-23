@@ -8,15 +8,14 @@ var LayerMainOption = cc.Layer.extend({
         this._super();
         var winSize = cc.Director.getInstance().getWinSize();
 
-
-         var titleLabel = cc.LabelTTF.create("Plants vs Zombies", "Impact", 38);
-         titleLabel.setPosition(size.width / 2, size.height - 40);
-         addChild(this.titleLabel, 5);
-
         var bg = cc.Sprite.create(dock_options);
         bg.setAnchorPoint(cc.p(0,0));
         this.addChild(bg,1);
-        cc.log("Options!");
+
+        var titleLabel = cc.LabelTTF.create("Game Options", "Impact", 38);
+        titleLabel.setPosition(winSize.width / 2, winSize.height - 40);
+        this.addChild(titleLabel, 5);
+
 
         // load and place background on screen
 
