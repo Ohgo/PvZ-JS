@@ -2,7 +2,7 @@
  * Created by 00 on 14-4-10.
  */
 
-var MainMenuLayer = cc.Layer.extend({
+var LayerMainMenu = cc.Layer.extend({
     isMouseDown:false,
     helloImg:null,
     titleLabel:null,

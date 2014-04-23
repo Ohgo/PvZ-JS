@@ -2,12 +2,16 @@
  * Created by
  */
 
-var MainOptionLayer = cc.Layer.extend({
+var LayerMainOption = cc.Layer.extend({
 
     ctor:function () {
-        cc.log("Options1!");
         this._super();
         var winSize = cc.Director.getInstance().getWinSize();
+
+
+         var titleLabel = cc.LabelTTF.create("Plants vs Zombies", "Impact", 38);
+         titleLabel.setPosition(size.width / 2, size.height - 40);
+         addChild(this.titleLabel, 5);
 
         var bg = cc.Sprite.create(dock_options);
         bg.setAnchorPoint(cc.p(0,0));
@@ -41,8 +45,8 @@ var MainOptionLayer = cc.Layer.extend({
 });
 
 
-MainOptionLayer.create = function () {
-    var opt = new MainOptionLayer();
+LayerMainOption.create = function () {
+    var opt = new LayerMainOption();
     if (opt && opt.init()) {
         return opt;
     }

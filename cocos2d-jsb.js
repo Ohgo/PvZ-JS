@@ -30,7 +30,7 @@ require("jsb.js");
 
 var appFiles = [
     'src/resource.js',
-    'src/MainMenuLayer.js'
+    'src/LayerMainMenu.js'
 ];
 
 cc.dumpConfig();
