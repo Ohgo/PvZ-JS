@@ -2,22 +2,11 @@
  * Created by
  */
 
-var LayerMainOption = cc.Layer.extend({
+var LayerOption = cc.Layer.extend({
 
     ctor:function () {
         this._super();
         var winSize = cc.Director.getInstance().getWinSize();
-
-        var bg = cc.Sprite.create(dock_options);
-        bg.setAnchorPoint(cc.p(0,0));
-        this.addChild(bg,1);
-
-        var titleLabel = cc.LabelTTF.create("Game Options", "Impact", 38);
-        titleLabel.setPosition(winSize.width / 2, winSize.height - 40);
-        this.addChild(titleLabel, 5);
-
-
-        // load and place background on screen
 
         // load buttons
 
@@ -44,8 +33,8 @@ var LayerMainOption = cc.Layer.extend({
 });
 
 
-LayerMainOption.create = function () {
-    var opt = new LayerMainOption();
+LayerOption.create = function () {
+    var opt = new LayerOption();
     if (opt && opt.init()) {
         return opt;
     }
