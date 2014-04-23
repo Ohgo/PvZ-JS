@@ -3,7 +3,7 @@
  ****************************************************************************/
 
 
-var mmScene = cc.Scene.extend({
+var SceneMain = cc.Scene.extend({
     _mainLayer:null,
     _optionLayer:null,
 
@@ -11,7 +11,6 @@ var mmScene = cc.Scene.extend({
         this._super();
         this._mainLayer = new MainMenuLayer();
         this.addChild(this._mainLayer, 2);
-        //mmlayer.ctor();
     },
 
     showOptionLayer:function () {

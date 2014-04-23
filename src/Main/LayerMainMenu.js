@@ -68,7 +68,7 @@ var MainMenuLayer = cc.Layer.extend({
     onOption:function (pSender) {
         // cc.log("Option");
         this.onButtonEffect();
-        var scene = new mmScene();
+        var scene = new SceneMain();
         scene.showOptionLayer();
     },
     onAbout:function (pSender) {

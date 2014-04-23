@@ -217,9 +217,19 @@
             </sources>
             <sources dir="${basedir}">
                 <file name="src/resource.js"/>
-                <file name="src/MainMenuLayer.js"/>
-                <file name="src/MainOptionLayer.js"/>
-                <file name="src/GameLayer.js"/>
+                <file name="src/Game/Bacteria.js"/>
+                <file name="src/Game/Coffee.js"/>
+                <file name="src/Game/Doctor.js"/>
+                <file name="src/Game/LayerGameBg.js"/>
+                <file name="src/Game/LayerGameCharacter.js"/>
+                <file name="src/Game/LayerGameCoffee.js"/>
+                <file name="src/Game/LayerGameMenu.js"/>
+                <file name="src/Game/Medicine.js"/>
+                <file name="src/Game/SceneGame.js"/>
+                <file name="src/Main/LayerMainBg.js"/>
+                <file name="src/Main/LayerMainMenu.js"/>
+                <file name="src/Main/SceneMain.js"/>
+                <file name="src/Option/LayerMainOption.js"/>
                 <file name="main.js"/>
             </sources>
         </jscomp>

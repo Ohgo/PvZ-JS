@@ -39,13 +39,19 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',//add your own files in order here
-            'src/BacteriaSprite.js',
-            'src/GameBGLayer.js',
-            'src/GameCharacterLayer.js',
-            'src/GameScene.js',
-            'src/MainMenuScene.js',
-            'src/MainMenuLayer.js',
-            'src/MainOptionLayer.js'
+            'src/Game/BacteriaSprite.js',
+            'src/Game/Coffee.js',
+            'src/Game/Doctor.js',
+            'src/Game/LayerGameBg.js',
+            'src/Game/LayerGameCharacter.js',
+            'src/Game/LayerGameCoffee.js',
+            'src/Game/LayerGameMenu.js',
+            'src/Game/Medicine.js',
+            'src/Game/SceneGame.js',
+            'src/Main/LayerMainBg.js',
+            'src/Main/LayerMainMenu.js',
+            'src/Main/SceneMain.js',
+            'src/Option/LayerMainOption.js',
         ]
     };
 
