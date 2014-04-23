@@ -1,7 +1,7 @@
 /**
  * Created by YingjieChen on 14-4-10.
  */
-var GameScene = cc.Scene.extend({
+var SceneGame = cc.Scene.extend({
     onEnter:function () {
         this._super();
         this.addLayer();

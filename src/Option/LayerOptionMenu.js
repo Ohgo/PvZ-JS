@@ -29,16 +29,19 @@ var LayerOptionMenu = cc.Layer.extend({
         // put as clickable menu
         var incMusic = cc.MenuItemSprite.create(btn_incMusicNormal, btn_incMusicSelected, btn_incMusicDisabled, this.aFunction, this);
         var decMusic = cc.MenuItemSprite.create(btn_decMusicNormal, btn_decMusicSelected, btn_decMusicDisabled, this.aFunction, this);
-        var incSoundEffect = cc.MenuItemSprite.create(btn_incMusicNormal, btn_incSoundEffectSelected, btn_incSoundEffectDisabled, this.aFunction, this);
+        var incSoundEffect = cc.MenuItemSprite.create(btn_incSoundEffectNormal, btn_incSoundEffectSelected, btn_incSoundEffectDisabled, this.aFunction, this);
         var decSoundEffect = cc.MenuItemSprite.create(btn_decSoundEffectNormal, btn_decSoundEffectSelected, btn_decSoundEffectDisabled, this.aFunction, this);
 
         // place menus on screen
         var MusicControl = cc.Menu.create(incMusic, decMusic);
-        var SoundEffectControl = cc.Menu.create(incSoundEffect, decSoundEffect);
-        MusicControl.alignItemsHorizontallyWithPadding(30);
+        MusicControl.alignItemsHorizontallyWithPadding(100);
         MusicControl.setPosition(winSize.width / 2, winSize.height / 2);
-        this.addChild(MusicControl, 0);
+        var SoundEffectControl = cc.Menu.create(incSoundEffect, decSoundEffect);
+        SoundEffectControl.alignItemsHorizontallyWithPadding(100);
+        SoundEffectControl.setPosition(winSize.width / 2, winSize.height / 2 + 150);
 
+        this.addChild(MusicControl, 0);
+        this.addChild(SoundEffectControl, 1);
 
         // put buttons into clickable menus and assign onclick events
 

@@ -38,14 +38,15 @@ var LayerMainMenu = cc.Layer.extend({
     },
     onPlayGame:function (pSender) {
         this.onButtonEffect();
-        var scene = new GameScene();
+        var scene = new SceneGame();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
 
     },
     onOption:function (pSender) {
         this.onButtonEffect();
-        var scene = SceneOption();
-        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
+        var optionScene = new SceneOption();
+        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, optionScene));
+
     },
     onAbout:function (pSender) {
         cc.log("About");

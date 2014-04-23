@@ -47,7 +47,7 @@
             'src/Game/LayerGameCoffee.js',
             'src/Game/LayerGameMenu.js',
             'src/Game/Medicine.js',
-            'src/Game/GameScene.js',
+            'src/Game/SceneGame.js',
             'src/Main/LayerMainBg.js',
             'src/Main/LayerMainMenu.js',
             'src/Main/SceneMain.js',

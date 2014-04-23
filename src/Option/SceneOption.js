@@ -1,5 +1,5 @@
 /**
- * Created by YingjieChen on 14-4-10.
+ * Created by Ohgo on 14-4-23.
  */
 var SceneOption = cc.Scene.extend({
     onEnter:function () {
@@ -9,11 +9,6 @@ var SceneOption = cc.Scene.extend({
 
         this.addChild(backgroundLayer, 0);
         this.addChild(mainLayer, 1);
-    },
-
-    onBackCallback:function (pSender) {
-        var scene = SceneMain();
-        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
     }
 });
 
