@@ -3,7 +3,7 @@
  ****************************************************************************/
 
 
-var MainScene = cc.Scene.extend({
+var SceneMain = cc.Scene.extend({
     _backgroundLayer:null,
     _mainLayer:null,
     _optionLayer:null,

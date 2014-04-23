@@ -44,7 +44,7 @@ var LayerMainMenu = cc.Layer.extend({
     },
     onOption:function (pSender) {
         this.onButtonEffect();
-        var scene = OptionScene();
+        var scene = SceneOption();
         cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     },
     onAbout:function (pSender) {
