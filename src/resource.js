@@ -1,3 +1,9 @@
+var gSharedEngine = cc.AudioEngine.getInstance();
+
+// audio
+var MUSIC_BACKGROUND  = "audio/opening.mp3";
+
+// image
 var bg_MainMenu = "bg_Main.png";
 var btn_MainMenu_png = "menu.png";
 var bg_Game_png = "bg_Game.png";

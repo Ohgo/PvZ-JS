@@ -11,6 +11,8 @@ var SceneMain = cc.Scene.extend({
 
         this.addChild(backgroundLayer, 0);
         this.addChild(mainLayer, 1);
+
+        gSharedEngine.playMusic(MUSIC_BACKGROUND,true);
     }
 });
 

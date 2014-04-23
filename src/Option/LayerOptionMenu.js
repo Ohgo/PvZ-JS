@@ -27,10 +27,10 @@ var LayerOptionMenu = cc.Layer.extend({
         var btn_decSoundEffectDisabled = cc.Sprite.create(btn_decreaseVolume);
 
         // put as clickable menu
-        var incMusic = cc.MenuItemSprite.create(btn_incMusicNormal, btn_incMusicSelected, btn_incMusicDisabled, this.aFunction, this);
-        var decMusic = cc.MenuItemSprite.create(btn_decMusicNormal, btn_decMusicSelected, btn_decMusicDisabled, this.aFunction, this);
-        var incSoundEffect = cc.MenuItemSprite.create(btn_incSoundEffectNormal, btn_incSoundEffectSelected, btn_incSoundEffectDisabled, this.aFunction, this);
-        var decSoundEffect = cc.MenuItemSprite.create(btn_decSoundEffectNormal, btn_decSoundEffectSelected, btn_decSoundEffectDisabled, this.aFunction, this);
+        var incMusic = cc.MenuItemSprite.create(btn_incMusicNormal, btn_incMusicSelected, btn_incMusicDisabled, this.onMusicIncrease, this);
+        var decMusic = cc.MenuItemSprite.create(btn_decMusicNormal, btn_decMusicSelected, btn_decMusicDisabled, this.onMusicDecrease, this);
+        var incSoundEffect = cc.MenuItemSprite.create(btn_incSoundEffectNormal, btn_incSoundEffectSelected, btn_incSoundEffectDisabled, this.onSoundEffectIncrease, this);
+        var decSoundEffect = cc.MenuItemSprite.create(btn_decSoundEffectNormal, btn_decSoundEffectSelected, btn_decSoundEffectDisabled, this.onSoundEffectDecrease, this);
 
         // place menus on screen
         var MusicControl = cc.Menu.create(incMusic, decMusic);
@@ -38,7 +38,7 @@ var LayerOptionMenu = cc.Layer.extend({
         MusicControl.setPosition(winSize.width / 2, winSize.height / 2);
         var SoundEffectControl = cc.Menu.create(incSoundEffect, decSoundEffect);
         SoundEffectControl.alignItemsHorizontallyWithPadding(100);
-        SoundEffectControl.setPosition(winSize.width / 2, winSize.height / 2 + 150);
+        SoundEffectControl.setPosition(winSize.width / 2, winSize.height / 2 - 150);
 
         this.addChild(MusicControl, 0);
         this.addChild(SoundEffectControl, 1);
@@ -50,16 +50,20 @@ var LayerOptionMenu = cc.Layer.extend({
         return true;
     },
     onMusicIncrease:function(){
-
+        gSharedEngine.setMusicVolume(gSharedEngine.getMusicVolume()+0.1);
+        cc.log("Current music volume: " + gSharedEngine.getMusicVolume());
     },
     onMusicDecrease:function (pSender) {
-
+        gSharedEngine.setMusicVolume(gSharedEngine.getMusicVolume()-0.1);
+        cc.log("Current music volume: " + gSharedEngine.getMusicVolume());
     },
-    onSoundIncrease:function (pSender) {
-
+    onSoundEffectIncrease:function (pSender) {
+        gSharedEngine.setEffectsVolume(gSharedEngine.getEffectsVolume()+0.1);
+        cc.log("Current effect volume: " + gSharedEngine.getEffectsVolume());
     },
-    onSoundDecrease:function (pSender) {
-
+    onSoundEffectDecrease:function (pSender) {
+        gSharedEngine.setEffectsVolume(gSharedEngine.getEffectsVolume()-0.1);
+        cc.log("Current effect volume: " + gSharedEngine.getEffectsVolume());
     }
 
 
