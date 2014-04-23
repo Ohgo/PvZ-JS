@@ -37,23 +37,15 @@ var LayerMainMenu = cc.Layer.extend({
         // cc.log("onButtonEffect");
     },
     onPlayGame:function (pSender) {
-        // cc.log("Play Game!");
         this.onButtonEffect();
-
         var scene = new GameScene();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
 
     },
     onOption:function (pSender) {
-        // cc.log("Option");
         this.onButtonEffect();
-        //var scene = new SceneMain();
-        //scene.showOptionLayer();
-        //cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1, scene));
-        var nextScene = cc.Scene.create();
-        var nextLayer = new LayerMainOption;
-        nextScene.addChild(nextLayer);
-        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, nextScene));
+        var scene = OptionScene();
+        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     },
     onAbout:function (pSender) {
         cc.log("About");

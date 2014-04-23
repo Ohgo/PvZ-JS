@@ -47,11 +47,13 @@
             'src/Game/LayerGameCoffee.js',
             'src/Game/LayerGameMenu.js',
             'src/Game/Medicine.js',
-            'src/Game/SceneGame.js',
+            'src/Game/GameScene.js',
             'src/Main/LayerMainBg.js',
             'src/Main/LayerMainMenu.js',
             'src/Main/SceneMain.js',
-            'src/Option/LayerMainOption.js',
+            'src/Option/LayerOptionBg.js',
+            'src/Option/LayerOptionMenu.js',
+            'src/Option/SceneOption.js',
         ]
     };
 

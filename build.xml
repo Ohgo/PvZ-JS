@@ -229,7 +229,9 @@
                 <file name="src/Main/LayerMainBg.js"/>
                 <file name="src/Main/LayerMainMenu.js"/>
                 <file name="src/Main/SceneMain.js"/>
-                <file name="src/Option/LayerMainOption.js"/>
+                <file name="src/Option/LayerOptionBg.js"/>
+                <file name="src/Option/LayerOptionMenu.js"/>
+                <file name="src/Option/SceneOption.js"/>
                 <file name="main.js"/>
             </sources>
         </jscomp>
