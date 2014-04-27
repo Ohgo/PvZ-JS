@@ -1,4 +1,4 @@
-var GameScene = cc.Scene.extend({
+var SceneGame = cc.Scene.extend({
     onEnter:function () {
         this._super();
         this.addLayer();
@@ -15,7 +15,7 @@ var GameScene = cc.Scene.extend({
 
     onBackCallback:function (pSender) {
         var scene = cc.Scene.create();
-        scene.addChild(MainMenuLayer.create());
+        scene.addChild(LayerMainMenu.create());
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
     }
 });

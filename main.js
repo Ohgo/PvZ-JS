@@ -53,7 +53,6 @@ var cocos2dApp = cc.Application.extend({
         if (platform == cc.TARGET_PLATFORM.MOBILE_BROWSER) {
 
             resDirOrders.push("HD");
-            cc.log("HD");
 
             //resourceSize = cc.size(320, 480);
             //designSize = cc.size(320, 480);
@@ -62,7 +61,6 @@ var cocos2dApp = cc.Application.extend({
         }
         else if (platform == cc.TARGET_PLATFORM.PC_BROWSER) {
             resDirOrders.push("HD");
-            cc.log("HD");
         }
 
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);
@@ -85,4 +83,4 @@ var cocos2dApp = cc.Application.extend({
     }
 });
 
-var myApp = new cocos2dApp(MainMenuScene);
+var myApp = new cocos2dApp(SceneMain);

@@ -2,32 +2,11 @@
  * Created by 00 on 14-4-10.
  */
 
-var MainMenuLayer = cc.Layer.extend({
-    isMouseDown:false,
-    helloImg:null,
-    titleLabel:null,
-    circle:null,
-    sprite:null,
+var LayerMainMenu = cc.Layer.extend({
 
     ctor:function () {
-
         this._super();
-
         var winSize = cc.Director.getInstance().getWinSize();
-
-        /*
-         // Title text
-         var titleLabel = cc.LabelTTF.create("Plants vs Zombies", "Impact", 38);
-         titleLabel.setPosition(size.width / 2, size.height - 40);
-         addChild(this.titleLabel, 5);
-         */
-
-        // load and place background on screen
-        this.sprite = cc.Sprite.create(bg_MainMenu);
-        this.sprite.setAnchorPoint(0.5, 0.5);
-        this.sprite.setPosition(winSize.width / 2, winSize.height / 2);
-        this.sprite.setScale(winSize.height/this.sprite.getContentSize().height);
-        this.addChild(this.sprite, 0);
 
         // load buttons
         var newGameNormal = cc.Sprite.create(btn_MainMenu_png, cc.rect(0, 0, 126, 33));
@@ -48,27 +27,26 @@ var MainMenuLayer = cc.Layer.extend({
         // place menus on screen
         var menu = cc.Menu.create(playGame, option, about);
         menu.alignItemsVerticallyWithPadding(30);
-        this.addChild(menu, 1, 2);
         menu.setPosition(winSize.width / 2 + 200, winSize.height / 2);
+        this.addChild(menu, 0);
 
         return true;
     },
     onButtonEffect:function(){
         // TODO: Play sound effects
-        cc.log("onButtonEffect");
+        // cc.log("onButtonEffect");
     },
     onPlayGame:function (pSender) {
-        cc.log("Play Game!");
         this.onButtonEffect();
-
-        var scene = new GameScene();
+        var scene = new SceneGame();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
 
     },
     onOption:function (pSender) {
-        cc.log("Option");
         this.onButtonEffect();
-        // TODO: Go to option scene
+        var optionScene = new SceneOption();
+        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, optionScene));
+
     },
     onAbout:function (pSender) {
         cc.log("About");
