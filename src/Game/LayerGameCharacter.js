@@ -10,7 +10,6 @@ var GameCharacterLayer = cc.Layer.extend({
         if (this._super()) {
             //MW.CONTAINER.ENEMIES = [];
 
-            winSize = cc.Director.getInstance().getWinSize();
             //this._levelManager = new LevelManager(this);
             //this.initBacteria();
             this.initDoctor();
@@ -57,7 +56,7 @@ var GameCharacterLayer = cc.Layer.extend({
         this.doctor.setAnchorPoint(cc.p(0.5,0.5));
         //this.doctor.setPosition(910,590);
         this.doctor.setPosition(size.width/5,4*size.height/5);
-        this.doctor.setScale(0.5,0.5);
+        this.doctor.setScale(0.7,0.7);
         this.addChild(this.doctor,1);
         this.actDoctorAnimation(true);
     },
@@ -75,7 +74,7 @@ var GameCharacterLayer = cc.Layer.extend({
                 }
             }
             animation.setDelayPerUnit(40 / 60);
-            animation.setLoops(999);
+            animation.setLoops(9999);
             animation.setRestoreOriginalFrame(true);
             var action = cc.Animate.create(animation);
             this.doctor.runAction(action);

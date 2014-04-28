@@ -19,8 +19,10 @@ var GameBGLayer = cc.Layer.extend({
         }
         return bRet;
     },
+    //Initial the grid, need to be fixed -Huimin
     initMap:function(){
         //numbers will be replaced ,should be as constant
+        var winSize = cc.Director.getInstance().getWinSize();
         g_MapGridRow = new Array(1);
         for (var i = 0; i < g_MapGridRow.length ; i++){
             g_MapGridRow[i] = new Array(6);
@@ -28,11 +30,11 @@ var GameBGLayer = cc.Layer.extend({
                 g_MapGridRow[i][j] = new Array(2);
                 // create a rect on each 2d array element;
                 // need to think about HD Mode
-                var gridRect = cc.rect(80*j,300,80,80);
+                var gridRect = cc.rect(80*j*screenType,winSize.height/2-40*screenType,80*screenType,80*screenType);
                 for(var k = 0; k < g_MapGridRow[i][j].length; k++){
                     g_MapGridRow[i][j][0] = g_MapGridStatus.free;
                     g_MapGridRow[i][j][1] = gridRect;
-                    //cc.log(g_MapGridRow[i][j][1]._origin.x);
+                    //cc.log(g_MapGridRow[i][j][1]._origin.y);
                 }
             }
         }
