@@ -61,3 +61,7 @@ var GameCharacterLayer = cc.Layer.extend({
 //    }
 
 });
+
+//GameCharacterLayer.prototype.addEnemy = function (bacteria, z, tag) {
+//    this._texTransparentBatch.addChild(bacteria, z, tag);
+//};

@@ -7,7 +7,7 @@ PvZ.BACTERIA_MOVE_TYPE = {
     SHAKY:1,
     HORIZONTAL:2,
     OVERLAP:3,
-    Normal:4
+    NORMAL:4
 };
 
 //container
