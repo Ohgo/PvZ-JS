@@ -1,4 +1,3 @@
-var g_GameZOder = {bg:0, ui:1, front:100};//present layer
 var g_GameStatus = {play:0, stop:1, gameOver:2};//game status
 var g_GameCharacterLayer;
 
@@ -7,33 +6,44 @@ var GameCharacterLayer = cc.Layer.extend({
     _levelManager:null,
     _state:0,
 
-    init:function(){
+    ctor:function () {
+        this._super();
+        this.init();
+    },
+
+    init:function () {
+        cc.log("GameCharacterLayer");
         var bRet = false;
         if (this._super()) {
+            cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bacteria_plist);
+
             PvZ.CONTAINER.BACTERIAS = [];
             PvZ.ACTIVE_BACTERIA = 0;
-            this._state = g_GameStatus.normal;
+            this._state = g_GameStatus.play;
 
-            winSize = cc.Director.getInstance().getWinSize();
+            var winSize = cc.Director.getInstance().getWinSize();
+
+
             this._levelManager = new LevelManager(this);
 
             // schedule
             this.scheduleUpdate();
-            this.schedule(this.scoreCounter, 1);
-
-            bRet = true;
+            this.schedule(this.oneSecondTick, 1);
 
             g_GameCharacterLayer = this;
 
             //pre set
-            Bacteria.preSet();
+            //Bacteria.preSet();
+            bRet = true;
         }
         return bRet;
     },
 
-    scoreCounter:function () {
+    oneSecondTick:function () {
+        // check if it's a spawn time of any monster
         if (this._state == g_GameStatus.play) {
             this._time++;
+            cc.log("Tick: " + this._time);
             this._levelManager.loadLevelResource(this._time);
         }
     },
@@ -45,7 +55,7 @@ var GameCharacterLayer = cc.Layer.extend({
     },
 
     checkIsCollide:function(){
-        cc.log("checkIsCollide");
+        //cc.log("checkIsCollide");
     }
 
 //    initBacteria:function(){

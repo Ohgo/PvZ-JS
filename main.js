@@ -27,11 +27,12 @@
 var cocos2dApp = cc.Application.extend({
     config:document['ccConfig'],
     ctor:function (scene) {
+        cc.log("Main: ctor");
         this._super();
         this.startScene = scene;
         cc.COCOS2D_DEBUG = this.config['COCOS2D_DEBUG'];
         // cc.initDebugSetting();
-        cc.setup(this.config['tag']);
+        cc.setup(this.config['tag']); // cc.log("Cocos2d-html5-v2.2.2") aka engineversion is written here
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
     },
     applicationDidFinishLaunching:function () {
@@ -49,6 +50,7 @@ var cocos2dApp = cc.Application.extend({
         cc.FileUtils.getInstance().setSearchPaths(searchPaths);
 
         var platform = cc.Application.getInstance().getTargetPlatform();
+
         if (platform == cc.TARGET_PLATFORM.MOBILE_BROWSER) {
 
             resDirOrders.push("HD");
@@ -77,7 +79,6 @@ var cocos2dApp = cc.Application.extend({
         cc.LoaderScene.preload(g_resources, function () {
             director.replaceScene(new this.startScene());
         }, this);
-
         return true;
     }
 });

@@ -9,19 +9,22 @@ var Bacteria = cc.Sprite.extend({
     HP:15,
     zOrder:1000,
     moveType:null,
+    moveSpeed:null,
     delayTime:1 + 1.2 * Math.random(),
     attackMode:null,
-    //attackMode:PvZ.BACTERIA_MOVE_TYPE.NORMAL,
+    //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
     ctor: function (arg) {
         this._super();
-        //attackMode:PvZ.BACTERIA_MOVE_TYPE.NORMAL;
+        //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK;
         this.HP = arg.HP;
         this.moveType = arg.moveType;
         this.attackMode = arg.attackMode;
         this.bacteriaType = arg.type;
+        this.moveSpeed = arg.moveSpeed;
 
-        this.initWithFile("BacteriaHappyGray.png");
+        //this.initWithFile("BacteriaHappyGray.png");
+        this.initWithSpriteFrameName(arg.textureName);
         //this.schedule();
     },
 
@@ -65,28 +68,38 @@ var Bacteria = cc.Sprite.extend({
 
 Bacteria.getOrCreateBacteria = function(arg){
     var selChild = null;
+
+    // TODO: This loop logic is confusing. Make sure it works, then change to if and comment. *Aries
+    // if there is a reusable bacteria object in the container, use it
     for (var j = 0; j < PvZ.CONTAINER.BACTERIAS.length; j++) {
         selChild = PvZ.CONTAINER.BACTERIAS[j];
 
         if (selChild.active == false && selChild.bacteriaType == arg.type) {
             selChild.HP = arg.HP;
             selChild.active = true;
+            selChild.moveSpeed = arg.moveSpeed;
             selChild.moveType = arg.moveType;
             selChild.attackMode = arg.attackMode;
             //selChild._hurtColorLife = 0;
 
+            // does it have anything routine to do?
             //selChild.schedule();
+
             selChild.setVisible(true);
             PvZ.ACTIVE_BACTERIA++;
+            cc.log("Bacteria.js: Getting an old bacteria from container index " + j);
             return selChild;
         }
     }
+
+    // otherwise, create a new one
     selChild = Bacteria.create(arg);
     PvZ.ACTIVE_BACTERIA++;
     return selChild;
 };
 
 Bacteria.create = function (arg) {
+    cc.log("Bacteria.js: Creating new bacteria of type: " + arg.type);
     var bacteria = new Bacteria(arg);
     g_GameCharacterLayer.addChild(bacteria, bacteria.zOrder);
     PvZ.CONTAINER.BACTERIAS.push(bacteria);

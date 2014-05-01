@@ -3,11 +3,12 @@
  */
 //enemy move type
 PvZ.BACTERIA_MOVE_TYPE = {
-    ATTACK:0,
-    SHAKY:1,
-    HORIZONTAL:2,
-    OVERLAP:3,
-    NORMAL:4
+    HORIZONTAL_WALK:0,
+    OTHER:1
+};
+
+PvZ.BACTERIA_ATTACK_TYPE = {
+    INFECT:0
 };
 
 //container

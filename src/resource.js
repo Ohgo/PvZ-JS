@@ -8,6 +8,8 @@ var bg_MainMenu = "bg_Main.png";
 var btn_MainMenu_png = "menu.png";
 var bg_Game_png = "bg_Game.png";
 var s_BacteriaHappyGray = "BacteriaHappyGray.png";
+var s_bacteria_png = "bacteria.png";
+var s_bacteria_plist = 'bacteria.plist';
 var dock_options = "option.png";
 var bg_option = "bg_option.png";
 var btn_increaseVolume = "increase.png";
@@ -19,6 +21,8 @@ var g_resources = [
     {src:bg_MainMenu},
     {src:btn_MainMenu_png},
     {src:s_BacteriaHappyGray},
+    {src:s_bacteria_png},
+    {src:s_bacteria_plist},
     {src:bg_Game_png},
     {src:dock_options},
     {src:bg_option},
