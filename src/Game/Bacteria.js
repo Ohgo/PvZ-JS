@@ -62,7 +62,6 @@ var BacteriaHappyGray = Bacteria.extend({
         //this.setPosition(cc.pMult(this.getPosition(),cc.pMult(this.velocity, dt)),310);
         //this.checkHitEdge();
     //}
-
 });
 
 Bacteria.getOrCreateBacteria = function(arg){
