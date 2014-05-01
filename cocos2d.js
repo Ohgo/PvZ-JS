@@ -39,6 +39,9 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',//add your own files in order here
+            'src/config/BacteriaType.js',
+            'src/config/GameConfig.js',
+            'src/config/Level.js',
             'src/Game/Bacteria.js',
             'src/Game/Coffee.js',
             'src/Game/Doctor.js',
@@ -53,7 +56,7 @@
             'src/Main/SceneMain.js',
             'src/Option/LayerOptionBg.js',
             'src/Option/LayerOptionMenu.js',
-            'src/Option/SceneOption.js',
+            'src/Option/SceneOption.js'
         ]
     };
 

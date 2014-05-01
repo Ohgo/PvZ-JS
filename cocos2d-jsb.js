@@ -25,7 +25,7 @@
 
 // boot code needed for cocos2d + JS bindings.
 // Not needed by cocos2d-html5
-
+/*
 require("jsb.js");
 
 var appFiles = [
@@ -85,3 +85,4 @@ director.setAnimationInterval(1.0 / 60);
 var mainScene = new MyScene();
 director.runWithScene(mainScene);
 
+*/
