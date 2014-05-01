@@ -1,10 +1,8 @@
 var Bacteria = cc.Sprite.extend({
     isHit: false,   //for collision detection
     HP:0,
-    radius:0    //collision radius
-});
+    radius:0,    //collision radius
 
-var BacteriaHappyGray = Bacteria.extend({
     bacteriaType:1,
     active:true,
     speed:200,
