@@ -27,6 +27,7 @@
 var PvZ = PvZ || {};
 
 (function () {
+
     var d = document;
     var c = {
         COCOS2D_DEBUG:2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
@@ -41,6 +42,9 @@ var PvZ = PvZ || {};
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',//add your own files in order here
+            'src/config/GameConfig.js',
+            'src/config/Level.js',
+            'src/config/BacteriaType.js',
             'src/Game/Bacteria.js',
             'src/Game/Coffee.js',
             'src/Game/Doctor.js',
@@ -57,9 +61,6 @@ var PvZ = PvZ || {};
             'src/Option/LayerOptionBg.js',
             'src/Option/LayerOptionMenu.js',
             'src/Option/SceneOption.js',
-            'src/Config/Level.js',
-            'src/Config/GameConfig.js',
-            'src/Config/BacteriaType.js'
         ]
     };
 

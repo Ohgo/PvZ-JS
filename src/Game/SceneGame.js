@@ -1,16 +1,12 @@
 var SceneGame = cc.Scene.extend({
     onEnter:function () {
         this._super();
-        this.addLayer();
-    },
 
-    addLayer:function(){
-        var gBGLayer = new GameBGLayer();
+        var gBGLayer = new LayerGameBg();
         var gCharacterLayer = new GameCharacterLayer();
         this.addChild(gBGLayer);
         this.addChild(gCharacterLayer);
-        gBGLayer.init();
-        gCharacterLayer.init();
+        //gCharacterLayer.init();
     },
 
     onBackCallback:function (pSender) {

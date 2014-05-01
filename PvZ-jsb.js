@@ -30,8 +30,26 @@ require("jsb.js");
 var PvZ = PvZ || {};
 
 var appFiles = [
-    'src/resource.js',
-    'src/LayerMainMenu.js'
+    'src/resource.js',//add your own files in order here
+    'src/Game/Bacteria.js',
+    'src/Game/Coffee.js',
+    'src/Game/Doctor.js',
+    'src/Game/LayerGameBg.js',
+    'src/Game/LayerGameCharacter.js',
+    'src/Game/LayerGameCoffee.js',
+    'src/Game/LayerGameMenu.js',
+    'src/Game/Medicine.js',
+    'src/Game/SceneGame.js',
+    'src/Game/LevelManager.js',
+    'src/Main/LayerMainBg.js',
+    'src/Main/LayerMainMenu.js',
+    'src/Main/SceneMain.js',
+    'src/Option/LayerOptionBg.js',
+    'src/Option/LayerOptionMenu.js',
+    'src/Option/SceneOption.js',
+    'src/config/Level.js',
+    'src/config/GameConfig.js',
+    'src/config/BacteriaType.js'
 ];
 
 cc.dumpConfig();

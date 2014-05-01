@@ -2,7 +2,7 @@
  * Created by 00 on 14-4-28.
  */
 //enemy move type
-var PvZ.BACTERIA_MOVE_TYPE = {
+PvZ.BACTERIA_MOVE_TYPE = {
     ATTACK:0,
     SHAKY:1,
     HORIZONTAL:2,
@@ -11,7 +11,7 @@ var PvZ.BACTERIA_MOVE_TYPE = {
 };
 
 //container
-var PvZ.CONTAINER = {
+PvZ.CONTAINER = {
     BACTERIA:[],
     DOCTOR:[],
     MEDICINE:[]

@@ -10,18 +10,19 @@ var Bacteria = cc.Sprite.extend({
     zOrder:1000,
     moveType:null,
     delayTime:1 + 1.2 * Math.random(),
-    attackMode:PvZ.BACTERIA_MOVE_TYPE.NORMAL,
+    attackMode:null,
+    //attackMode:PvZ.BACTERIA_MOVE_TYPE.NORMAL,
 
     ctor: function (arg) {
         this._super();
-
+        //attackMode:PvZ.BACTERIA_MOVE_TYPE.NORMAL;
         this.HP = arg.HP;
         this.moveType = arg.moveType;
         this.attackMode = arg.attackMode;
         this.bacteriaType = arg.type;
 
         this.initWithFile("BacteriaHappyGray.png");
-        this.schedule();
+        //this.schedule();
     },
 
     _timeTick:0,
@@ -74,7 +75,7 @@ Bacteria.getOrCreateBacteria = function(arg){
             selChild.attackMode = arg.attackMode;
             //selChild._hurtColorLife = 0;
 
-            selChild.schedule();
+            //selChild.schedule();
             selChild.setVisible(true);
             PvZ.ACTIVE_BACTERIA++;
             return selChild;

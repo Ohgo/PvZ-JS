@@ -2,10 +2,9 @@
  * Created by Ohgo on 4/23/14.
  */
 
-
 var LayerMainBg = cc.Layer.extend({
-
     ctor:function () {
+        cc.log("LayerMainBg Ctor");
         this._super();
         var winSize = cc.Director.getInstance().getWinSize();
 
