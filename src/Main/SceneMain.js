@@ -14,6 +14,8 @@ var SceneMain = cc.Scene.extend({
         this.addChild(mainLayer, 1);
 
         gSharedEngine.playMusic(MUSIC_BACKGROUND,true);
+        gSharedEngine.setMusicVolume(0.5);
+
     }
 });
 
