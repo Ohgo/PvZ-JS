@@ -5,6 +5,7 @@ var GameCharacterLayer = cc.Layer.extend({
     _time:null,
     _levelManager:null,
     _state:0,
+    _bacteriaAnimation:null,
 
     ctor:function () {
         this._super();
@@ -15,7 +16,7 @@ var GameCharacterLayer = cc.Layer.extend({
         cc.log("GameCharacterLayer");
         var bRet = false;
         if (this._super()) {
-            cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bacteria_plist);
+            //cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bacteria_plist);
 
             PvZ.CONTAINER.BACTERIAS = [];
             PvZ.ACTIVE_BACTERIA = 0;
@@ -23,8 +24,15 @@ var GameCharacterLayer = cc.Layer.extend({
 
             var winSize = cc.Director.getInstance().getWinSize();
 
-
             this._levelManager = new LevelManager(this);
+
+            // bacteria animation batch node
+            cc.SpriteFrameCache.getInstance().addSpriteFrames(bacteria_plist);
+            var bacteriaAnimationTexture = cc.TextureCache.getInstance().addImage(bacteria_png);
+            this._bacteriaAnimation = cc.SpriteBatchNode.createWithTexture(bacteriaAnimationTexture);
+            //this._bacteriaAnimation.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
+            this.addChild(this._bacteriaAnimation);
+            //_bacteriaAnimation.sharedAnimation();
 
             // schedule
             this.scheduleUpdate();

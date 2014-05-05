@@ -15,6 +15,8 @@ var bg_option = "bg_option.png";
 var btn_increaseVolume = "increase.png";
 var btn_decreaseVolume = "decrease.png";
 var btn_option_back = "option_back.png";
+var bacteria_plist = "bacteria00-hd.plist";
+var bacteria_png = "bacteria00.png";
 
 var g_resources = [
     //image
@@ -28,10 +30,11 @@ var g_resources = [
     {src:bg_option},
     {src:btn_increaseVolume},
     {src:btn_decreaseVolume},
-    {src:btn_option_back}
+    {src:btn_option_back},
+    {src:bacteria_png},
 
     //plist
-
+    {src:bacteria_plist}
     //fnt
 
     //tmx

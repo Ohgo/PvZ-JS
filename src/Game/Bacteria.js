@@ -24,7 +24,9 @@ var Bacteria = cc.Sprite.extend({
         this.moveSpeed = arg.moveSpeed;
 
         //this.initWithFile("BacteriaHappyGray.png");
-        this.initWithSpriteFrameName(arg.textureName);
+        //this.initWithSpriteFrameName(arg.textureName);
+        var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaYellow1.png");
+        this.initWithSpriteFrame(pFrame);
         //this.schedule();
     },
 
