@@ -12,6 +12,7 @@ var Bacteria = cc.Sprite.extend({
     moveSpeed:null,
     delayTime:1 + 1.2 * Math.random(),
     attackMode:null,
+    animation:null,
     //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
     ctor: function (arg) {
@@ -27,6 +28,11 @@ var Bacteria = cc.Sprite.extend({
         //this.initWithSpriteFrameName(arg.textureName);
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaYellow1.png");
         this.initWithSpriteFrame(pFrame);
+
+        this.animation = cc.AnimationCache.getInstance().getAnimation("BacteriaAnimation");
+        this.runAction(
+            cc.Animate.create(this.animation)
+        );
         //this.schedule();
     },
 
@@ -119,4 +125,18 @@ Bacteria.preSet = function () {
             bacteria.unscheduleAllCallbacks();
         }
     }
+};
+
+//Bacteria Animation
+Bacteria.sharedAnimation = function (arg) {
+    var animFrames = [];
+    var str = "";
+    //switch
+    for (var i = 1; i < 5; i++) {
+        str = "bacteriaYellow" + i + ".png";
+        var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
+        animFrames.push(frame);
+    }
+    var animation = cc.Animation.create(animFrames, 0.04);
+    cc.AnimationCache.getInstance().addAnimation(animation, "BacteriaAnimation");
 };

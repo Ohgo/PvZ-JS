@@ -32,7 +32,7 @@ var GameCharacterLayer = cc.Layer.extend({
             this._bacteriaAnimation = cc.SpriteBatchNode.createWithTexture(bacteriaAnimationTexture);
             //this._bacteriaAnimation.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
             this.addChild(this._bacteriaAnimation);
-            //_bacteriaAnimation.sharedAnimation();
+            Bacteria.sharedAnimation();
 
             // schedule
             this.scheduleUpdate();
