@@ -1,3 +1,4 @@
+var g_GameStatus = {play:0, stop:1, gameOver:2};//game status
 var g_GameCoffeeLayer;
 
 GameCoffeeLayer = cc.Layer.extend({
@@ -9,18 +10,34 @@ GameCoffeeLayer = cc.Layer.extend({
     },
 
     init:function () {
-        this._super();
+        var bRet = false;
+        if (this._super()) {
+
         cc.log("GameCoffeeLayer");
         var size = cc.Director.getinstatance().getWinSize();
 
         this.Coffee = cc.Sprite.create("coffee.png");
         this.Sprite.setAnchorpoint(cc.p(0.5,0.5));
         this.Coffee.setPosition(cc.p(size.witdh/2, size.height/2));
-
         this.addChild(this.Coffee, 0);
+
+        PvZ.CONTAINER.COFFEES = [];
+        PvZ.ACTIVE_COFFEE = 0;
+        this._state = g_GameStatus.play;
+
+        var winSize = cc.Director.getInstance().getWinSize();
+
+            // schedule
+            this.scheduleUpdate();
+            this.schedule(this.refreshCoffeeAct, 1);
+
         g_GameCoffeeLayer = this;
-        return true;
+
+            bRet = true;
+        }
+        return bRet;
     },
+
 
     //coffee sets its position to a random spot on the top line of the screen and moves down
     refresh_CoffeeAct:function() {
@@ -34,19 +51,14 @@ GameCoffeeLayer = cc.Layer.extend({
         this.Coffee.runAction(coffee_action);
 },
 
-    //in a random period of 0.5 to 3 sec the coffee refreshes its act.
-    loop:function () {
-             var random_time = Math.round(Math.random()*(3000-500))+ 500;
-            setTimeout(function(){
-                refresh_CoffeeAct();
-                loop();
-            },random_time);
-        },
+    update:function (dt) {
+        if(this._state == g_GameStatus.play){
+            this.checkIsCollide();
+        }
+    },
 
-    move_up_left: function(){
-    //when clicked the coffee moves up lef corner
-    var coffee_action = cc.MoveTo.create(2,cc.p(0, size.height));
-    this.Coffee.runAction(coffee_action);
-}
+    //in a random period of 0.5 to 3 sec the coffee refreshes its act.
+
+
 
 });
