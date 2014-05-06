@@ -19,6 +19,7 @@ var GameBGLayer = cc.Layer.extend({
         }
         return bRet;
     },
+
     //Initial the grid, need to be fixed -Huimin
     initMap:function(){
         //numbers will be replaced ,should be as constant
