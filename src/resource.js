@@ -37,7 +37,7 @@ var g_resources = [
     {src:bacteria_png},
     {src:s_Doctor},
     {src:s_doctorPunch01},
-    {src:s_doctorPunch02}
+    {src:s_doctorPunch02},
 
     //plist
     {src:bacteria_plist}

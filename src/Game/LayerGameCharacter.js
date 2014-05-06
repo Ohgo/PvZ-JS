@@ -14,10 +14,6 @@ var GameCharacterLayer = cc.Layer.extend({
         this.init();
     },
 
-    init:function () {
-        cc.log("GameCharacterLayer");
-    doctor:null,
-
     init:function(){
         var bRet = false;
         if (this._super()) {
@@ -42,7 +38,7 @@ var GameCharacterLayer = cc.Layer.extend({
             // schedule
             this.scheduleUpdate();
             this.schedule(this.oneSecondTick, 1);
-            this.schedule(this.scoreCounter, 1);
+//            this.schedule(this.scoreCounter, 1);
 			this.initDoctor();
             bRet = true;
 
@@ -59,20 +55,20 @@ var GameCharacterLayer = cc.Layer.extend({
         // check if it's a spawn time of any monster
         if (this._state == g_GameStatus.play) {
             this._time++;
-            cc.log("Tick: " + this._time);
+            //cc.log("Tick: " + this._time);
             this._levelManager.loadLevelResource(this._time);
         }
     },
 
     update:function (dt) {
         if(this._state == g_GameStatus.play){
-            this.checkIsCollide();
+//            this.checkIsCollide();
         }
     },
 
-    checkIsCollide:function(){
-        //cc.log("checkIsCollide");
-    }
+//    checkIsCollide:function(){
+//        //cc.log("checkIsCollide");
+//    },
 
 //    initBacteria:function(){
 //        //add bacteriaSprite
@@ -84,11 +80,11 @@ var GameCharacterLayer = cc.Layer.extend({
 //       // bacteria.runAction(cc.MoveBy.create(5, cc.p(500,320)));
 ////        bacteria.update(2);
 //        cc.log("add bacteria");
-        this.addChild(bacteria,1);
+//        this.addChild(bacteria,1);
        // bacteria.runAction(cc.MoveBy.create(5, cc.p(500,320)));
 //        bacteria.update(2);
-        cc.log("add bacteria");
-    },
+//        cc.log("add bacteria");
+//    },
 
     /* To be finished - Huimin
      //display doctor card
@@ -117,7 +113,7 @@ var GameCharacterLayer = cc.Layer.extend({
         this.doctor.setAnchorPoint(cc.p(0.5,0.5));
         //this.doctor.setPosition(910,590);
         this.doctor.setPosition(size.width/5,4*size.height/5);
-        this.doctor.setScale(0.7,0.7);
+        //this.doctor.setScale(0.7,0.7);
         this.addChild(this.doctor,1);
         this.actDoctorAnimation(true);
     },

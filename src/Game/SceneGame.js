@@ -3,7 +3,7 @@ var SceneGame = cc.Scene.extend({
         cc.log("SceneGame: onEnter");
         this._super();
 
-        var gBGLayer = new LayerGameBg();
+        var gBGLayer = new GameBGLayer();
         var gCharacterLayer = new GameCharacterLayer();
 
         this.addChild(gBGLayer, 0);
