@@ -23,6 +23,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+var screenType;
 
 var cocos2dApp = cc.Application.extend({
     config:document['ccConfig'],
@@ -54,6 +55,7 @@ var cocos2dApp = cc.Application.extend({
         if (platform == cc.TARGET_PLATFORM.MOBILE_BROWSER) {
 
             resDirOrders.push("HD");
+            screenType = 2;
 
             //resourceSize = cc.size(320, 480);
             //designSize = cc.size(320, 480);
@@ -62,6 +64,7 @@ var cocos2dApp = cc.Application.extend({
         }
         else if (platform == cc.TARGET_PLATFORM.PC_BROWSER) {
             resDirOrders.push("HD");
+            screenType = 2;
         }
 
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);

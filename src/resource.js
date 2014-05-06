@@ -20,6 +20,11 @@ var btn_decreaseVolume_sel = "decrease_vol_sel.png";
 var slider_volume_png = "slider_vol.png";
 var pin_volume_png = "pin_music.png";
 var btn_option_back = "option_back.png";
+var bacteria_plist = "bacteria00-hd.plist";
+var bacteria_png = "bacteria00.png";
+var s_Doctor = "Doctor.png";
+var s_doctorPunch01 = "doctorPunch01.png";
+var s_doctorPunch02 = "doctorPunch02.png";
 
 var g_resources = [
     //image
@@ -32,10 +37,16 @@ var g_resources = [
     {src:bg_Game_png},
     {src:dock_options},
     {src:bg_option},
-    {src:btn_option_back}
+    {src:btn_increaseVolume},
+    {src:btn_decreaseVolume},
+    {src:btn_option_back},
+    {src:bacteria_png},
+    {src:s_Doctor},
+    {src:s_doctorPunch01},
+    {src:s_doctorPunch02},
 
     //plist
-
+    {src:bacteria_plist}
     //fnt
 
     //tmx

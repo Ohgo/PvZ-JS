@@ -4,7 +4,7 @@
 var BacteriaType = [
     {
         type:0,
-        textureName:"Fungi.png",
+        textureName:"bacteriaYellow1.png",
         //bulletType:"W2.png",
         HP:1,
         moveSpeed:5,

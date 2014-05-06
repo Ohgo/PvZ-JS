@@ -12,6 +12,7 @@ var Bacteria = cc.Sprite.extend({
     moveSpeed:null,
     delayTime:1 + 1.2 * Math.random(),
     attackMode:null,
+    animation:null,
     //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
     ctor: function (arg) {
@@ -24,7 +25,14 @@ var Bacteria = cc.Sprite.extend({
         this.moveSpeed = arg.moveSpeed;
 
         //this.initWithFile("BacteriaHappyGray.png");
-        this.initWithSpriteFrameName(arg.textureName);
+        //this.initWithSpriteFrameName(arg.textureName);
+        var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaYellow1.png");
+        this.initWithSpriteFrame(pFrame);
+
+        this.animation = cc.AnimationCache.getInstance().getAnimation("BacteriaAnimation");
+        this.runAction(
+            cc.Animate.create(this.animation)
+        );
         //this.schedule();
     },
 
@@ -87,7 +95,7 @@ Bacteria.getOrCreateBacteria = function(arg){
 
             selChild.setVisible(true);
             PvZ.ACTIVE_BACTERIA++;
-            cc.log("Bacteria.js: Getting an old bacteria from container index " + j);
+            //cc.log("Bacteria.js: Getting an old bacteria from container index " + j);
             return selChild;
         }
     }
@@ -99,7 +107,7 @@ Bacteria.getOrCreateBacteria = function(arg){
 };
 
 Bacteria.create = function (arg) {
-    cc.log("Bacteria.js: Creating new bacteria of type: " + arg.type);
+    //cc.log("Bacteria.js: Creating new bacteria of type: " + arg.type);
     var bacteria = new Bacteria(arg);
     g_GameCharacterLayer.addChild(bacteria, bacteria.zOrder);
     PvZ.CONTAINER.BACTERIAS.push(bacteria);
@@ -117,4 +125,18 @@ Bacteria.preSet = function () {
             bacteria.unscheduleAllCallbacks();
         }
     }
+};
+
+//Bacteria Animation
+Bacteria.sharedAnimation = function (arg) {
+    var animFrames = [];
+    var str = "";
+    //switch
+    for (var i = 1; i < 5; i++) {
+        str = "bacteriaYellow" + i + ".png";
+        var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
+        animFrames.push(frame);
+    }
+    var animation = cc.Animation.create(animFrames, 0.04);
+    cc.AnimationCache.getInstance().addAnimation(animation, "BacteriaAnimation");
 };
