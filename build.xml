@@ -217,6 +217,9 @@
             </sources>
             <sources dir="${basedir}">
                 <file name="src/resource.js"/>
+                <file name="src/config/GameConfig.js"/>
+                <file name="src/config/BacteriaType.js"/>
+                <file name="src/config/Level.js"/>
                 <file name="src/Game/Bacteria.js"/>
                 <file name="src/Game/Coffee.js"/>
                 <file name="src/Game/Doctor.js"/>

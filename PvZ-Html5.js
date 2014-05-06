@@ -24,6 +24,8 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+var PvZ = PvZ || {};
+
 (function () {
 
     var d = document;
@@ -40,9 +42,9 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',//add your own files in order here
-            'src/config/BacteriaType.js',
             'src/config/GameConfig.js',
             'src/config/Level.js',
+            'src/config/BacteriaType.js',
             'src/Game/Bacteria.js',
             'src/Game/Coffee.js',
             'src/Game/Doctor.js',
@@ -52,12 +54,13 @@
             'src/Game/LayerGameMenu.js',
             'src/Game/Medicine.js',
             'src/Game/SceneGame.js',
+            'src/Game/LevelManager.js',
             'src/Main/LayerMainBg.js',
             'src/Main/LayerMainMenu.js',
             'src/Main/SceneMain.js',
             'src/Option/LayerOptionBg.js',
             'src/Option/LayerOptionMenu.js',
-            'src/Option/SceneOption.js'
+            'src/Option/SceneOption.js',
         ]
     };
 
@@ -79,6 +82,7 @@
     window.addEventListener('DOMContentLoaded', function () {
         this.removeEventListener('DOMContentLoaded', arguments.callee, false);
         //first load engine file if specified
+        var s = d.createElement('script');
         /*********Delete this section if you have packed all files into one*******/
         if (c.SingleEngineFile && !c.engineDir) {
             s.src = c.SingleEngineFile;
@@ -88,7 +92,7 @@
             
         }
         else {
-            alert('You must specify either the single engine file OR the engine directory in "cocos2d.js"');
+            alert('You must specify either the single engine file OR the engine directory in "PvZ-Html5.js"');
         }
         /*********Delete this section if you have packed all files into one*******/
 
