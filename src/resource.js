@@ -13,8 +13,6 @@ var s_options_png = "layer_option.png";
 var s_options_plist = "layer_option.plist";
 var dock_options = "option.png";
 var bg_option = "bg_option.png";
-var btn_increaseVolume = "increase_vol.png";
-var btn_decreaseVolume = "decrease_vol.png";
 var btn_increaseVolume_sel = "increase_vol_sel.png";
 var btn_decreaseVolume_sel = "decrease_vol_sel.png";
 var slider_volume_png = "slider_vol.png";
@@ -37,8 +35,6 @@ var g_resources = [
     {src:bg_Game_png},
     {src:dock_options},
     {src:bg_option},
-    {src:btn_increaseVolume},
-    {src:btn_decreaseVolume},
     {src:btn_option_back},
     {src:bacteria_png},
     {src:s_Doctor},
