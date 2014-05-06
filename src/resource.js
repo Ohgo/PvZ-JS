@@ -17,6 +17,9 @@ var btn_decreaseVolume = "decrease.png";
 var btn_option_back = "option_back.png";
 var bacteria_plist = "bacteria00-hd.plist";
 var bacteria_png = "bacteria00.png";
+var s_Doctor = "Doctor.png";
+var s_doctorPunch01 = "doctorPunch01.png";
+var s_doctorPunch02 = "doctorPunch02.png";
 
 var g_resources = [
     //image
@@ -32,6 +35,9 @@ var g_resources = [
     {src:btn_decreaseVolume},
     {src:btn_option_back},
     {src:bacteria_png},
+    {src:s_Doctor},
+    {src:s_doctorPunch01},
+    {src:s_doctorPunch02}
 
     //plist
     {src:bacteria_plist}
