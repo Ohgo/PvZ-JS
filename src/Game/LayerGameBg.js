@@ -7,6 +7,10 @@ var g_MapGridRow;
 
 var LayerGameBg = cc.Layer.extend({
 
+    ctor:function () {
+        this._super();
+        this.init();
+    },
 
     ctor:function(){
         var bRet = false;

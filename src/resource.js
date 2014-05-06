@@ -7,7 +7,6 @@ var MUSIC_BACKGROUND  = "audio/opening.mp3";
 var bg_MainMenu = "bg_Main.png";
 var btn_MainMenu_png = "menu.png";
 var bg_Game_png = "bg_Game.png";
-var s_BacteriaHappyGray = "BacteriaHappyGray.png";
 var s_bacteria_png = "bacteria.png";
 var s_bacteria_plist = 'bacteria.plist';
 var dock_options = "option.png";
@@ -25,7 +24,6 @@ var g_resources = [
     //image
     {src:bg_MainMenu},
     {src:btn_MainMenu_png},
-    {src:s_BacteriaHappyGray},
     {src:s_bacteria_png},
     {src:s_bacteria_plist},
     {src:bg_Game_png},
