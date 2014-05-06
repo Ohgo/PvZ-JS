@@ -1,0 +1,50 @@
+/**
+ * Created by 00 on 14-4-28.
+ */
+var BacteriaType = [
+    {
+        type:0,
+        textureName:"Fungi.png",
+        //bulletType:"W2.png",
+        HP:1,
+        moveSpeed:5,
+        moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
+        attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
+    },
+    {
+        type:1,
+        moveSpeed:15,
+        textureName:"Germ.png",
+        //bulletType:"W2.png",
+        HP:2,
+        moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
+        attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
+    },
+    {
+        type:2,
+        moveSpeed:7,
+        textureName:"Virus.png",
+        //bulletType:"W2.png",
+        HP:2,
+        moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
+        attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
+    },
+    {
+        type:3,
+        moveSpeed:10,
+        //textureName:"E1.png",
+        //bulletType:"W2.png",
+        HP:2,
+        moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
+        attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
+    },
+    {
+        type:4,
+        moveSpeed:10,
+        //textureName:"E1.png",
+        //bulletType:"W2.png",
+        HP:2,
+        moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
+        attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
+    }
+]

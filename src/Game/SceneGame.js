@@ -1,19 +1,14 @@
-/**
- * Created by YingjieChen on 14-4-10.
- */
 var SceneGame = cc.Scene.extend({
     onEnter:function () {
+        cc.log("SceneGame: onEnter");
         this._super();
-        this.addLayer();
-    },
 
-    addLayer:function(){
-        var gBGLayer = new GameBGLayer();
+        var gBGLayer = new LayerGameBg();
         var gCharacterLayer = new GameCharacterLayer();
-        this.addChild(gBGLayer);
-        this.addChild(gCharacterLayer);
-        gBGLayer.init();
-        gCharacterLayer.init();
+
+        this.addChild(gBGLayer, 0);
+        this.addChild(gCharacterLayer, 1);
+        //gCharacterLayer.init();
     },
 
     onBackCallback:function (pSender) {
@@ -22,5 +17,4 @@ var SceneGame = cc.Scene.extend({
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
     }
 });
-
 
