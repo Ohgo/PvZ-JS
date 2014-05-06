@@ -5,10 +5,10 @@
 var g_MapGridStatus = {free:0,occupied:1};
 var g_MapGridRow;
 
-var GameBGLayer = cc.Layer.extend({
+var LayerGameBg = cc.Layer.extend({
 
 
-    init:function(){
+    ctor:function(){
         var bRet = false;
         this.initMap();
         if (this._super()) {
@@ -23,6 +23,7 @@ var GameBGLayer = cc.Layer.extend({
     //Initial the grid, need to be fixed -Huimin
     initMap:function(){
         //numbers will be replaced ,should be as constant
+        //cc.log("initializing the map!!!!!!!!");
         var winSize = cc.Director.getInstance().getWinSize();
         g_MapGridRow = new Array(5);
         for (var i = 0; i < g_MapGridRow.length ; i++){

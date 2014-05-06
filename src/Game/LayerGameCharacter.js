@@ -1,5 +1,3 @@
-var g_GameZOder = {bg:0, ui:1, front:100};//present layer
-var g_GameStatus = {play:0, stop:1, gameOver:2};//game status
 var g_GameCharacterLayer;
 
 var GameCharacterLayer = cc.Layer.extend({

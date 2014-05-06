@@ -95,7 +95,7 @@ Bacteria.getOrCreateBacteria = function(arg){
 
             selChild.setVisible(true);
             PvZ.ACTIVE_BACTERIA++;
-            cc.log("Bacteria.js: Getting an old bacteria from container index " + j);
+            //cc.log("Bacteria.js: Getting an old bacteria from container index " + j);
             return selChild;
         }
     }
@@ -107,7 +107,7 @@ Bacteria.getOrCreateBacteria = function(arg){
 };
 
 Bacteria.create = function (arg) {
-    cc.log("Bacteria.js: Creating new bacteria of type: " + arg.type);
+    //cc.log("Bacteria.js: Creating new bacteria of type: " + arg.type);
     var bacteria = new Bacteria(arg);
     g_GameCharacterLayer.addChild(bacteria, bacteria.zOrder);
     PvZ.CONTAINER.BACTERIAS.push(bacteria);
