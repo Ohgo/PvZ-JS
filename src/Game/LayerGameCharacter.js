@@ -19,6 +19,7 @@ var GameCharacterLayer = cc.Layer.extend({
 
             PvZ.CONTAINER.BACTERIAS = [];
             PvZ.ACTIVE_BACTERIA = 0;
+            PvZ.ACTIVE_DOCTOR = 0;
             this._state = g_GameStatus.play;
 
             var winSize = cc.Director.getInstance().getWinSize();
@@ -37,7 +38,7 @@ var GameCharacterLayer = cc.Layer.extend({
             this.scheduleUpdate();
             this.schedule(this.oneSecondTick, 1);
 //            this.schedule(this.scoreCounter, 1);
-			this.initDoctor();
+			this.addDoctor();
             bRet = true;
 
             g_GameCharacterLayer = this;
@@ -107,9 +108,9 @@ var GameCharacterLayer = cc.Layer.extend({
 
     //Create Doctor Sprite
 
-    initDoctor:function(){
+    addDoctor:function(){
         var size = cc.Director.getInstance().getWinSize();
-        this.doctor = new DoctorSprite();
+        this.doctor = new Doctor();
         this.doctor.setAnchorPoint(cc.p(0.5,0.5));
         //this.doctor.setPosition(910,590);
         this.doctor.setPosition(size.width/5,4*size.height/5);

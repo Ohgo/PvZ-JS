@@ -22,6 +22,7 @@ var LevelManager = cc.Class.extend({
     },
 
     loadLevelResource:function(deltaTime){
+    // TODO: Optimize this, slow! *Aries
         /*
         // Safeguard of enemies overload on screen
         if(PvZ.ACTIVE_BACTERIA>= this._currentLevel.bacteriaMax){
@@ -52,10 +53,11 @@ var LevelManager = cc.Class.extend({
 
         var addBacteria = Bacteria.getOrCreateBacteria(BacteriaType[selBacteria.Type]);
         var bacteriaSize =  addBacteria.getContentSize();
-        cc.log("bacteria Lane: " + selBacteria.Lane);
+
         // TODO: Eliminate hard number
         var bacteriaStartingX = winSize.width + bacteriaSize.width / 2;
-        var bacteriaStartingY = (winSize.height / 7) * selBacteria.Lane;
+        var bacteriaStartingY = g_MapGridRow[selBacteria.Lane][0][1]._origin.y + bacteriaSize.height;
+        //cc.log("Creating bacteria at Y: " + bacteriaStartingY + " or Lane: " + selBacteria.Lane);
         var bacteriaStartingPos = cc.p(bacteriaStartingX, bacteriaStartingY);
         addBacteria.setPosition(bacteriaStartingPos);
         var bacteriaDestinationPos = cc.p(- bacteriaSize.width / 2, bacteriaStartingY);

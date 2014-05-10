@@ -7,19 +7,19 @@ var Level1 = {
         {
             ShowType:"Repeat",
             ShowTime:"00:02",
-            Lane:3,
+            Lane:2,
             Type:0
         },
         {
             ShowType:"Once",
             ShowTime:"00:01",
-            Lane:2,
+            Lane:1,
             Type:1
         },
         {
             ShowType:"Repeat",
             ShowTime:"00:06",
-            Lane:3,
+            Lane:1,
             Type:2
         }
         /*{

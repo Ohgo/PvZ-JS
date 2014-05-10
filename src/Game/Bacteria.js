@@ -100,11 +100,11 @@ var Bacteria = cc.Sprite.extend({
 Bacteria.getOrCreateBacteria = function(arg){
     var selChild = null;
 
-    // TODO: This loop logic is confusing. Make sure it works, then change to if and comment. *Aries
     // if there is a reusable bacteria object in the container, use it
     for (var j = 0; j < PvZ.CONTAINER.BACTERIAS.length; j++) {
         selChild = PvZ.CONTAINER.BACTERIAS[j];
 
+        // find an inactive sprite of this type and use it
         if (selChild.active == false && selChild.bacteriaType == arg.type) {
             selChild.HP = arg.HP;
             selChild.active = true;
@@ -130,7 +130,6 @@ Bacteria.getOrCreateBacteria = function(arg){
 };
 
 Bacteria.create = function (arg) {
-    //cc.log("Bacteria.js: Creating new bacteria of type: " + arg.type);
     var bacteria = new Bacteria(arg);
     g_GameCharacterLayer.addChild(bacteria, bacteria.zOrder);
     PvZ.CONTAINER.BACTERIAS.push(bacteria);

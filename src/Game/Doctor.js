@@ -5,8 +5,9 @@
 
 var g_DoctorStatus = {normal:1, freeze:0};
 
-var DoctorSprite = cc.Sprite.extend({
+var Doctor = cc.Sprite.extend({
     doctorStatus:null,
+    animation:null,
     //constructor
     ctor:function(){
         this._super();
@@ -33,6 +34,7 @@ var DoctorSprite = cc.Sprite.extend({
     onTouchBegan:function(touch,event){
         if(!this.containsTouchLocation(touch))
             return false;
+
         return true;
     },
     //detect if mouse is moving
@@ -46,6 +48,7 @@ var DoctorSprite = cc.Sprite.extend({
     onTouchEnded:function(touch,event){
         //cc.log("onTouchEnded");
         this.updatePosition(touch);
+
         //this.doctorStatus = g_DoctorStatus.freeze;
     },
     updatePosition:function(touch){
@@ -54,33 +57,80 @@ var DoctorSprite = cc.Sprite.extend({
         var contentSize = this.getContentSize();
         for(var i =0; i < g_MapGridRow.length; i++){
             for(var j = 0; j< g_MapGridRow[i].length; j++){
-                if( cc.rectContainsPoint(g_MapGridRow[i][j][1],currentLocation)){
+                if( cc.rectContainsPoint(g_MapGridRow[i][j][1],currentLocation) && g_MapGridRow[i][j][0] == g_MapGridStatus.free){
                     this.setPosition(g_MapGridRow[i][j][1]._origin.x+40*screenType,g_MapGridRow[i][j][1]._origin.y+40*screenType);
                     g_MapGridRow[i][j][0] = g_MapGridStatus.occupied;
                     cc.log(g_MapGridRow[i][j][1]._origin.x+contentSize.width/2);
                     cc.log(g_MapGridRow[i][j][1]._origin.y+contentSize.height/2);
                     this.doctorStatus = g_DoctorStatus.freeze;
+                    this.runAction(cc.Animate.create(this.animation));
+                    PvZ.ACTIVE_DOCTOR++;
                 }
+                // replace image on the doctor picker
+                g_GameCharacterLayer.addDoctor();
             }
+        }
+        if (this.doctorStatus != g_DoctorStatus.freeze) {
+            // destroy
+            cc.log("WRONG POSITION");
+            this.setVisible(false);
+            this.active = false;
+            this.stopAllActions();
+            PvZ.ACTIVE_DOCTOR--;
         }
 
     },
     //deal with the animation of doctors
     actDoctorAnimation:function(){
-        var animation = cc.Animation.create();
+        this.animation = cc.Animation.create();
         //var frame = new Array(s_doctorWalk01,s_doctorWalk02,s_doctorWalk03,s_doctorWalk04);
         var frameArray = new Array(s_doctorPunch01,s_doctorPunch02);
         // Add 60 frames
         for (var j = 0; j < 30; j++) {
             for (var i = 0; i < 2; i++) {
-                animation.addSpriteFrameWithFile(frameArray[i]);
+                this.animation.addSpriteFrameWithFile(frameArray[i]);
                 //cc.log("frame"+i+" added");
             }
         }
-        animation.setDelayPerUnit(40 / 60);
-        animation.setLoops(9999);
-        animation.setRestoreOriginalFrame(true);
-        this.runAction(cc.Animate.create(animation));
+        this.animation.setDelayPerUnit(40 / 60);
+        this.animation.setLoops(9999);
+        this.animation.setRestoreOriginalFrame(true);
+
     }
 
 });
+
+
+Doctor.getOrCreateDoctor = function(arg){
+    var selChild = null;
+
+    // if there is a reusable bacteria object in the container, use it
+    for (var i = 0; i < PvZ.CONTAINER.DOCTOR.length; i++) {
+        selChild = PvZ.CONTAINER.DOCTOR[i];
+
+        // find an inactive sprite of this type and use it
+        if (selChild.active == false && selChild.bacteriaType == arg.type) {
+            selChild.HP = arg.HP;
+            selChild.active = true;
+            selChild.moveSpeed = arg.moveSpeed;
+            selChild.moveType = arg.moveType;
+            selChild.attackMode = arg.attackMode;
+
+            selChild.setVisible(true);
+
+            return selChild;
+        }
+    }
+
+    // otherwise, create a new one
+    selChild = Doctor.create(arg);
+
+    return selChild;
+};
+
+Doctor.create = function (arg) {
+    var doctor = new Doctor(arg);
+    g_GameCharacterLayer.addChild(doctor, doctor.zOrder);
+    PvZ.CONTAINER.BACTERIAS.push(doctor);
+    return doctor;
+};

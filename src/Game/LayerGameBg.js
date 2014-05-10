@@ -39,7 +39,7 @@ var LayerGameBg = cc.Layer.extend({
                 for(var k = 0; k < g_MapGridRow[i][j].length; k++){
                     g_MapGridRow[i][j][0] = g_MapGridStatus.free;
                     g_MapGridRow[i][j][1] = gridRect;
-                    cc.log(g_MapGridRow[i][j][1]._origin.y);
+                    //cc.log(g_MapGridRow[i][j][1]._origin.y);
                 }
             }
         }
