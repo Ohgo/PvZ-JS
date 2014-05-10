@@ -12,14 +12,14 @@ var LayerGameBg = cc.Layer.extend({
         this.init();
     },
 
-    ctor:function(){
+    init:function(){
         var bRet = false;
-        this.initMap();
         if (this._super()) {
             var bg = cc.Sprite.create(bg_Game_png);
             bg.setAnchorPoint(cc.p(0,0));
             this.addChild(bg,1);
             cc.log("Game on!");
+            this.initMap();
         }
         return bRet;
     },

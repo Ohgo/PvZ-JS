@@ -13,6 +13,7 @@ var Bacteria = cc.Sprite.extend({
     delayTime:1 + 1.2 * Math.random(),
     attackMode:null,
     animation:null,
+    state:null,
     //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
     ctor: function (arg) {
@@ -30,9 +31,10 @@ var Bacteria = cc.Sprite.extend({
         this.initWithSpriteFrame(pFrame);
 
         this.animation = cc.AnimationCache.getInstance().getAnimation("BacteriaAnimation");
-        this.runAction(
-            cc.Animate.create(this.animation)
-        );
+        this.selectAnimation();
+        //this.runAction(
+        //    cc.Animate.create(this.animation)
+        //);
         //this.schedule();
     },
 
@@ -44,6 +46,24 @@ var Bacteria = cc.Sprite.extend({
             this.active = false;
         }
         this._timeTick += dt;
+    },
+
+    walk:function(){
+        //return;
+        this.runAction(cc.Sequence.create(
+            cc.Animate.create(this.animation),
+            cc.CallFunc.create(this.selectAnimation, this)
+        ));
+    },
+
+    selectAnimation:function(){
+        switch(this.state) {
+            case PvZ.BACTERIA_STATE:
+                this.walk();
+                break;
+            default:
+                this.walk();
+        }
     }
 
 //    initData:function(){
@@ -114,21 +134,8 @@ Bacteria.create = function (arg) {
     return bacteria;
 };
 
-Bacteria.preSet = function () {
-    var bacteria = null;
-    for (var i = 0; i < 3; i++) {
-        for (var i = 0; i < BacteriaType.length; i++) {
-            bacteria = Bacteria.create(BacteriaType[i]);
-            bacteria.setVisible(false);
-            bacteria.active = false;
-            bacteria.stopAllActions();
-            bacteria.unscheduleAllCallbacks();
-        }
-    }
-};
-
 //Bacteria Animation
-Bacteria.sharedAnimation = function (arg) {
+Bacteria.sharedAnimation = function () {
     var animFrames = [];
     var str = "";
     //switch
@@ -137,6 +144,6 @@ Bacteria.sharedAnimation = function (arg) {
         var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
         animFrames.push(frame);
     }
-    var animation = cc.Animation.create(animFrames, 0.04);
+    var animation = cc.Animation.create(animFrames, 0.5);
     cc.AnimationCache.getInstance().addAnimation(animation, "BacteriaAnimation");
 };

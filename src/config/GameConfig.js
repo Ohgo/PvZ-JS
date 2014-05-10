@@ -7,6 +7,10 @@ PvZ.BACTERIA_MOVE_TYPE = {
     OTHER:1
 };
 
+PvZ.BACTERIA_STATE = {
+  WALK: 0
+};
+
 PvZ.BACTERIA_ATTACK_TYPE = {
     INFECT:0
 };
