@@ -26,7 +26,7 @@ var Bacteria = cc.Sprite.extend({
 
         //this.initWithFile("BacteriaHappyGray.png");
         //this.initWithSpriteFrameName(arg.textureName);
-        var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaYellow1.png");
+        var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGray1.png");
         this.initWithSpriteFrame(pFrame);
 
         this.animation = cc.AnimationCache.getInstance().getAnimation("BacteriaAnimation");
@@ -133,7 +133,7 @@ Bacteria.sharedAnimation = function (arg) {
     var str = "";
     //switch
     for (var i = 1; i < 5; i++) {
-        str = "bacteriaYellow" + i + ".png";
+        str = "bacteriaGray" + i + ".png";
         var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
         animFrames.push(frame);
     }
