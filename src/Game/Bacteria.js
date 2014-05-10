@@ -2,6 +2,7 @@ var Bacteria = cc.Sprite.extend({
     isHit: false,   //for collision detection
     HP:0,
     radius:0,    //collision radius
+    size:0,
 
     bacteriaType:1,
     active:true,
@@ -14,6 +15,8 @@ var Bacteria = cc.Sprite.extend({
     attackMode:null,
     animation:null,
     state:null,
+    Lane:null,
+
     //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
     ctor: function (arg) {
@@ -24,14 +27,13 @@ var Bacteria = cc.Sprite.extend({
         this.attackMode = arg.attackMode;
         this.bacteriaType = arg.type;
         this.moveSpeed = arg.moveSpeed;
-
+        this.size = this.getContentSize();
         //this.initWithFile("BacteriaHappyGray.png");
         //this.initWithSpriteFrameName(arg.textureName);
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGray1.png");
         this.initWithSpriteFrame(pFrame);
 
-        this.state = PvZ.WALK;
-        this.changeState();
+
         //this.runAction(
         //    cc.Animate.create(this.animation)
         //);
@@ -48,24 +50,42 @@ var Bacteria = cc.Sprite.extend({
         this._timeTick += dt;
     },
 
+    setCourse:function(lane) {
+        this.Lane = lane;
+        var y =  g_MapGridRow[this.Lane][0][1]._origin.y + this.size.height;
+        var translation = cc.MoveTo.create(this.moveSpeed, cc.p(- this.size.width / 2, y));
+        cc.log("Moving to x: " + - this.getContentSize().width / 2 + " y: " + y + " on Lane: " + this.Lane);
+        this.runAction(translation);
+        this.changeState(PvZ.BACTERIA_STATE.WALK);
+    },
+
     walk:function(){
-        this.animation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
-        this.runAction(cc.Animate.create(this.animation));
+        cc.log("WALK!");
+        var frameAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        this.runAction(cc.Animate.create(frameAnimation));
+
+
     },
 
     attack:function() {
-
+        cc.log("ATTACK!");
+        var frameAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        this.runAction(cc.Animate.create(frameAnimation));
     },
 
-    changeState:function(){
-        switch(this.state) {
-            case PvZ.WALK:
-                this.walk();
-                break;
-            case PvZ.ATTACK:
-                this.attack();
-            default:
-                this.walk();
+    changeState:function(arg) {
+        if(this.state != arg) {
+            this.stopAllActions();
+            this.state == arg;
+            switch(this.state) {
+                case PvZ.BACTERIA_STATE.WALK:
+                    this.walk();
+                    break;
+                case PvZ.BACTERIA_STATE.ATTACK:
+                    this.attack();
+                default:
+                    this.walk();
+            }
         }
     }
 
@@ -124,12 +144,14 @@ Bacteria.getOrCreateBacteria = function(arg){
     }
 
     // otherwise, create a new one
+
     selChild = Bacteria.create(arg);
     PvZ.ACTIVE_BACTERIA++;
     return selChild;
 };
 
 Bacteria.create = function (arg) {
+
     var bacteria = new Bacteria(arg);
     g_GameCharacterLayer.addChild(bacteria, bacteria.zOrder);
     PvZ.CONTAINER.BACTERIAS.push(bacteria);

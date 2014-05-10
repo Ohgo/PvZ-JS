@@ -1,5 +1,8 @@
 var g_GameCharacterLayer;
 
+MAX_CONTAINT_WIDTH = 40;
+MAX_CONTAINT_HEIGHT = 40;
+
 var GameCharacterLayer = cc.Layer.extend({
     _time:null,
     _levelManager:null,
@@ -65,10 +68,35 @@ var GameCharacterLayer = cc.Layer.extend({
     },
 
     checkIsCollide:function(){
+        var bacteria, doctor;
         // for each bacteria on the map, check if any of them collide with the doctors
         for (var i = 0; i < PvZ.CONTAINER.BACTERIAS.length; i++) {
+            bacteria = PvZ.CONTAINER.BACTERIAS[i];
+            for (var j = 0; j < PvZ.CONTAINER.DOCTOR.length; j++) {
+                doctor = PvZ.CONTAINER.DOCTOR[j];
 
+                if (bacteria.active && doctor.active && this.collide(bacteria, doctor)) {
+                    cc.log("Collide!");
+                    bacteria.changeState(PvZ.BACTERIA_STATE.ATTACK);
+                    //doctor.hurt();
+                }
+            }
         }
+    },
+
+    collide:function (a, b) {
+        var pos1 = a.getPosition();
+        var pos2 = b.getPosition();
+        if (Math.abs(pos1.x - pos2.x) > MAX_CONTAINT_WIDTH || Math.abs(pos1.y - pos2.y) > MAX_CONTAINT_HEIGHT)
+            return false;
+
+        var asize = a.getContentSize();
+        var aRect = cc.rect(pos1.x - asize.width / 2, pos1.y - asize.height / 4, asize.width, asize.height / 2+20);
+
+        var bsize = b.getContentSize();
+        var bRect = cc.rect(pos2.x - bsize.width / 2, pos2.y - bsize.height / 4, bsize.width, bsize.height / 2+20);
+
+        return cc.rectIntersectsRect(aRect, bRect);
     },
 
 //    initBacteria:function(){
