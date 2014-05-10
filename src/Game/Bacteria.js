@@ -30,8 +30,8 @@ var Bacteria = cc.Sprite.extend({
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGray1.png");
         this.initWithSpriteFrame(pFrame);
 
-        this.animation = cc.AnimationCache.getInstance().getAnimation("BacteriaAnimation");
-        this.selectAnimation();
+        this.state = PvZ.WALK;
+        this.changeState();
         //this.runAction(
         //    cc.Animate.create(this.animation)
         //);
@@ -49,18 +49,21 @@ var Bacteria = cc.Sprite.extend({
     },
 
     walk:function(){
-        //return;
-        this.runAction(cc.Sequence.create(
-            cc.Animate.create(this.animation),
-            cc.CallFunc.create(this.selectAnimation, this)
-        ));
+        this.animation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        this.runAction(cc.Animate.create(this.animation));
     },
 
-    selectAnimation:function(){
+    attack:function() {
+
+    },
+
+    changeState:function(){
         switch(this.state) {
-            case PvZ.BACTERIA_STATE:
+            case PvZ.WALK:
                 this.walk();
                 break;
+            case PvZ.ATTACK:
+                this.attack();
             default:
                 this.walk();
         }
@@ -138,12 +141,13 @@ Bacteria.create = function (arg) {
 Bacteria.sharedAnimation = function () {
     var animFrames = [];
     var str = "";
-    //switch
+
+    //walk animation
     for (var i = 1; i < 5; i++) {
         str = "bacteriaGray" + i + ".png";
         var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
         animFrames.push(frame);
     }
     var animation = cc.Animation.create(animFrames, 0.5);
-    cc.AnimationCache.getInstance().addAnimation(animation, "BacteriaAnimation");
+    cc.AnimationCache.getInstance().addAnimation(animation, "BacteriaWalkAnimation");
 };

@@ -10,9 +10,11 @@ var DoctorSprite = cc.Sprite.extend({
     //constructor
     ctor:function(){
         this._super();
-        this.initWithFile(s_Doctor);
         this.doctorStatus = g_DoctorStatus.normal;
+        this.initWithFile(s_Doctor);
+        this.actDoctorAnimation();
 
+        // activate touch
         cc.Director.getInstance().getTouchDispatcher()._addTargetedDelegate(this,0,true);
     },
     //detect if mouse is on the doctor
@@ -35,14 +37,14 @@ var DoctorSprite = cc.Sprite.extend({
     },
     //detect if mouse is moving
     onTouchMoved:function(touch,event){
-        cc.log("onTouchMoved");
+        //cc.log("onTouchMoved");
         var touchPoint = touch.getLocation();
         if(this.doctorStatus){
             this.setPosition(touchPoint.x,touchPoint.y);
         }
     },
     onTouchEnded:function(touch,event){
-        cc.log("onTouchEnded");
+        //cc.log("onTouchEnded");
         this.updatePosition(touch);
         //this.doctorStatus = g_DoctorStatus.freeze;
     },
@@ -62,6 +64,23 @@ var DoctorSprite = cc.Sprite.extend({
             }
         }
 
+    },
+    //deal with the animation of doctors
+    actDoctorAnimation:function(){
+        var animation = cc.Animation.create();
+        //var frame = new Array(s_doctorWalk01,s_doctorWalk02,s_doctorWalk03,s_doctorWalk04);
+        var frameArray = new Array(s_doctorPunch01,s_doctorPunch02);
+        // Add 60 frames
+        for (var j = 0; j < 30; j++) {
+            for (var i = 0; i < 2; i++) {
+                animation.addSpriteFrameWithFile(frameArray[i]);
+                //cc.log("frame"+i+" added");
+            }
+        }
+        animation.setDelayPerUnit(40 / 60);
+        animation.setLoops(9999);
+        animation.setRestoreOriginalFrame(true);
+        this.runAction(cc.Animate.create(animation));
     }
 
 });

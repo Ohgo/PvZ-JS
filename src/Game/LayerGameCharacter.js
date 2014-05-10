@@ -53,20 +53,22 @@ var GameCharacterLayer = cc.Layer.extend({
         // check if it's a spawn time of any monster
         if (this._state == g_GameStatus.play) {
             this._time++;
-            //cc.log("Tick: " + this._time);
             this._levelManager.loadLevelResource(this._time);
         }
     },
 
     update:function (dt) {
         if(this._state == g_GameStatus.play){
-//            this.checkIsCollide();
+            this.checkIsCollide();
         }
     },
 
-//    checkIsCollide:function(){
-//        //cc.log("checkIsCollide");
-//    },
+    checkIsCollide:function(){
+        // for each bacteria on the map, check if any of them collide with the doctors
+        for (var i = 0; i < PvZ.CONTAINER.BACTERIAS.length; i++) {
+
+        }
+    },
 
 //    initBacteria:function(){
 //        //add bacteriaSprite
@@ -113,28 +115,8 @@ var GameCharacterLayer = cc.Layer.extend({
         this.doctor.setPosition(size.width/5,4*size.height/5);
         //this.doctor.setScale(0.7,0.7);
         this.addChild(this.doctor,1);
-        this.actDoctorAnimation(true);
-    },
-    //deal with the animation of doctors
-    actDoctorAnimation:function(active){
-        if(active){
-            var animation = cc.Animation.create();
-            //var frame = new Array(s_doctorWalk01,s_doctorWalk02,s_doctorWalk03,s_doctorWalk04);
-            var frameArray = new Array(s_doctorPunch01,s_doctorPunch02);
-            // Add 60 frames
-            for (var j = 0; j < 30; j++) {
-                for (var i = 0; i < 2; i++) {
-                    animation.addSpriteFrameWithFile(frameArray[i]);
-                    //cc.log("frame"+i+" added");
-                }
-            }
-            animation.setDelayPerUnit(40 / 60);
-            animation.setLoops(9999);
-            animation.setRestoreOriginalFrame(true);
-            var action = cc.Animate.create(animation);
-            this.doctor.runAction(action);
-        }
     }
+
 //    update:function(dt){
 //        this.bacteria.update(dt);
 //    }
