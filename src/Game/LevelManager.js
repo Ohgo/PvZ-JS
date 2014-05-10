@@ -62,7 +62,8 @@ var LevelManager = cc.Class.extend({
         var bacteriaStartingPos = cc.p(bacteriaStartingX, bacteriaStartingY);
         addBacteria.setPosition(bacteriaStartingPos);
 
-        /*
+        bacteriaDestinationPos
+        
         var tmpAction;
         switch (addBacteria.moveType) {
             case PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK:
@@ -74,7 +75,7 @@ var LevelManager = cc.Class.extend({
         }
 
         addBacteria.runAction(tmpAction);
-        */
+
     },
 
     _minuteToSecond:function(minuteStr){
