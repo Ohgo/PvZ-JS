@@ -5,13 +5,13 @@ var DoctorType = [
     {
         type:0,
         textureName:"bacteriaYellow1.png",
-        HP:1,
+        HP:30,
         attackPower:1
     },
     {
         type:1,
         textureName:"bacteriaYellow1.png",
-        HP:2,
+        HP:40,
         attackPower:2
     }
 ]

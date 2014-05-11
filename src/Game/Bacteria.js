@@ -13,6 +13,7 @@ var Bacteria = cc.Sprite.extend({
     moveSpeed:null,
     delayTime:1 + 1.2 * Math.random(),
     attackMode:null,
+    attackPower:null,
     animation:null,
     state:null,
     Lane:null,
@@ -29,6 +30,7 @@ var Bacteria = cc.Sprite.extend({
         this.attackMode = arg.attackMode;
         this.bacteriaType = arg.type;
         this.moveSpeed = arg.moveSpeed;
+        this.attackPower = arg.attackPower;
         this.size = this.getContentSize();
         //this.initWithFile("BacteriaHappyGray.png");
         //this.initWithSpriteFrameName(arg.textureName);
@@ -62,13 +64,16 @@ var Bacteria = cc.Sprite.extend({
     setCourse:function(lane) {
         this.Lane = lane;
         //var destinationY =  g_MapGridRow[this.Lane][0][1]._origin.y + this.size.height;
-        var destinationY =  0;
-        var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
-        this.runAction(translation);
+        // var destinationY =  0;
+        // var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
+        // this.runAction(translation);
         //this.changeState(PvZ.BACTERIA_STATE.WALK);
     },
 
     walk:function(){
+        var destinationY =  0;
+        var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
+        this.runAction(translation);
         var frameAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
         this.runAction(cc.RepeatForever.create(cc.Animate.create(frameAnimation)));
 
@@ -76,20 +81,22 @@ var Bacteria = cc.Sprite.extend({
     },
 
     attack:function() {
-        var frameAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
-        this.runAction(cc.Animate.create(frameAnimation));
+        // TODO: Change to a real attacking information
+        var attackAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        this.runAction(cc.RepeatForever.create(cc.Animate.create(attackAnimation)));
     },
 
     changeState:function(arg) {
         if(this.state != arg) {
             this.stopAllActions();
-            this.state == arg;
+            this.state = arg;
             switch(this.state) {
                 case PvZ.BACTERIA_STATE.WALK:
                     this.walk();
                     break;
                 case PvZ.BACTERIA_STATE.ATTACK:
                     this.attack();
+                    break;
                 default:
                     this.walk();
             }
@@ -145,6 +152,8 @@ Bacteria.getOrCreateBacteria = function(arg){
             selChild.moveSpeed = arg.moveSpeed;
             selChild.moveType = arg.moveType;
             selChild.attackMode = arg.attackMode;
+            selChild.attackPower = arg.attackPower;
+            selChild.state = PvZ.BACTERIA_STATE.WALK;
             //selChild._hurtColorLife = 0;
 
             // does it have anything routine to do?

@@ -21,7 +21,7 @@ var GameCharacterLayer = cc.Layer.extend({
             g_GameCharacterLayer = this;
             //cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bacteria_plist);
 
-            PvZ.CONTAINER.BACTERIAS = [];
+            //PvZ.CONTAINER.BACTERIAS = [];
             PvZ.ACTIVE_BACTERIA = 0;
             PvZ.ACTIVE_DOCTOR = 0;
             this._state = g_GameStatus.play;
@@ -71,20 +71,26 @@ var GameCharacterLayer = cc.Layer.extend({
 
     checkIsCollide:function(){
         var bacteria, doctor;
+        var collisionDetected = false;
         //cc.log("Checking for Collision!");
         // for each bacteria on the map, check if any of them collide with the doctors
-        //cc.log("Number of Bacteria: " + PvZ.CONTAINER.BACTERIAS.length + ", Doctor: " + PvZ.CONTAINER.DOCTOR.length);
+        //cc.log("Total Bacteria: " + PvZ.CONTAINER.BACTERIAS.length + " Active: " + PvZ.ACTIVE_BACTERIA + ", Doctor: " + PvZ.CONTAINER.DOCTOR.length + " Active: " + PvZ.ACTIVE_DOCTOR);
         for (var i = 0; i < PvZ.CONTAINER.BACTERIAS.length; i++) {
             bacteria = PvZ.CONTAINER.BACTERIAS[i];
-            if(!bacteria.active) break;
+            if(!bacteria.active) continue;
             for (var j = 0; j < PvZ.CONTAINER.DOCTOR.length; j++) {
                 doctor = PvZ.CONTAINER.DOCTOR[j];
-                if(!doctor.active) break;
+                if(!doctor.active) continue;
                 if (bacteria.active && doctor.active && this.collide(bacteria, doctor)) {
+                    collisionDetected = true;
                     bacteria.changeState(PvZ.BACTERIA_STATE.ATTACK);
-                    //doctor.hurt();
+                    doctor.hurt(bacteria.attackPower);
+                    // it is not possible to attack more than one doctor at a time, so break from this loop and check other bacteria
+                    break;
+                    //if(doctorDied) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
                 }
             }
+            if(!collisionDetected) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
         }
     },
     removeInactiveUnit:function (dt) {
