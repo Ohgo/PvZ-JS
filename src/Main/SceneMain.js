@@ -5,7 +5,6 @@
 
 var SceneMain = cc.Scene.extend({
     onEnter:function () {
-        cc.log("SceneMain");
         this._super();
         var backgroundLayer = new LayerMainBg();
         var mainLayer = new LayerMainMenu();

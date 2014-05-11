@@ -53,16 +53,16 @@ var LevelManager = cc.Class.extend({
 
         var addBacteria = Bacteria.getOrCreateBacteria(BacteriaType[selBacteria.Type]);
         addBacteria.setCourse(selBacteria.Lane);
-        var bacteriaSize =  addBacteria.getContentSize();
 
-        // TODO: Eliminate hard number
+        var bacteriaSize =  addBacteria.getContentSize();
         var bacteriaStartingX = winSize.width + bacteriaSize.width / 2;
         var bacteriaStartingY = g_MapGridRow[selBacteria.Lane][0][1]._origin.y + bacteriaSize.height;
-        cc.log("Creating bacteria at Y: " + bacteriaStartingY + " or Lane: " + selBacteria.Lane);
         var bacteriaStartingPos = cc.p(bacteriaStartingX, bacteriaStartingY);
         addBacteria.setPosition(bacteriaStartingPos);
 
-        bacteriaDestinationPos
+
+         // MOVEMENTS IS NOW HANDLED IN BACTERIA.JS
+        var bacteriaDestinationPos = cc.p(- bacteriaSize.width / 2, bacteriaStartingY);
         
         var tmpAction;
         switch (addBacteria.moveType) {
@@ -74,7 +74,7 @@ var LevelManager = cc.Class.extend({
                 tmpAction = cc.MoveTo.create(addBacteria.moveSpeed, bacteriaDestinationPos);
         }
 
-        addBacteria.runAction(tmpAction);
+        //addBacteria.runAction(tmpAction);
 
     },
 

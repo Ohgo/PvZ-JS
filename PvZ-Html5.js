@@ -45,6 +45,7 @@ var PvZ = PvZ || {};
             'src/config/GameConfig.js',
             'src/config/Level.js',
             'src/config/BacteriaType.js',
+            'src/config/DoctorType.js',
             'src/Game/Bacteria.js',
             'src/Game/Coffee.js',
             'src/Game/Doctor.js',

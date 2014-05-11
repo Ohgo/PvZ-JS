@@ -8,13 +8,16 @@ var g_DoctorStatus = {normal:1, freeze:0};
 var Doctor = cc.Sprite.extend({
     doctorStatus:null,
     animation:null,
+    doctorType:null,
+    initialposition:null,
+    zOrder:0,
+    active:false,
     //constructor
-    ctor:function(){
+    ctor:function(arg){
         this._super();
         this.doctorStatus = g_DoctorStatus.normal;
         this.initWithFile(s_Doctor);
         this.actDoctorAnimation();
-
         // activate touch
         cc.Director.getInstance().getTouchDispatcher()._addTargetedDelegate(this,0,true);
     },
@@ -34,14 +37,15 @@ var Doctor = cc.Sprite.extend({
     onTouchBegan:function(touch,event){
         if(!this.containsTouchLocation(touch))
             return false;
-
+        // replace image on the doctor picker
+        g_GameCharacterLayer.initDoctorPicker();
         return true;
     },
     //detect if mouse is moving
     onTouchMoved:function(touch,event){
         //cc.log("onTouchMoved");
         var touchPoint = touch.getLocation();
-        if(this.doctorStatus){
+        if(this.doctorStatus == g_DoctorStatus.normal){
             this.setPosition(touchPoint.x,touchPoint.y);
         }
     },
@@ -52,25 +56,42 @@ var Doctor = cc.Sprite.extend({
         //this.doctorStatus = g_DoctorStatus.freeze;
     },
     updatePosition:function(touch){
+        // TODO: optimize this calculation, we should be able to determine to which grid a point (x,y) belongs to
+        // TODO: without looping through all the grids
         //var currentLocation = touch.getLocation();
         var currentLocation = this.getPosition();
         var contentSize = this.getContentSize();
+        var i = Math.floor(this.getPosition().y / (screenType*50));
+        var j = Math.floor(this.getPosition().x / (screenType*50));
+
+        if(i < g_MapGridRow.length && j < g_MapGridRow[i].length && g_MapGridRow[i][j][0] == g_MapGridStatus.free) {
+            this.setPosition(g_MapGridRow[i][j][1]._origin.x + 50,g_MapGridRow[i][j][1]._origin.y+50);
+            g_MapGridRow[i][j][0] = g_MapGridStatus.occupied;
+            this.doctorStatus = g_DoctorStatus.freeze;
+            this.active = true;
+            this.runAction(cc.Animate.create(this.animation));
+            PvZ.ACTIVE_DOCTOR++;
+
+        }
+
+        /*
         for(var i =0; i < g_MapGridRow.length; i++){
             for(var j = 0; j< g_MapGridRow[i].length; j++){
                 if( cc.rectContainsPoint(g_MapGridRow[i][j][1],currentLocation) && g_MapGridRow[i][j][0] == g_MapGridStatus.free){
                     this.setPosition(g_MapGridRow[i][j][1]._origin.x+40*screenType,g_MapGridRow[i][j][1]._origin.y+40*screenType);
                     g_MapGridRow[i][j][0] = g_MapGridStatus.occupied;
-                    cc.log(g_MapGridRow[i][j][1]._origin.x+contentSize.width/2);
-                    cc.log(g_MapGridRow[i][j][1]._origin.y+contentSize.height/2);
+                    //cc.log(g_MapGridRow[i][j][1]._origin.x+contentSize.width/2);
+                    //cc.log(g_MapGridRow[i][j][1]._origin.y+contentSize.height/2);
                     this.doctorStatus = g_DoctorStatus.freeze;
                     this.runAction(cc.Animate.create(this.animation));
                     PvZ.ACTIVE_DOCTOR++;
                 }
                 // replace image on the doctor picker
-                g_GameCharacterLayer.addDoctor();
+                g_GameCharacterLayer.initDoctorPicker();
             }
         }
-        if (this.doctorStatus != g_DoctorStatus.freeze) {
+        */
+        else {
             // destroy
             cc.log("WRONG POSITION");
             this.setVisible(false);
@@ -109,11 +130,10 @@ Doctor.getOrCreateDoctor = function(arg){
         selChild = PvZ.CONTAINER.DOCTOR[i];
 
         // find an inactive sprite of this type and use it
-        if (selChild.active == false && selChild.bacteriaType == arg.type) {
+        if (selChild.active == false && selChild.doctorType == arg.type) {
             selChild.HP = arg.HP;
             selChild.active = true;
             selChild.moveSpeed = arg.moveSpeed;
-            selChild.moveType = arg.moveType;
             selChild.attackMode = arg.attackMode;
 
             selChild.setVisible(true);
@@ -124,13 +144,13 @@ Doctor.getOrCreateDoctor = function(arg){
 
     // otherwise, create a new one
     selChild = Doctor.create(arg);
-
     return selChild;
 };
 
 Doctor.create = function (arg) {
     var doctor = new Doctor(arg);
     g_GameCharacterLayer.addChild(doctor, doctor.zOrder);
-    PvZ.CONTAINER.BACTERIAS.push(doctor);
+    PvZ.CONTAINER.DOCTOR.push(doctor);
+    cc.log("Pushing to doctor container to: " + PvZ.CONTAINER.DOCTOR.length);
     return doctor;
 };

@@ -8,7 +8,7 @@ var GameCharacterLayer = cc.Layer.extend({
     _levelManager:null,
     _state:0,
     _bacteriaAnimation:null,
-    doctor:null,
+    screenrect:null,
 
     ctor:function () {
         this._super();
@@ -18,6 +18,7 @@ var GameCharacterLayer = cc.Layer.extend({
     init:function(){
         var bRet = false;
         if (this._super()) {
+            g_GameCharacterLayer = this;
             //cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bacteria_plist);
 
             PvZ.CONTAINER.BACTERIAS = [];
@@ -26,9 +27,9 @@ var GameCharacterLayer = cc.Layer.extend({
             this._state = g_GameStatus.play;
 
             var winSize = cc.Director.getInstance().getWinSize();
+            this.screenRect = cc.rect(0, 0, winSize.width, winSize.height + 10);
 
             this._levelManager = new LevelManager(this);
-
             // bacteria animation batch node
             cc.SpriteFrameCache.getInstance().addSpriteFrames(bacteria_plist);
             var bacteriaAnimationTexture = cc.TextureCache.getInstance().addImage(bacteria_png);
@@ -41,10 +42,10 @@ var GameCharacterLayer = cc.Layer.extend({
             this.scheduleUpdate();
             this.schedule(this.oneSecondTick, 1);
 //            this.schedule(this.scoreCounter, 1);
-			this.addDoctor();
+			this.initDoctorPicker();
             bRet = true;
 
-            g_GameCharacterLayer = this;
+
 
             //pre set
             //Bacteria.preSet();
@@ -64,22 +65,34 @@ var GameCharacterLayer = cc.Layer.extend({
     update:function (dt) {
         if(this._state == g_GameStatus.play){
             this.checkIsCollide();
+            this.removeInactiveUnit(dt);
         }
     },
 
     checkIsCollide:function(){
         var bacteria, doctor;
+        //cc.log("Checking for Collision!");
         // for each bacteria on the map, check if any of them collide with the doctors
+        //cc.log("Number of Bacteria: " + PvZ.CONTAINER.BACTERIAS.length + ", Doctor: " + PvZ.CONTAINER.DOCTOR.length);
         for (var i = 0; i < PvZ.CONTAINER.BACTERIAS.length; i++) {
             bacteria = PvZ.CONTAINER.BACTERIAS[i];
+            if(!bacteria.active) break;
             for (var j = 0; j < PvZ.CONTAINER.DOCTOR.length; j++) {
                 doctor = PvZ.CONTAINER.DOCTOR[j];
-
+                if(!doctor.active) break;
                 if (bacteria.active && doctor.active && this.collide(bacteria, doctor)) {
-                    cc.log("Collide!");
                     bacteria.changeState(PvZ.BACTERIA_STATE.ATTACK);
                     //doctor.hurt();
                 }
+            }
+        }
+    },
+    removeInactiveUnit:function (dt) {
+        var selChild;
+        for (var i = 0; i < PvZ.CONTAINER.BACTERIAS.length; i++) {
+            var bacteria = PvZ.CONTAINER.BACTERIAS[i];
+            if (bacteria && bacteria.active) {
+                bacteria.update(dt);
             }
         }
     },
@@ -136,14 +149,12 @@ var GameCharacterLayer = cc.Layer.extend({
 
     //Create Doctor Sprite
 
-    addDoctor:function(){
+    initDoctorPicker:function(){
         var size = cc.Director.getInstance().getWinSize();
-        this.doctor = new Doctor();
-        this.doctor.setAnchorPoint(cc.p(0.5,0.5));
-        //this.doctor.setPosition(910,590);
-        this.doctor.setPosition(size.width/5,4*size.height/5);
-        //this.doctor.setScale(0.7,0.7);
-        this.addChild(this.doctor,1);
+        var doctor = Doctor.getOrCreateDoctor(DoctorType[0]);
+        doctor.setAnchorPoint(cc.p(0.5,0.5));
+        doctor.setPosition(size.width/5,4*size.height/5);
+        //this.addChild(doctor,1);
     }
 
 //    update:function(dt){

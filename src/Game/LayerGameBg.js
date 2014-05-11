@@ -33,14 +33,10 @@ var LayerGameBg = cc.Layer.extend({
         for (var i = 0; i < g_MapGridRow.length ; i++){
             g_MapGridRow[i] = new Array(8);
             for(var j = 0 ; j<g_MapGridRow[i].length; j++){
-                g_MapGridRow[i][j] = new Array(2);
                 // create a rect on each 2d array element;
-                var gridRect = cc.rect(50*j*screenType,winSize.height/16+25*screenType*i,50*screenType,50*screenType);
-                for(var k = 0; k < g_MapGridRow[i][j].length; k++){
-                    g_MapGridRow[i][j][0] = g_MapGridStatus.free;
-                    g_MapGridRow[i][j][1] = gridRect;
-                    //cc.log(g_MapGridRow[i][j][1]._origin.y);
-                }
+                g_MapGridRow[i][j] = new Array(2);
+                g_MapGridRow[i][j][0] = g_MapGridStatus.free;
+                g_MapGridRow[i][j][1] = cc.rect(50*j*screenType,50*screenType*i,50*screenType,50*screenType);
             }
         }
     }
