@@ -22,7 +22,7 @@ var LayerGameBg = cc.Layer.extend({
 
     //Initial the grid, need to be fixed -Huimin
     initMap:function(){
-        //numbers will be replaced ,should be as constant
+        //numbers will be replaced ,should be as constant 8X5 grid
         //cc.log("initializing the map!!!!!!!!");
         var winSize = cc.Director.getInstance().getWinSize();
         g_MapGridRow = new Array(5);
@@ -31,7 +31,7 @@ var LayerGameBg = cc.Layer.extend({
             for(var j = 0 ; j<g_MapGridRow[i].length; j++){
                 g_MapGridRow[i][j] = new Array(2);
                 // create a rect on each 2d array element;
-                var gridRect = cc.rect(50*j*screenType,winSize.height/16+25*screenType*i,50*screenType,50*screenType);
+                var gridRect = cc.rect(50*j*screenType,winSize.height/16+50*screenType*i,50*screenType,50*screenType);
                 for(var k = 0; k < g_MapGridRow[i][j].length; k++){
                     g_MapGridRow[i][j][0] = g_MapGridStatus.free;
                     g_MapGridRow[i][j][1] = gridRect;
