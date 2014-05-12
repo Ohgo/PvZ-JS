@@ -25,22 +25,36 @@ var GameCharacterLayer = cc.Layer.extend({
 
             this._levelManager = new LevelManager(this);
 
+            //Doctor button
+            var newDocNormal = cc.Sprite.create(btn_newDoctor, cc.rect(0, 0, 70, 70));
+            var newDocSelected = cc.Sprite.create(btn_newDoctor, cc.rect(0, 33, 70, 70));
+            var newDocDisabled = cc.Sprite.create(btn_newDoctor, cc.rect(0, 33 * 2, 70, 70));
+
+            var newDoc = cc.MenuItemSprite.create(newDocNormal, newDocSelected, newDocDisabled, this.onNewDoc, this);
+
             // bacteria animation batch node
             cc.SpriteFrameCache.getInstance().addSpriteFrames(bacteria_plist);
             var bacteriaAnimationTexture = cc.TextureCache.getInstance().addImage(bacteria_png);
             this._bacteriaAnimation = cc.SpriteBatchNode.createWithTexture(bacteriaAnimationTexture);
             //this._bacteriaAnimation.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
             this.addChild(this._bacteriaAnimation);
-            Bacteria.sharedAnimation();
+            //Bacteria.sharedAnimation();
 
             // schedule
             this.scheduleUpdate();
             this.schedule(this.oneSecondTick, 1);
 //            this.schedule(this.scoreCounter, 1);
-            this.initDoctor();
-            bRet = true;
+            //this.initDoctor();
+            //bRet = true;
 
             g_GameCharacterLayer = this;
+
+            // place button on screen
+            var cards = cc.Menu.create(newDoc);
+            cards.alignItemsVerticallyWithPadding(30);
+            //cards.setPosition(winSize.width / 2 + 200, winSize.height / 2);
+            cards.setPosition(winSize.width/2,4*winSize.height/5);
+            this.addChild(cards, 0);
 
             //pre set
             //Bacteria.preSet();
@@ -62,6 +76,12 @@ var GameCharacterLayer = cc.Layer.extend({
         if(this._state == g_GameStatus.play){
 //            this.checkIsCollide();
         }
+    },
+
+    onNewDoc:function (pSender) {
+        this.initDoctor();
+        cc.log("new doctor created!");
+
     },
 
 //    checkIsCollide:function(){
