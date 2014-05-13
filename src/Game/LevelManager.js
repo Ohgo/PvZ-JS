@@ -22,6 +22,7 @@ var LevelManager = cc.Class.extend({
     },
 
     loadLevelResource:function(deltaTime){
+    // TODO: Optimize this, slow! *Aries
         /*
         // Safeguard of enemies overload on screen
         if(PvZ.ACTIVE_BACTERIA>= this._currentLevel.bacteriaMax){
@@ -51,15 +52,18 @@ var LevelManager = cc.Class.extend({
         var winSize = cc.Director.getInstance().getWinSize();
 
         var addBacteria = Bacteria.getOrCreateBacteria(BacteriaType[selBacteria.Type]);
+        addBacteria.setCourse(selBacteria.Lane);
+
         var bacteriaSize =  addBacteria.getContentSize();
-        cc.log("bacteria Lane: " + selBacteria.Lane);
-        // TODO: Eliminate hard number
         var bacteriaStartingX = winSize.width + bacteriaSize.width / 2;
-        var bacteriaStartingY = (winSize.height / 7) * selBacteria.Lane;
+        var bacteriaStartingY = g_MapGridRow[selBacteria.Lane][0][1]._origin.y + bacteriaSize.height;
         var bacteriaStartingPos = cc.p(bacteriaStartingX, bacteriaStartingY);
         addBacteria.setPosition(bacteriaStartingPos);
-        var bacteriaDestinationPos = cc.p(- bacteriaSize.width / 2, bacteriaStartingY);
 
+
+         // MOVEMENTS IS NOW HANDLED IN BACTERIA.JS
+        var bacteriaDestinationPos = cc.p(- bacteriaSize.width / 2, bacteriaStartingY);
+        
         var tmpAction;
         switch (addBacteria.moveType) {
             case PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK:
@@ -70,7 +74,8 @@ var LevelManager = cc.Class.extend({
                 tmpAction = cc.MoveTo.create(addBacteria.moveSpeed, bacteriaDestinationPos);
         }
 
-        addBacteria.runAction(tmpAction);
+        //addBacteria.runAction(tmpAction);
+
     },
 
     _minuteToSecond:function(minuteStr){
