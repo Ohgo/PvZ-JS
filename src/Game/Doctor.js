@@ -53,7 +53,7 @@ var DoctorSprite = cc.Sprite.extend({
         for(var i =0; i < g_MapGridRow.length; i++){
             for(var j = 0; j< g_MapGridRow[i].length; j++){
                 if( cc.rectContainsPoint(g_MapGridRow[i][j][1],currentLocation)){
-                    this.setPosition(g_MapGridRow[i][j][1]._origin.x+40,g_MapGridRow[i][j][1]._origin.y+40);
+                    this.setPosition(g_MapGridRow[i][j][1]._origin.x+25*screenType,g_MapGridRow[i][j][1]._origin.y+25*screenType);
                     g_MapGridRow[i][j][0] = g_MapGridStatus.occupied;
                     cc.log(g_MapGridRow[i][j][1]._origin.x+contentSize.width/2);
                     cc.log(g_MapGridRow[i][j][1]._origin.y+contentSize.height/2);

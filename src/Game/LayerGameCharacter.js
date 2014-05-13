@@ -53,7 +53,7 @@ var GameCharacterLayer = cc.Layer.extend({
             var cards = cc.Menu.create(newDoc);
             cards.alignItemsVerticallyWithPadding(30);
             //cards.setPosition(winSize.width / 2 + 200, winSize.height / 2);
-            cards.setPosition(winSize.width/2,4*winSize.height/5);
+            cards.setPosition(winSize.width/4,9*winSize.height/10);
             this.addChild(cards, 0);
 
             //pre set
