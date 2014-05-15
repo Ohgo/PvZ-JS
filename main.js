@@ -28,7 +28,6 @@ var screenType;
 var cocos2dApp = cc.Application.extend({
     config:document['ccConfig'],
     ctor:function (scene) {
-        cc.log("Main: ctor");
         this._super();
         this.startScene = scene;
         cc.COCOS2D_DEBUG = this.config['COCOS2D_DEBUG'];
@@ -55,7 +54,7 @@ var cocos2dApp = cc.Application.extend({
         if (platform == cc.TARGET_PLATFORM.MOBILE_BROWSER) {
 
             resDirOrders.push("HD");
-            screenType =2;
+            screenType = 2;
 
             //resourceSize = cc.size(320, 480);
             //designSize = cc.size(320, 480);
