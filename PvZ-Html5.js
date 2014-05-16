@@ -59,9 +59,10 @@ var PvZ = PvZ || {};
             'src/Main/LayerMainBg.js',
             'src/Main/LayerMainMenu.js',
             'src/Main/SceneMain.js',
+            'src/Main/SceneGameOver.js',
             'src/Option/LayerOptionBg.js',
             'src/Option/LayerOptionMenu.js',
-            'src/Option/SceneOption.js',
+            'src/Option/SceneOption.js'
         ]
     };
 

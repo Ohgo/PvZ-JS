@@ -28,6 +28,8 @@ var s_lives4 = "lives_4.png";
 var s_lives3 = "lives_3.png";
 var s_lives2 = "lives_2.png";
 var s_lives1 = "lives_1.png";
+var bg_gameOver = "GameOver.png";
+var btn_restart = "btn_restart.png";
 
 
 var g_resources = [
@@ -51,6 +53,8 @@ var g_resources = [
     {src:s_lives3},
     {src:s_lives2},
     {src:s_lives1},
+    {src:bg_gameOver},
+    {src:btn_restart},
     //plist
     {src:bacteria_plist}
     //fnt

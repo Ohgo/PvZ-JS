@@ -34,11 +34,13 @@ var SceneGame = cc.Scene.extend({
         }
         lblLives.setAnchorPoint(cc.p(1, 1));
 
+        // When the game is over
         if (n_lives <= 0) {
-            //g_GameStatus = g_GameStatus.gameOver;
+            g_GameStatus = g_GameStatus.gameOver;
             cc.log("GAME OVER");
-            //this.overGame();
-        } else {
+
+            var gameOver = new SceneGameOver();
+            cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, gameOver));
         }
     }
 });
