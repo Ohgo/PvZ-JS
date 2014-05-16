@@ -34,15 +34,7 @@ var GameCharacterLayer = cc.Layer.extend({
             this.screenRect = cc.rect(0, 0, winSize.width, winSize.height + 10);
 
             this._levelManager = new LevelManager(this);
-            /*
-            //Doctor button
-            var newDocNormal = cc.Sprite.create(btn_newDoctor, cc.rect(0, 0, 70, 70));
-            var newDocSelected = cc.Sprite.create(btn_newDoctor, cc.rect(0, 33, 70, 70));
-            var newDocDisabled = cc.Sprite.create(btn_newDoctor, cc.rect(0, 33 * 2, 70, 70));
 
-            var newDoc = cc.MenuItemSprite.create(newDocNormal, newDocSelected, newDocDisabled, this.onNewDoc, this);
-
-*/
             // bacteria animation batch node
             cc.SpriteFrameCache.getInstance().addSpriteFrames(bacteria_plist);
             var bacteriaAnimationTexture = cc.TextureCache.getInstance().addImage(bacteria_png);
@@ -58,15 +50,6 @@ var GameCharacterLayer = cc.Layer.extend({
 			this.initDoctorPicker();
             bRet = true;
 
-
-/*
-            // place button on screen
-            var cards = cc.Menu.create(newDoc);
-            cards.alignItemsVerticallyWithPadding(30);
-            //cards.setPosition(winSize.width / 2 + 200, winSize.height / 2);
-            cards.setPosition(winSize.width/4,9*winSize.height/10);
-            this.addChild(cards, 0);
-*/
             //pre set
             //Bacteria.preSet();
             bRet = true;
@@ -160,32 +143,18 @@ var GameCharacterLayer = cc.Layer.extend({
 //        cc.log("add bacteria");
 //    },
 
-    /* To be finished - Huimin
-     //display doctor card
-     //??????????
-     var doctorCardNormal = cc.Sprite.create(s_Doctor);
-     var doctorCardSelected = cc.Sprite.create(s_Doctor);
-     //var doctorCardDisabled = cc.Sprite.create(s_Doctor);
-
-     var newDoctor = cc.MenuItemSprite.create(doctorCardNormal, doctorCardSelected,this.newDoctorSprite, this);
-     var cardDock = cc.Menu.create(newDoctor);
-     this.gameLayer.addChild(cardDock,g_GameZOder.ui);
-     cardDock.setPosition(0,500);
-
-     },
-     newDoctorSprite:function(){
-     cc.log("New Doctor!");
-     //this.onButtonEffect();
-     //add doctor
-     */
-
     //Create Doctor Sprite
 
     initDoctorPicker:function(){
+
         var size = cc.Director.getInstance().getWinSize();
         var doctor = Doctor.getOrCreateDoctor(DoctorType[0]);
         doctor.setAnchorPoint(cc.p(0.5,0.5));
-        doctor.setPosition(size.width/5,4*size.height/5);
+        doctor.setPosition(size.width/5,5*size.height/6);
+        var nurse = Doctor.getOrCreateDoctor(DoctorType[1]);
+        nurse.setAnchorPoint(cc.p(0.5,0.5));
+        nurse.setPosition(size.width/5+100,5*size.height/6);
+
         //this.addChild(doctor,1);
     }
 

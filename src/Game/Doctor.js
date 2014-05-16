@@ -17,8 +17,8 @@ var Doctor = cc.Sprite.extend({
         this._super();
         this.HP = arg.HP;
         this.doctorStatus = g_DoctorStatus.normal;
-        this.initWithFile(s_Doctor);
-        this.actDoctorAnimation();
+        this.initWithFile(arg.textureName);
+        this.actDoctorAnimation(arg);
         // activate touch
         cc.Director.getInstance().getTouchDispatcher()._addTargetedDelegate(this,0,true);
     },
@@ -110,10 +110,10 @@ var Doctor = cc.Sprite.extend({
     },
 
     //deal with the animation of doctors
-    actDoctorAnimation:function(){
+    actDoctorAnimation:function(arg){
         this.animation = cc.Animation.create();
         //var frame = new Array(s_doctorWalk01,s_doctorWalk02,s_doctorWalk03,s_doctorWalk04);
-        var frameArray = new Array(s_doctorPunch01,s_doctorPunch02);
+        var frameArray = new Array(arg.textureName,arg.attackTextureName);
         // Add 60 frames
         for (var j = 0; j < 30; j++) {
             for (var i = 0; i < 2; i++) {
