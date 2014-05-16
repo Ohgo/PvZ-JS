@@ -9,6 +9,8 @@ var GameCharacterLayer = cc.Layer.extend({
     _state:0,
     _bacteriaAnimation:null,
     screenrect:null,
+    curScene:null,
+
 
     ctor:function () {
         this._super();
@@ -20,6 +22,8 @@ var GameCharacterLayer = cc.Layer.extend({
         if (this._super()) {
             g_GameCharacterLayer = this;
             //cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bacteria_plist);
+
+            this.curScene = new SceneGame();
 
             //PvZ.CONTAINER.BACTERIAS = [];
             PvZ.ACTIVE_BACTERIA = 0;
@@ -94,6 +98,11 @@ var GameCharacterLayer = cc.Layer.extend({
         for (var i = 0; i < PvZ.CONTAINER.BACTERIAS.length; i++) {
             bacteria = PvZ.CONTAINER.BACTERIAS[i];
             if(!bacteria.active) continue;
+            // Check if it is out of screen, then decrease life
+            var pos = bacteria.getPosition();
+            if(pos.x <= 0 ){
+                this.curScene.reduceLive();
+            }
             for (var j = 0; j < PvZ.CONTAINER.DOCTOR.length; j++) {
                 doctor = PvZ.CONTAINER.DOCTOR[j];
                 if(!doctor.active) continue;
@@ -133,6 +142,7 @@ var GameCharacterLayer = cc.Layer.extend({
 
         return cc.rectIntersectsRect(aRect, bRect);
     },
+
 
 //    initBacteria:function(){
 //        //add bacteriaSprite

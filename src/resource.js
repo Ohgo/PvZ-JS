@@ -23,6 +23,12 @@ var bacteria_png = "bacteria00-hd.png";
 var s_Doctor = "Doctor.png";
 var s_doctorPunch01 = "doctorPunch01.png";
 var s_doctorPunch02 = "doctorPunch02.png";
+var s_lives5 = "lives_5.png";
+var s_lives4 = "lives_4.png";
+var s_lives3 = "lives_3.png";
+var s_lives2 = "lives_2.png";
+var s_lives1 = "lives_1.png";
+
 
 var g_resources = [
     //image
@@ -40,6 +46,11 @@ var g_resources = [
     {src:s_Doctor},
     {src:s_doctorPunch01},
     {src:s_doctorPunch02},
+    {src:s_lives5},
+    {src:s_lives4},
+    {src:s_lives3},
+    {src:s_lives2},
+    {src:s_lives1},
     //plist
     {src:bacteria_plist}
     //fnt
