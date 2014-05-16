@@ -16,15 +16,15 @@ var LayerMainMenu = cc.Layer.extend({
             var winSize = cc.Director.getInstance().getWinSize();
 
             // load buttons
-            var newGameNormal = cc.Sprite.create(btn_MainMenu_png, cc.rect(0, 0, 126, 33));
-            var newGameSelected = cc.Sprite.create(btn_MainMenu_png, cc.rect(0, 33, 126, 33));
-            var newGameDisabled = cc.Sprite.create(btn_MainMenu_png, cc.rect(0, 33 * 2, 126, 33));
-            var gameOptionsNormal = cc.Sprite.create(btn_MainMenu_png, cc.rect(126, 0, 126, 33));
-            var gameOptionsSelected = cc.Sprite.create(btn_MainMenu_png, cc.rect(126, 33, 126, 33));
-            var gameOptionsDisabled = cc.Sprite.create(btn_MainMenu_png, cc.rect(126, 33 * 2, 126, 33));
-            var aboutNormal = cc.Sprite.create(btn_MainMenu_png, cc.rect(252, 0, 126, 33));
-            var aboutSelected = cc.Sprite.create(btn_MainMenu_png, cc.rect(252, 33, 126, 33));
-            var aboutDisabled = cc.Sprite.create(btn_MainMenu_png, cc.rect(252, 33 * 2, 126, 33));
+            var gameOptionsNormal = cc.Sprite.create(btn_MainMenu_png, cc.rect(0, 0, 155, 75));
+            var gameOptionsSelected = cc.Sprite.create(btn_MainMenu_png, cc.rect(0, 80, 155, 75));
+            var gameOptionsDisabled = cc.Sprite.create(btn_MainMenu_png, cc.rect(0, 33 * 2, 126, 33));
+            var newGameNormal = cc.Sprite.create(btn_MainMenu_png, cc.rect(160, 0, 155, 75));
+            var newGameSelected = cc.Sprite.create(btn_MainMenu_png, cc.rect(160, 80, 155, 75));
+            var newGameDisabled = cc.Sprite.create(btn_MainMenu_png, cc.rect(126, 33 * 2, 126, 33));
+            var aboutNormal = cc.Sprite.create(btn_MainMenu_png, cc.rect(320, 0, 155, 75));
+            var aboutSelected = cc.Sprite.create(btn_MainMenu_png, cc.rect(320, 80, 155, 75));
+            var aboutDisabled = cc.Sprite.create(btn_MainMenu_png, cc.rect(252, 33 * 2, 155, 75));
 
             // put buttons into clickable menus and assign onclick events
             var playGame = cc.MenuItemSprite.create(newGameNormal, newGameSelected, newGameDisabled, this.onPlayGame, this);
@@ -32,9 +32,9 @@ var LayerMainMenu = cc.Layer.extend({
             var about = cc.MenuItemSprite.create(aboutNormal, aboutSelected, aboutDisabled, this.onAbout, this);
 
             // place menus on screen
-            var menu = cc.Menu.create(playGame, option, about);
-            menu.alignItemsVerticallyWithPadding(30);
-            menu.setPosition(winSize.width / 2 + 200, winSize.height / 2);
+            var menu = cc.Menu.create(option, playGame, about);
+            menu.alignItemsHorizontallyWithPadding(90);
+            menu.setPosition(500, 85);
             this.addChild(menu, 0);
             bRet = true;
         }
