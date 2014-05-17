@@ -4,14 +4,20 @@
 var DoctorType = [
     {
         type:0,
-        textureName:"bacteriaYellow1.png",
-        HP:30,
-        attackPower:1
+        textureName:"doctorPunch01.png",
+        attackTextureName:"doctorPunch02.png",
+        HP:300,
+        coffeeCost:50,
+        attackDelay:2,
+        medicineType:0
     },
     {
         type:1,
-        textureName:"bacteriaYellow1.png",
-        HP:40,
-        attackPower:2
+        textureName:"nursePunch01.png",
+        attackTextureName:"nursePunch02.png",
+        HP:400,
+        coffeeCost:100,
+        attackDelay:4,
+        medicineType:1
     }
 ]
