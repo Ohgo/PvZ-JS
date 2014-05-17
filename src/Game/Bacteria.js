@@ -18,6 +18,7 @@ var Bacteria = cc.Sprite.extend({
     state:null,
     Lane:null,
     _winSize:null,
+    textureName:null,
 
     //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
@@ -32,6 +33,7 @@ var Bacteria = cc.Sprite.extend({
         this.moveSpeed = arg.moveSpeed;
         this.attackPower = arg.attackPower;
         this.size = this.getContentSize();
+        this.textureName = arg.textureName;
         //this.initWithFile("BacteriaHappyGray.png");
         //this.initWithSpriteFrameName(arg.textureName);
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGreen1.png");
@@ -138,6 +140,7 @@ Bacteria.getOrCreateBacteria = function(arg){
             selChild.attackMode = arg.attackMode;
             selChild.attackPower = arg.attackPower;
             selChild.state = PvZ.BACTERIA_STATE.WALK;
+            selChild.textureName = arg.textureName;
             //selChild._hurtColorLife = 0;
 
             // does it have anything routine to do?
@@ -172,8 +175,8 @@ Bacteria.sharedAnimation = function () {
 
     //walk animation
     for (var i = 1; i < 3; i++) {
-        str = "bacteriaGreen" + i + ".png";
-        //str = this.text
+        str = "bacteriaPink" + i + ".png";
+        cc.log("Creating bacteria which supposed to have name: " + this.textureName);
         var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
         animFrames.push(frame);
     }
