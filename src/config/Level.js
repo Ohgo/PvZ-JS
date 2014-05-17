@@ -6,13 +6,13 @@ var Level1 = {
     bacterias:[
         {
             ShowType:"Repeat",
-            ShowTime:"00:02",
+            ShowTime:"00:04",
             Lane:2,
             Type:0
         },
         {
             ShowType:"Once",
-            ShowTime:"00:01",
+            ShowTime:"00:02",
             Lane:1,
             Type:1
         },

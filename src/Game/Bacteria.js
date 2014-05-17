@@ -44,8 +44,6 @@ var Bacteria = cc.Sprite.extend({
         //this.schedule();
     },
 
-    _timeTick:0,
-
     update:function(dt){
         var p = this.getPosition();
         //cc.log("x: " + p.x + " y: " + p.y);
@@ -58,16 +56,10 @@ var Bacteria = cc.Sprite.extend({
             this.active = false;
             this.destroy();
         }
-        this._timeTick += dt;
     },
 
     setCourse:function(lane) {
         this.Lane = lane;
-        //var destinationY =  g_MapGridRow[this.Lane][0][1]._origin.y + this.size.height;
-        // var destinationY =  0;
-        // var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
-        // this.runAction(translation);
-        //this.changeState(PvZ.BACTERIA_STATE.WALK);
     },
 
     walk:function(){
@@ -76,8 +68,6 @@ var Bacteria = cc.Sprite.extend({
         this.runAction(translation);
         var frameAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
         this.runAction(cc.RepeatForever.create(cc.Animate.create(frameAnimation)));
-
-
     },
 
     attack:function() {
@@ -110,32 +100,6 @@ var Bacteria = cc.Sprite.extend({
         PvZ.ACTIVE_BACTERIA--;
     }
 
-//    initData:function(){
-//        this.isHit = false;
-//        this.HP = 10;
-//        this.radius = 110;
-//        this.velocity = cc.p(100,100);
-        //GameCharacterLayer.addChild(BacteriaHappyGray,1);
-
-        //var addBacteria = new BacteriaHappyGray();
-//        var bacteriapos = cc.p(100,320);
-//        var bacteriacs =  this.getContentSize();
-//        this.setPosition(bacteriapos);
-
-//        var tmpAction;
-//        var a0=0;
-//        var a1=0;
-//        a0 = cc.MoveBy.create(5, cc.p(-960,0));
-//        a1 = cc.ShakyTiles3D.create(5, cc.size(15, 10), 4, false);
-//        tmpAction = cc.Spawn.create(a0, a1);
-//
-//        this.runAction(tmpAction);
-//        cc.log("add bacteria!!!");
-//    }
-    //update: function (dt) {
-        //this.setPosition(cc.pMult(this.getPosition(),cc.pMult(this.velocity, dt)),310);
-        //this.checkHitEdge();
-    //}
 });
 
 Bacteria.getOrCreateBacteria = function(arg){

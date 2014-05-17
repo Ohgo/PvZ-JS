@@ -9,14 +9,16 @@ var SceneGame = cc.Scene.extend({
 
 
     onEnter:function () {
-        cc.log("SceneGame: onEnter");
+        //cc.log("SceneGame: onEnter");
         this._super();
 
         gBGLayer = new LayerGameBg();
         gCharacterLayer = new GameCharacterLayer();
+        gCoffeeLayer = new LayerGameCoffee();
 
         this.addChild(gBGLayer, g_GameZOder.bg);
         this.addChild(gCharacterLayer, g_GameZOder.ui);
+        this.addChild(gCoffeeLayer, g_GameZOder.ui);
         //gCharacterLayer.init();
     },
 
