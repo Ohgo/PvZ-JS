@@ -61,7 +61,7 @@ var g_resources = [
     {src:coffeespilled},
     //plist
     {src:bacteria_plist},
-    {src:coffee_plist},
+    {src:coffee_plist}
     //fnt
     //tmx
 

@@ -18,14 +18,14 @@ var LayerOptionMenu = cc.Layer.extend({
         this.addChild(this._optionComponentsBatch);
 
         // buttons
-         var btn_incMusicNormal = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume);
+         var btn_incMusicNormal = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
          var btn_incMusicSelected = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
-         var btn_decMusicNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume);
+         var btn_decMusicNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
          var btn_decMusicSelected = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
 
-         var btn_incSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume);
+         var btn_incSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
          var btn_incSoundEffectSelected = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
-         var btn_decSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume);
+         var btn_decSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
          var btn_decSoundEffectSelected = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
 
         // sliders for music and sound effect control
