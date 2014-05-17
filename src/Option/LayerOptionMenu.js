@@ -28,6 +28,15 @@ var LayerOptionMenu = cc.Layer.extend({
          var btn_decSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
          var btn_decSoundEffectSelected = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
 
+        var backNormal = cc.Sprite.create(btn_back, cc.rect(160, 0, 155, 75));
+        var backSelected = cc.Sprite.create(btn_back, cc.rect(160, 80, 155, 75));
+        var backDisabled = cc.Sprite.create(btn_back, cc.rect(126, 33 * 2, 126, 33));
+
+        var back = cc.MenuItemSprite.create(backNormal, backSelected, backDisabled, this.onBack, this);
+
+        var backMenu = cc.Menu.create(back);
+
+
         // sliders for music and sound effect control
         cc.log("Creating sliders");
         //var bg_music = cc.Sprite.createWithSpriteFrameName(slider_volume_png);
@@ -64,6 +73,10 @@ var LayerOptionMenu = cc.Layer.extend({
         SoundEffectControl.alignItemsHorizontallyWithPadding(winSize.width / 2);
         SoundEffectControl.setPosition(winSize.width / 2, winSize.height / 3);
 
+        backMenu.alignItemsHorizontallyWithPadding(90);
+        backMenu.setPosition(500, 85);
+        this.addChild(backMenu, 1);
+
         this.addChild(MusicControl, 0);
         this.addChild(SoundEffectControl, 1);
 
@@ -88,6 +101,11 @@ var LayerOptionMenu = cc.Layer.extend({
     onSoundEffectDecrease:function (pSender) {
         gSharedEngine.setEffectsVolume(gSharedEngine.getEffectsVolume()-0.1);
         cc.log("Current effect volume: " + gSharedEngine.getEffectsVolume());
+    },
+    onBack:function(){
+        cc.log("Back to the main page");
+        var scene = new SceneMain();
+        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     }
 
 
