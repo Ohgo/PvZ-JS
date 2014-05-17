@@ -20,5 +20,6 @@ PvZ.BACTERIA_ATTACK_TYPE = {
 PvZ.CONTAINER = {
     BACTERIAS:[],
     DOCTOR:[],
-    MEDICINE:[]
+    MEDICINE:[],
+    COFFEE:[]
 };

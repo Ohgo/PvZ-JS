@@ -19,6 +19,7 @@ var slider_volume_png = "slider_vol.png";
 var pin_volume_png = "pin_music.png";
 var btn_option_back = "option_back.png";
 var bacteria_plist = "bacteria00-hd.plist";
+var coffee_plist = "coffee.plist";
 var bacteria_png = "bacteria00-hd.png";
 var s_Doctor = "Doctor.png";
 var s_doctorPunch01 = "doctorPunch01.png";
@@ -30,7 +31,8 @@ var s_lives2 = "lives_2.png";
 var s_lives1 = "lives_1.png";
 var bg_gameOver = "GameOver.png";
 var btn_restart = "btn_restart.png";
-
+var coffeenormal = "coffee_normal.png";
+var coffeespilled = "coffee_spilled.png";
 
 var g_resources = [
     //image
@@ -55,10 +57,12 @@ var g_resources = [
     {src:s_lives1},
     {src:bg_gameOver},
     {src:btn_restart},
+    {src:coffeenormal},
+    {src:coffeespilled},
     //plist
-    {src:bacteria_plist}
+    {src:bacteria_plist},
+    {src:coffee_plist},
     //fnt
-
     //tmx
 
     //bgm

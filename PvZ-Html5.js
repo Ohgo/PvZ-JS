@@ -44,6 +44,7 @@ var PvZ = PvZ || {};
             'src/resource.js',//add your own files in order here
             'src/config/GameConfig.js',
             'src/config/Level.js',
+            'src/config/MedicineType.js',
             'src/config/BacteriaType.js',
             'src/config/DoctorType.js',
             'src/Game/Bacteria.js',

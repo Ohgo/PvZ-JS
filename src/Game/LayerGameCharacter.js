@@ -10,9 +10,9 @@ var GameCharacterLayer = cc.Layer.extend({
     _bacteriaAnimation:null,
     screenrect:null,
     curScene:null,
+    _lbCoffee:null,
 
-
-    ctor:function () {
+        ctor:function () {
         this._super();
         this.init();
     },
@@ -26,8 +26,11 @@ var GameCharacterLayer = cc.Layer.extend({
             this.curScene = new SceneGame();
 
             //PvZ.CONTAINER.BACTERIAS = [];
+            PvZ.COLLECTED_COFFEE = 200;
             PvZ.ACTIVE_BACTERIA = 0;
             PvZ.ACTIVE_DOCTOR = 0;
+            PvZ.ACTIVE_COFFEE = 0;
+            PvZ.ACTIVE_MEDICINE = 0;
             this._state = g_GameStatus.play;
 
             var winSize = cc.Director.getInstance().getWinSize();
@@ -42,6 +45,11 @@ var GameCharacterLayer = cc.Layer.extend({
             //this._bacteriaAnimation.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
             this.addChild(this._bacteriaAnimation);
             Bacteria.sharedAnimation();
+
+            //coffee counter
+            this._lbCoffee = cc.LabelTTF.create(""+PvZ.COLLECTED_COFFEE, "Arial", 38);
+            this._lbCoffee.setPosition(cc.p(winSize.width/10,5.5*winSize.height/6));
+            this.addChild(this._lbCoffee);
 
             // schedule
             this.scheduleUpdate();
@@ -63,6 +71,17 @@ var GameCharacterLayer = cc.Layer.extend({
             this._time++;
             this._levelManager.loadLevelResource(this._time);
         }
+    },
+
+    increaseCoffee:function() {
+        PvZ.COLLECTED_COFFEE += 50;
+        this._lbCoffee.setString(PvZ.COLLECTED_COFFEE);
+    },
+
+    decreaseCoffee:function(amount) {
+        if(amount >= PvZ.COLLECTED_COFFEE) PvZ.COLLECTED_COFFEE = 0;
+        else PvZ.COLLECTED_COFFEE -= amount;
+        this._lbCoffee.setString(PvZ.COLLECTED_COFFEE);
     },
 
     update:function (dt) {
@@ -150,10 +169,10 @@ var GameCharacterLayer = cc.Layer.extend({
         var size = cc.Director.getInstance().getWinSize();
         var doctor = Doctor.getOrCreateDoctor(DoctorType[0]);
         doctor.setAnchorPoint(cc.p(0.5,0.5));
-        doctor.setPosition(size.width/5,5*size.height/6);
+        doctor.setPosition(size.width/5,5.5*size.height/6);
         var nurse = Doctor.getOrCreateDoctor(DoctorType[1]);
         nurse.setAnchorPoint(cc.p(0.5,0.5));
-        nurse.setPosition(size.width/5+100,5*size.height/6);
+        nurse.setPosition(size.width/5+100,5.5*size.height/6);
 
         //this.addChild(doctor,1);
     }
