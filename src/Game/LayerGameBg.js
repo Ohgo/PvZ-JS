@@ -4,8 +4,12 @@
 
 var g_MapGridStatus = {free:0,occupied:1};
 var g_MapGridRow;
+var lblLives;
+var n_lives;
+//var sl_lives = {5:s_lives5, 4:s_lives4,3:s_lives3,2:s_lives2,1:s_lives1};
 
 var LayerGameBg = cc.Layer.extend({
+
 
     ctor:function () {
         this._super();
@@ -17,7 +21,16 @@ var LayerGameBg = cc.Layer.extend({
         if (this._super()) {
             var bg = cc.Sprite.create(bg_Game_png);
             bg.setAnchorPoint(cc.p(0,0));
-            this.addChild(bg,1);
+
+            n_lives = 5;
+            var winSize = cc.Director.getInstance().getWinSize();
+            lblLives = cc.Sprite.create(s_lives5);
+            lblLives.setAnchorPoint(cc.p(1, 1));
+            lblLives.setPosition(winSize.width, winSize.height);
+
+            this.addChild(bg,g_GameZOder.bg);
+            this.addChild(lblLives, g_GameZOder.bg);
+
             cc.log("Game on!");
             this.initMap();
         }

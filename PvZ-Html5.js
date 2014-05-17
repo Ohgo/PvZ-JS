@@ -44,6 +44,7 @@ var PvZ = PvZ || {};
             'src/resource.js',//add your own files in order here
             'src/config/GameConfig.js',
             'src/config/Level.js',
+            'src/config/MedicineType.js',
             'src/config/BacteriaType.js',
             'src/config/DoctorType.js',
             'src/Game/Bacteria.js',
@@ -59,9 +60,10 @@ var PvZ = PvZ || {};
             'src/Main/LayerMainBg.js',
             'src/Main/LayerMainMenu.js',
             'src/Main/SceneMain.js',
+            'src/Main/SceneGameOver.js',
             'src/Option/LayerOptionBg.js',
             'src/Option/LayerOptionMenu.js',
-            'src/Option/SceneOption.js',
+            'src/Option/SceneOption.js'
         ]
     };
 

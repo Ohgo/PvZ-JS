@@ -12,13 +12,19 @@ var Doctor = cc.Sprite.extend({
     initialposition:null,
     zOrder:0,
     active:false,
+    coffeeCost:0,
+    medicineType:null,
+    attackDelay:0,
     //constructor
     ctor:function(arg){
         this._super();
         this.HP = arg.HP;
         this.doctorStatus = g_DoctorStatus.normal;
-        this.initWithFile(s_Doctor);
-        this.actDoctorAnimation();
+        this.coffeeCost = arg.coffeeCost;
+        this.medicineType = arg.medicineType;
+        this.attackDelay = arg.attackDelay;
+        this.initWithFile(arg.textureName);
+        this.actDoctorAnimation(arg);
         // activate touch
         cc.Director.getInstance().getTouchDispatcher()._addTargetedDelegate(this,0,true);
     },
@@ -67,53 +73,47 @@ var Doctor = cc.Sprite.extend({
         var i = Math.floor(this.getPosition().y / (screenType*50));
         var j = Math.floor(this.getPosition().x / (screenType*50));
 
-        if(i < g_MapGridRow.length && j < g_MapGridRow[i].length && g_MapGridRow[i][j][0] == g_MapGridStatus.free) {
+        if(i < g_MapGridRow.length && j < g_MapGridRow[i].length && g_MapGridRow[i][j][0] == g_MapGridStatus.free && PvZ.COLLECTED_COFFEE >= this.coffeeCost) {
             this.setPosition(g_MapGridRow[i][j][1]._origin.x + 50,g_MapGridRow[i][j][1]._origin.y+50);
             g_MapGridRow[i][j][0] = g_MapGridStatus.occupied;
             this.doctorStatus = g_DoctorStatus.freeze;
             this.active = true;
             this.runAction(cc.Animate.create(this.animation));
+            this.attack();
+            this.schedule(this.attack, this.attackDelay);
             PvZ.ACTIVE_DOCTOR++;
-
+            g_GameCharacterLayer.decreaseCoffee(this.coffeeCost);
         }
 
         else this.destroy();
+    },
 
-        /*
-         for(var i =0; i < g_MapGridRow.length; i++){
-         for(var j = 0; j< g_MapGridRow[i].length; j++){
-         if( cc.rectContainsPoint(g_MapGridRow[i][j][1],currentLocation) && g_MapGridRow[i][j][0] == g_MapGridStatus.free){
-         this.setPosition(g_MapGridRow[i][j][1]._origin.x+40*screenType,g_MapGridRow[i][j][1]._origin.y+40*screenType);
-         g_MapGridRow[i][j][0] = g_MapGridStatus.occupied;
-         //cc.log(g_MapGridRow[i][j][1]._origin.x+contentSize.width/2);
-         //cc.log(g_MapGridRow[i][j][1]._origin.y+contentSize.height/2);
-         this.doctorStatus = g_DoctorStatus.freeze;
-         this.runAction(cc.Animate.create(this.animation));
-         PvZ.ACTIVE_DOCTOR++;
-         }
-         // replace image on the doctor picker
-         g_GameCharacterLayer.initDoctorPicker();
-         }
-         }
-         */
+    attack:function() {
+        var pos = this.getPosition();
+        var medicine = Medicine.getOrCreateMedicine(MedicineType[this.medicineType]);
+        medicine.setPosition(pos.x, pos.y);
+        var translation = cc.MoveTo.create(medicine.speed, cc.p(g_GameCharacterLayer.screenRect.width, pos.y));
+        medicine.runAction(translation);
     },
 
     destroy:function() {
         this.setVisible(false);
         this.active = false;
         this.stopAllActions();
+        this.unschedule(this.attack);
+        this.unscheduleAllCallbacks();
         PvZ.ACTIVE_DOCTOR--;
         // todo: create a function for this duplicate lines?
         var i = Math.floor(this.getPosition().y / (screenType*50));
         var j = Math.floor(this.getPosition().x / (screenType*50));
-        g_MapGridRow[i][j][0] = g_MapGridStatus.free;
+        //if(g_DoctorStatus.freezeg_DoctorStatus.freeze) g_MapGridRow[i][j][0] = g_MapGridStatus.free;
     },
 
     //deal with the animation of doctors
-    actDoctorAnimation:function(){
+    actDoctorAnimation:function(arg){
         this.animation = cc.Animation.create();
         //var frame = new Array(s_doctorWalk01,s_doctorWalk02,s_doctorWalk03,s_doctorWalk04);
-        var frameArray = new Array(s_doctorPunch01,s_doctorPunch02);
+        var frameArray = new Array(arg.textureName,arg.attackTextureName);
         // Add 60 frames
         for (var j = 0; j < 30; j++) {
             for (var i = 0; i < 2; i++) {
@@ -153,9 +153,10 @@ Doctor.getOrCreateDoctor = function(arg){
             selChild.HP = arg.HP;
             //selChild.active = true;
             selChild.doctorStatus = g_DoctorStatus.normal;
-            selChild.moveSpeed = arg.moveSpeed;
-            selChild.attackMode = arg.attackMode;
             selChild.HP = arg.HP;
+            selChild.coffeeCost = arg.coffeeCost;
+            this.medicineType = arg.medicineType;
+            this.attackDelay = arg.attackDelay;
 
             selChild.setVisible(true);
 

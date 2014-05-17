@@ -9,8 +9,10 @@ var GameCharacterLayer = cc.Layer.extend({
     _state:0,
     _bacteriaAnimation:null,
     screenrect:null,
+    curScene:null,
+    _lbCoffee:null,
 
-    ctor:function () {
+        ctor:function () {
         this._super();
         this.init();
     },
@@ -21,15 +23,21 @@ var GameCharacterLayer = cc.Layer.extend({
             g_GameCharacterLayer = this;
             //cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bacteria_plist);
 
+            this.curScene = new SceneGame();
+
             //PvZ.CONTAINER.BACTERIAS = [];
+            PvZ.COLLECTED_COFFEE = 200;
             PvZ.ACTIVE_BACTERIA = 0;
             PvZ.ACTIVE_DOCTOR = 0;
+            PvZ.ACTIVE_COFFEE = 0;
+            PvZ.ACTIVE_MEDICINE = 0;
             this._state = g_GameStatus.play;
 
             var winSize = cc.Director.getInstance().getWinSize();
             this.screenRect = cc.rect(0, 0, winSize.width, winSize.height + 10);
 
             this._levelManager = new LevelManager(this);
+
             // bacteria animation batch node
             cc.SpriteFrameCache.getInstance().addSpriteFrames(bacteria_plist);
             var bacteriaAnimationTexture = cc.TextureCache.getInstance().addImage(bacteria_png);
@@ -38,14 +46,17 @@ var GameCharacterLayer = cc.Layer.extend({
             this.addChild(this._bacteriaAnimation);
             Bacteria.sharedAnimation();
 
+            //coffee counter
+            this._lbCoffee = cc.LabelTTF.create(""+PvZ.COLLECTED_COFFEE, "Arial", 38);
+            this._lbCoffee.setPosition(cc.p(winSize.width/10,5.5*winSize.height/6));
+            this.addChild(this._lbCoffee);
+
             // schedule
             this.scheduleUpdate();
             this.schedule(this.oneSecondTick, 1);
 //            this.schedule(this.scoreCounter, 1);
 			this.initDoctorPicker();
             bRet = true;
-
-
 
             //pre set
             //Bacteria.preSet();
@@ -62,6 +73,17 @@ var GameCharacterLayer = cc.Layer.extend({
         }
     },
 
+    increaseCoffee:function() {
+        PvZ.COLLECTED_COFFEE += 50;
+        this._lbCoffee.setString(PvZ.COLLECTED_COFFEE);
+    },
+
+    decreaseCoffee:function(amount) {
+        if(amount >= PvZ.COLLECTED_COFFEE) PvZ.COLLECTED_COFFEE = 0;
+        else PvZ.COLLECTED_COFFEE -= amount;
+        this._lbCoffee.setString(PvZ.COLLECTED_COFFEE);
+    },
+
     update:function (dt) {
         if(this._state == g_GameStatus.play){
             this.checkIsCollide();
@@ -70,28 +92,49 @@ var GameCharacterLayer = cc.Layer.extend({
     },
 
     checkIsCollide:function(){
-        var bacteria, doctor;
-        var collisionDetected = false;
-        //cc.log("Checking for Collision!");
+        var bacteria, doctor, medicine;
+        var bacteriaCollideDoctor = false, bacteriaCollideMedicine = false;
+
         // for each bacteria on the map, check if any of them collide with the doctors
-        //cc.log("Total Bacteria: " + PvZ.CONTAINER.BACTERIAS.length + " Active: " + PvZ.ACTIVE_BACTERIA + ", Doctor: " + PvZ.CONTAINER.DOCTOR.length + " Active: " + PvZ.ACTIVE_DOCTOR);
         for (var i = 0; i < PvZ.CONTAINER.BACTERIAS.length; i++) {
             bacteria = PvZ.CONTAINER.BACTERIAS[i];
             if(!bacteria.active) continue;
+            // Check if it is out of screen, then decrease life
+            var pos = bacteria.getPosition();
+            if(pos.x <= 0 ){
+                this.curScene.reduceLive();
+            }
+            // check if it collides with doctor
             for (var j = 0; j < PvZ.CONTAINER.DOCTOR.length; j++) {
                 doctor = PvZ.CONTAINER.DOCTOR[j];
                 if(!doctor.active) continue;
                 if (bacteria.active && doctor.active && this.collide(bacteria, doctor)) {
-                    collisionDetected = true;
+                    bacteriaCollideDoctor = true;
                     bacteria.changeState(PvZ.BACTERIA_STATE.ATTACK);
                     doctor.hurt(bacteria.attackPower);
-                    // it is not possible to attack more than one doctor at a time, so break from this loop and check other bacteria
+                    // it is not possible for one bacteria to attack more than one doctor at a time, so break from this loop and check other bacteria
                     break;
                     //if(doctorDied) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
                 }
+
             }
-            if(!collisionDetected) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
+            if(!bacteriaCollideDoctor) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
+
+            // check if it collides with medicine
+            // cc.log("checking collision: bacteria index " + k + "/" + PvZ.ACTIVE_MEDICINE);
+            for (var k = 0; k < PvZ.CONTAINER.MEDICINE.length; k++) {
+                medicine = PvZ.CONTAINER.MEDICINE[k];
+                if(!medicine.active) continue;
+                if (bacteria.active && medicine.active && this.collide(bacteria, medicine)) {
+                    bacteriaCollideMedicine = true;
+                    bacteria.changeState(PvZ.BACTERIA_STATE.DEFEND);
+                    bacteria.hurt(medicine.attackPower);
+                    medicine.destroy();
+                    //if(doctorDied) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
+                }
+            }
         }
+
     },
     removeInactiveUnit:function (dt) {
         var selChild;
@@ -118,6 +161,7 @@ var GameCharacterLayer = cc.Layer.extend({
         return cc.rectIntersectsRect(aRect, bRect);
     },
 
+
 //    initBacteria:function(){
 //        //add bacteriaSprite
 //        var bacteria = new BacteriaHappyGray();
@@ -134,32 +178,18 @@ var GameCharacterLayer = cc.Layer.extend({
 //        cc.log("add bacteria");
 //    },
 
-    /* To be finished - Huimin
-     //display doctor card
-     //??????????
-     var doctorCardNormal = cc.Sprite.create(s_Doctor);
-     var doctorCardSelected = cc.Sprite.create(s_Doctor);
-     //var doctorCardDisabled = cc.Sprite.create(s_Doctor);
-
-     var newDoctor = cc.MenuItemSprite.create(doctorCardNormal, doctorCardSelected,this.newDoctorSprite, this);
-     var cardDock = cc.Menu.create(newDoctor);
-     this.gameLayer.addChild(cardDock,g_GameZOder.ui);
-     cardDock.setPosition(0,500);
-
-     },
-     newDoctorSprite:function(){
-     cc.log("New Doctor!");
-     //this.onButtonEffect();
-     //add doctor
-     */
-
     //Create Doctor Sprite
 
     initDoctorPicker:function(){
+
         var size = cc.Director.getInstance().getWinSize();
         var doctor = Doctor.getOrCreateDoctor(DoctorType[0]);
         doctor.setAnchorPoint(cc.p(0.5,0.5));
-        doctor.setPosition(size.width/5,4*size.height/5);
+        doctor.setPosition(size.width/5,5.5*size.height/6);
+        var nurse = Doctor.getOrCreateDoctor(DoctorType[1]);
+        nurse.setAnchorPoint(cc.p(0.5,0.5));
+        nurse.setPosition(size.width/5+100,5.5*size.height/6);
+
         //this.addChild(doctor,1);
     }
 

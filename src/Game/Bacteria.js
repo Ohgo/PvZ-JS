@@ -18,6 +18,7 @@ var Bacteria = cc.Sprite.extend({
     state:null,
     Lane:null,
     _winSize:null,
+    textureName:null,
 
     //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
@@ -32,9 +33,10 @@ var Bacteria = cc.Sprite.extend({
         this.moveSpeed = arg.moveSpeed;
         this.attackPower = arg.attackPower;
         this.size = this.getContentSize();
+        this.textureName = arg.textureName;
         //this.initWithFile("BacteriaHappyGray.png");
         //this.initWithSpriteFrameName(arg.textureName);
-        var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGray1.png");
+        var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGreen1.png");
         this.initWithSpriteFrame(pFrame);
         this.changeState(PvZ.BACTERIA_STATE.WALK);
 
@@ -43,8 +45,6 @@ var Bacteria = cc.Sprite.extend({
         //);
         //this.schedule();
     },
-
-    _timeTick:0,
 
     update:function(dt){
         var p = this.getPosition();
@@ -58,16 +58,10 @@ var Bacteria = cc.Sprite.extend({
             this.active = false;
             this.destroy();
         }
-        this._timeTick += dt;
     },
 
     setCourse:function(lane) {
         this.Lane = lane;
-        //var destinationY =  g_MapGridRow[this.Lane][0][1]._origin.y + this.size.height;
-        // var destinationY =  0;
-        // var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
-        // this.runAction(translation);
-        //this.changeState(PvZ.BACTERIA_STATE.WALK);
     },
 
     walk:function(){
@@ -76,14 +70,18 @@ var Bacteria = cc.Sprite.extend({
         this.runAction(translation);
         var frameAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
         this.runAction(cc.RepeatForever.create(cc.Animate.create(frameAnimation)));
-
-
     },
 
     attack:function() {
         // TODO: Change to a real attacking information
         var attackAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
         this.runAction(cc.RepeatForever.create(cc.Animate.create(attackAnimation)));
+    },
+
+    defend:function() {
+        // TODO: Change to a real defending information
+        var defendAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        this.runAction(cc.Animate.create(defendAnimation));
     },
 
     changeState:function(arg) {
@@ -97,10 +95,24 @@ var Bacteria = cc.Sprite.extend({
                 case PvZ.BACTERIA_STATE.ATTACK:
                     this.attack();
                     break;
+                case PvZ.BACTERIA_STATE.DEFEND:
+                    this.defend();
+                    break;
                 default:
                     this.walk();
             }
         }
+    },
+
+    hurt:function(damage) {
+        if(damage > this.HP) this.HP = 0;
+        else this.HP -= damage;
+        cc.log("The bacteria took " + damage + " damage. Remaining HP: " + this.HP);
+        if(this.HP <= 0) {
+            this.destroy();
+            return true;
+        }
+        return false;
     },
 
     destroy:function () {
@@ -110,32 +122,6 @@ var Bacteria = cc.Sprite.extend({
         PvZ.ACTIVE_BACTERIA--;
     }
 
-//    initData:function(){
-//        this.isHit = false;
-//        this.HP = 10;
-//        this.radius = 110;
-//        this.velocity = cc.p(100,100);
-        //GameCharacterLayer.addChild(BacteriaHappyGray,1);
-
-        //var addBacteria = new BacteriaHappyGray();
-//        var bacteriapos = cc.p(100,320);
-//        var bacteriacs =  this.getContentSize();
-//        this.setPosition(bacteriapos);
-
-//        var tmpAction;
-//        var a0=0;
-//        var a1=0;
-//        a0 = cc.MoveBy.create(5, cc.p(-960,0));
-//        a1 = cc.ShakyTiles3D.create(5, cc.size(15, 10), 4, false);
-//        tmpAction = cc.Spawn.create(a0, a1);
-//
-//        this.runAction(tmpAction);
-//        cc.log("add bacteria!!!");
-//    }
-    //update: function (dt) {
-        //this.setPosition(cc.pMult(this.getPosition(),cc.pMult(this.velocity, dt)),310);
-        //this.checkHitEdge();
-    //}
 });
 
 Bacteria.getOrCreateBacteria = function(arg){
@@ -154,6 +140,7 @@ Bacteria.getOrCreateBacteria = function(arg){
             selChild.attackMode = arg.attackMode;
             selChild.attackPower = arg.attackPower;
             selChild.state = PvZ.BACTERIA_STATE.WALK;
+            selChild.textureName = arg.textureName;
             //selChild._hurtColorLife = 0;
 
             // does it have anything routine to do?
@@ -187,8 +174,9 @@ Bacteria.sharedAnimation = function () {
     var str = "";
 
     //walk animation
-    for (var i = 1; i < 5; i++) {
-        str = "bacteriaGray" + i + ".png";
+    for (var i = 1; i < 3; i++) {
+        str = "bacteriaPink" + i + ".png";
+        cc.log("Creating bacteria which supposed to have name: " + this.textureName);
         var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
         animFrames.push(frame);
     }
