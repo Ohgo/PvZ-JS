@@ -40,21 +40,10 @@ var Bacteria = cc.Sprite.extend({
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGreen1.png");
         this.initWithSpriteFrame(pFrame);
         this.changeState(PvZ.BACTERIA_STATE.WALK);
-
-        //this.runAction(
-        //    cc.Animate.create(this.animation)
-        //);
-        //this.schedule();
     },
 
     update:function(dt){
         var p = this.getPosition();
-        //cc.log("x: " + p.x + " y: " + p.y);
-        /*
-        if(p.x < 0 || p.x > this._winSize.width && p.y < 0 || p.y > this._winSize.height){
-            this.active = false;
-        }
-        */
         if (p.x < 0 || this.HP <= 0) {
             this.active = false;
             this.destroy();
