@@ -34,6 +34,7 @@ var Bacteria = cc.Sprite.extend({
         this.attackPower = arg.attackPower;
         this.size = this.getContentSize();
         this.textureName = arg.textureName;
+        cc.log("tex: " + this.textureName + " text: " + arg.textureName);
         //this.initWithFile("BacteriaHappyGray.png");
         //this.initWithSpriteFrameName(arg.textureName);
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGreen1.png");
@@ -68,19 +69,19 @@ var Bacteria = cc.Sprite.extend({
         var destinationY =  0;
         var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
         this.runAction(translation);
-        var frameAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        var frameAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
         this.runAction(cc.RepeatForever.create(cc.Animate.create(frameAnimation)));
     },
 
     attack:function() {
         // TODO: Change to a real attacking information
-        var attackAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        var attackAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
         this.runAction(cc.RepeatForever.create(cc.Animate.create(attackAnimation)));
     },
 
     defend:function() {
         // TODO: Change to a real defending information
-        var defendAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        var defendAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
         this.runAction(cc.Animate.create(defendAnimation));
     },
 
@@ -170,16 +171,27 @@ Bacteria.create = function (arg) {
 
 //Bacteria Animation
 Bacteria.sharedAnimation = function () {
-    var animFrames = [];
-    var str = "";
+    //walk animation for each bacteria
+    for(var i = 0; i< BacteriaType.length ; i++) {
+        var animFrames = [];
+        var str = "";
+        for (var j = 1; j < 3; j++) {
+            str = BacteriaType[i].textureName + j + ".png";
+            var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
+            animFrames.push(frame);
+        }
+        var animation = cc.Animation.create(animFrames, 0.5);
+        cc.AnimationCache.getInstance().addAnimation(animation, BacteriaType[i].textureName + "Walk");
+    }
 
-    //walk animation
-    for (var i = 1; i < 3; i++) {
-        str = "bacteriaPink" + i + ".png";
+    /*
+    for (var j = 1; j < 3; j++) {
+        str = "bacteriaPink" + j + ".png";
         cc.log("Creating bacteria which supposed to have name: " + this.textureName);
         var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
         animFrames.push(frame);
     }
     var animation = cc.Animation.create(animFrames, 0.5);
     cc.AnimationCache.getInstance().addAnimation(animation, "BacteriaWalkAnimation");
+    */
 };
