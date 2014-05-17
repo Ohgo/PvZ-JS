@@ -92,11 +92,10 @@ var GameCharacterLayer = cc.Layer.extend({
     },
 
     checkIsCollide:function(){
-        var bacteria, doctor;
-        var collisionDetected = false;
-        //cc.log("Checking for Collision!");
+        var bacteria, doctor, medicine;
+        var bacteriaCollideDoctor = false, bacteriaCollideMedicine = false;
+
         // for each bacteria on the map, check if any of them collide with the doctors
-        //cc.log("Total Bacteria: " + PvZ.CONTAINER.BACTERIAS.length + " Active: " + PvZ.ACTIVE_BACTERIA + ", Doctor: " + PvZ.CONTAINER.DOCTOR.length + " Active: " + PvZ.ACTIVE_DOCTOR);
         for (var i = 0; i < PvZ.CONTAINER.BACTERIAS.length; i++) {
             bacteria = PvZ.CONTAINER.BACTERIAS[i];
             if(!bacteria.active) continue;
@@ -105,20 +104,37 @@ var GameCharacterLayer = cc.Layer.extend({
             if(pos.x <= 0 ){
                 this.curScene.reduceLive();
             }
+            // check if it collides with doctor
             for (var j = 0; j < PvZ.CONTAINER.DOCTOR.length; j++) {
                 doctor = PvZ.CONTAINER.DOCTOR[j];
                 if(!doctor.active) continue;
                 if (bacteria.active && doctor.active && this.collide(bacteria, doctor)) {
-                    collisionDetected = true;
+                    bacteriaCollideDoctor = true;
                     bacteria.changeState(PvZ.BACTERIA_STATE.ATTACK);
                     doctor.hurt(bacteria.attackPower);
-                    // it is not possible to attack more than one doctor at a time, so break from this loop and check other bacteria
+                    // it is not possible for one bacteria to attack more than one doctor at a time, so break from this loop and check other bacteria
                     break;
                     //if(doctorDied) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
                 }
+
             }
-            if(!collisionDetected) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
+            if(!bacteriaCollideDoctor) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
+
+            // check if it collides with medicine
+            // cc.log("checking collision: bacteria index " + k + "/" + PvZ.ACTIVE_MEDICINE);
+            for (var k = 0; k < PvZ.CONTAINER.MEDICINE.length; k++) {
+                medicine = PvZ.CONTAINER.MEDICINE[k];
+                if(!medicine.active) continue;
+                if (bacteria.active && medicine.active && this.collide(bacteria, medicine)) {
+                    bacteriaCollideMedicine = true;
+                    bacteria.changeState(PvZ.BACTERIA_STATE.DEFEND);
+                    bacteria.hurt(medicine.attackPower);
+                    medicine.destroy();
+                    //if(doctorDied) bacteria.changeState(PvZ.BACTERIA_STATE.WALK);
+                }
+            }
         }
+
     },
     removeInactiveUnit:function (dt) {
         var selChild;

@@ -79,6 +79,7 @@ var Doctor = cc.Sprite.extend({
             this.doctorStatus = g_DoctorStatus.freeze;
             this.active = true;
             this.runAction(cc.Animate.create(this.animation));
+            this.attack();
             this.schedule(this.attack, this.attackDelay);
             PvZ.ACTIVE_DOCTOR++;
             g_GameCharacterLayer.decreaseCoffee(this.coffeeCost);
@@ -100,6 +101,7 @@ var Doctor = cc.Sprite.extend({
         this.active = false;
         this.stopAllActions();
         this.unschedule(this.attack);
+        this.unscheduleAllCallbacks();
         PvZ.ACTIVE_DOCTOR--;
         // todo: create a function for this duplicate lines?
         var i = Math.floor(this.getPosition().y / (screenType*50));

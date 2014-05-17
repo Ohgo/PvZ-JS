@@ -8,6 +8,7 @@ var Medicine = cc.Sprite.extend({
     textureName:null,
     speed:0,
     attackPower:0,
+    active:null,
 
     ctor:function(arg){
         this._super();
@@ -17,9 +18,11 @@ var Medicine = cc.Sprite.extend({
 
     reset:function(arg) {
         this.type = arg.type;
+        PvZ.ACTIVE_MEDICINE++;
+        this.active = true;
         this.textureName = arg.textureName;
         this.speed = arg.speed;
-        this.attackPower = arg.medicineType;
+        this.attackPower = arg.attackPower;
         this.setVisible(true);
     },
 

@@ -76,6 +76,12 @@ var Bacteria = cc.Sprite.extend({
         this.runAction(cc.RepeatForever.create(cc.Animate.create(attackAnimation)));
     },
 
+    defend:function() {
+        // TODO: Change to a real defending information
+        var defendAnimation = cc.AnimationCache.getInstance().getAnimation("BacteriaWalkAnimation");
+        this.runAction(cc.Animate.create(defendAnimation));
+    },
+
     changeState:function(arg) {
         if(this.state != arg) {
             this.stopAllActions();
@@ -87,10 +93,24 @@ var Bacteria = cc.Sprite.extend({
                 case PvZ.BACTERIA_STATE.ATTACK:
                     this.attack();
                     break;
+                case PvZ.BACTERIA_STATE.DEFEND:
+                    this.defend();
+                    break;
                 default:
                     this.walk();
             }
         }
+    },
+
+    hurt:function(damage) {
+        if(damage > this.HP) this.HP = 0;
+        else this.HP -= damage;
+        cc.log("The bacteria took " + damage + " damage. Remaining HP: " + this.HP);
+        if(this.HP <= 0) {
+            this.destroy();
+            return true;
+        }
+        return false;
     },
 
     destroy:function () {
@@ -153,6 +173,7 @@ Bacteria.sharedAnimation = function () {
     //walk animation
     for (var i = 1; i < 3; i++) {
         str = "bacteriaGreen" + i + ".png";
+        //str = this.text
         var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
         animFrames.push(frame);
     }
