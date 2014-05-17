@@ -103,6 +103,9 @@ var GameCharacterLayer = cc.Layer.extend({
             // Check if it is out of screen, then decrease life
             var pos = bacteria.getPosition();
             if(pos.x <= 0 ){
+                if(n_lives <= 0){
+                    this._state = g_GameStatus.gameOver;
+                }
                 this.curScene.reduceLive();
             }
             for (var j = 0; j < PvZ.CONTAINER.DOCTOR.length; j++) {
