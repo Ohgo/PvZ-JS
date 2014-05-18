@@ -6,7 +6,7 @@ var g_MapGridStatus = {free:0,occupied:1};
 var g_MapGridRow;
 var lblLives;
 var n_lives;
-//var sl_lives = {5:s_lives5, 4:s_lives4,3:s_lives3,2:s_lives2,1:s_lives1};
+var _status;
 
 var LayerGameBg = cc.Layer.extend({
 

@@ -22,6 +22,8 @@ var LayerGameCoffee = cc.Layer.extend({
     },
 
     spawnCoffee:function() {
-        Coffee.getOrCreateCoffee();
+        if(_status == g_GameStatus.play){
+            Coffee.getOrCreateCoffee();
+        }
     }
 })

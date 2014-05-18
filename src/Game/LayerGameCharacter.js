@@ -6,7 +6,6 @@ MAX_CONTAINT_HEIGHT = 40;
 var GameCharacterLayer = cc.Layer.extend({
     _time:null,
     _levelManager:null,
-    _state:0,
     _bacteriaAnimation:null,
     screenrect:null,
     curScene:null,
@@ -67,15 +66,17 @@ var GameCharacterLayer = cc.Layer.extend({
 
     oneSecondTick:function () {
         // check if it's a spawn time of any monster
-        if (this._state == g_GameStatus.play) {
+        if (_status == g_GameStatus.play) {
             this._time++;
             this._levelManager.loadLevelResource(this._time);
         }
     },
 
     increaseCoffee:function() {
-        PvZ.COLLECTED_COFFEE += 50;
-        this._lbCoffee.setString(PvZ.COLLECTED_COFFEE);
+        if (_status == g_GameStatus.play){
+            PvZ.COLLECTED_COFFEE += 50;
+            this._lbCoffee.setString(PvZ.COLLECTED_COFFEE);
+        }
     },
 
     decreaseCoffee:function(amount) {
@@ -85,7 +86,7 @@ var GameCharacterLayer = cc.Layer.extend({
     },
 
     update:function (dt) {
-        if(this._state == g_GameStatus.play){
+        if(_status == g_GameStatus.play){
             this.checkIsCollide();
             this.removeInactiveUnit(dt);
         }
@@ -103,7 +104,7 @@ var GameCharacterLayer = cc.Layer.extend({
             var pos = bacteria.getPosition();
             if(pos.x <= 0 ){
                 if(n_lives <= 0){
-                    this._state = g_GameStatus.gameOver;
+                    _status = g_GameStatus.gameOver;
                 }
                 this.curScene.reduceLive();
             }

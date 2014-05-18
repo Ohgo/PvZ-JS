@@ -34,6 +34,7 @@ var btn_restart = "btn_restart.png";
 var coffeenormal = "coffee_normal.png";
 var coffeespilled = "coffee_spilled.png";
 var btn_back = "btn_back.png";
+var btn_pause = "btn_pause.png";
 
 var g_resources = [
     //image
@@ -61,6 +62,7 @@ var g_resources = [
     {src:coffeenormal},
     {src:coffeespilled},
     {src:btn_back},
+    {src:btn_pause},
     //plist
     {src:bacteria_plist},
     {src:coffee_plist}

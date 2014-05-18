@@ -51,27 +51,31 @@ var LevelManager = cc.Class.extend({
     addEnemyToGameLayer: function(selBacteria){
         var winSize = cc.Director.getInstance().getWinSize();
 
-        var addBacteria = Bacteria.getOrCreateBacteria(BacteriaType[selBacteria.Type]);
-        addBacteria.setCourse(selBacteria.Lane);
+        if(_status == g_GameStatus.play){
 
-        var bacteriaSize =  addBacteria.getContentSize();
-        var bacteriaStartingX = winSize.width + bacteriaSize.width / 2;
-        var bacteriaStartingY = g_MapGridRow[selBacteria.Lane][0][1]._origin.y + bacteriaSize.height;
-        var bacteriaStartingPos = cc.p(bacteriaStartingX, bacteriaStartingY);
-        addBacteria.setPosition(bacteriaStartingPos);
+            var addBacteria = Bacteria.getOrCreateBacteria(BacteriaType[selBacteria.Type]);
+            addBacteria.setCourse(selBacteria.Lane);
+
+            var bacteriaSize =  addBacteria.getContentSize();
+            var bacteriaStartingX = winSize.width + bacteriaSize.width / 2;
+            var bacteriaStartingY = g_MapGridRow[selBacteria.Lane][0][1]._origin.y + bacteriaSize.height;
+            var bacteriaStartingPos = cc.p(bacteriaStartingX, bacteriaStartingY);
+            addBacteria.setPosition(bacteriaStartingPos);
 
 
-         // MOVEMENTS IS NOW HANDLED IN BACTERIA.JS
-        var bacteriaDestinationPos = cc.p(- bacteriaSize.width / 2, bacteriaStartingY);
-        
-        var tmpAction;
-        switch (addBacteria.moveType) {
-            case PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK:
-                tmpAction = cc.MoveTo.create(addBacteria.moveSpeed, bacteriaDestinationPos);
-                break;
-            // TODO: add other movements. Now default to HORIZONTAL_WALK.
-            default:
-                tmpAction = cc.MoveTo.create(addBacteria.moveSpeed, bacteriaDestinationPos);
+            // MOVEMENTS IS NOW HANDLED IN BACTERIA.JS
+            var bacteriaDestinationPos = cc.p(- bacteriaSize.width / 2, bacteriaStartingY);
+
+            var tmpAction;
+            switch (addBacteria.moveType) {
+                case PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK:
+                    tmpAction = cc.MoveTo.create(addBacteria.moveSpeed, bacteriaDestinationPos);
+                    break;
+                // TODO: add other movements. Now default to HORIZONTAL_WALK.
+                default:
+                    tmpAction = cc.MoveTo.create(addBacteria.moveSpeed, bacteriaDestinationPos);
+            }
+
         }
 
         //addBacteria.runAction(tmpAction);
