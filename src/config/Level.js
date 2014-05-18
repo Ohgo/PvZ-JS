@@ -6,56 +6,45 @@ var Level1 = {
     bacterias:[
         {
             ShowType:"Repeat",
-            ShowTime:"00:04",
-            Lane:2,
+            ShowTime:"00:10",
+            Lane:1,
             Type:0
         },
         {
-            ShowType:"Once",
-            ShowTime:"00:02",
-            Lane:1,
+            ShowType:"Repeat",
+            ShowTime:"00:15",
+            Lane:2,
             Type:1
         },
         {
             ShowType:"Repeat",
             ShowTime:"00:06",
+            Lane:3,
+            Type:2
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:08",
+            Lane:4,
+            Type:0
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:10",
             Lane:1,
+            Type:1
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:15",
+            Lane:5,
+            Type:0
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:05",
+            Lane:3,
             Type:2
         }
-        /*{
-         ShowType:"Repeat",
-         ShowTime:"00:08",
-         Type:[0,4,3]
-         },
-         {
-         ShowType:"Once",
-         ShowTime:"00:6",
-         Type:[0,2,4,3]
-         },
-         {
-         ShowType:"Once",
-         ShowTime:"00:16",
-         Type:[0,2,4,3]
-         },
-         {
-         ShowType:"Once",
-         ShowTime:"00:25",
-         Type:[0,3,4,3]
-         },
-         {
-         ShowType:"Once",
-         ShowTime:"00:35",
-         Type:[4,3,1,3]
-         },
-         {
-         ShowType:"Once",
-         ShowTime:"00:50",
-         Type:[0,3,2,1,0,3]
-         },
-         {
-         ShowType:"Once",
-         ShowTime:"01:15",
-         Type:[4,2,1,0]
-         }*/
     ]
 };
