@@ -21,30 +21,7 @@ var Level1 = {
             ShowTime:"00:06",
             Lane:3,
             Type:2
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:08",
-            Lane:4,
-            Type:0
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:10",
-            Lane:1,
-            Type:1
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:15",
-            Lane:5,
-            Type:0
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:05",
-            Lane:3,
-            Type:2
         }
+
     ]
 };
