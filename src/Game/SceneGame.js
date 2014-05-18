@@ -38,7 +38,7 @@ var SceneGame = cc.Scene.extend({
 
         // When the game is over
         if (n_lives <= 0) {
-            g_GameStatus = g_GameStatus.gameOver;
+            //g_GameStatus = g_GameStatus.gameOver;
             cc.log("GAME OVER");
             var gameOver = new SceneGameOver();
             cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, gameOver));

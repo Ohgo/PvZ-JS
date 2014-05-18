@@ -8,6 +8,7 @@ var Medicine = cc.Sprite.extend({
     textureName:null,
     speed:0,
     attackPower:0,
+    active:null,
 
     ctor:function(arg){
         this._super();
@@ -16,17 +17,31 @@ var Medicine = cc.Sprite.extend({
     },
 
     reset:function(arg) {
+        this.scheduleUpdate();
+        this.runAction(cc.RepeatForever.create(cc.RotateBy.create(0.5, 360)));
         this.type = arg.type;
+        PvZ.ACTIVE_MEDICINE++;
+        this.active = true;
         this.textureName = arg.textureName;
         this.speed = arg.speed;
-        this.attackPower = arg.medicineType;
+        this.attackPower = arg.attackPower;
         this.setVisible(true);
+    },
+
+
+    update:function(dt){
+        var p = this.getPosition();
+        if (p.x >= this._winSize - this.getContentSize.width) {
+            this.active = false;
+            this.destroy();
+        }
     },
 
     destroy:function() {
         this.setVisible(false);
         this.active = false;
         this.stopAllActions();
+        this.unscheduleUpdate();
         PvZ.ACTIVE_MEDICINE--;
     }
 

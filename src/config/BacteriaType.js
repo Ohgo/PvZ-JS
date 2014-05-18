@@ -29,7 +29,7 @@ var BacteriaType = [
         //bulletType:"W2.png",
         HP:200,
         moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
-        attackPower:4,
+        attackPower:3,
         attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
     }
 ]

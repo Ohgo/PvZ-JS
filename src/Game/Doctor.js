@@ -15,9 +15,11 @@ var Doctor = cc.Sprite.extend({
     coffeeCost:0,
     medicineType:null,
     attackDelay:0,
+    _winsize:null,
     //constructor
     ctor:function(arg){
         this._super();
+        this._winSize = cc.Director.getInstance().getWinSize();
         this.HP = arg.HP;
         this.doctorStatus = g_DoctorStatus.normal;
         this.coffeeCost = arg.coffeeCost;
@@ -79,6 +81,7 @@ var Doctor = cc.Sprite.extend({
             this.doctorStatus = g_DoctorStatus.freeze;
             this.active = true;
             this.runAction(cc.Animate.create(this.animation));
+            this.attack();
             this.schedule(this.attack, this.attackDelay);
             PvZ.ACTIVE_DOCTOR++;
             g_GameCharacterLayer.decreaseCoffee(this.coffeeCost);
@@ -91,7 +94,7 @@ var Doctor = cc.Sprite.extend({
         var pos = this.getPosition();
         var medicine = Medicine.getOrCreateMedicine(MedicineType[this.medicineType]);
         medicine.setPosition(pos.x, pos.y);
-        var translation = cc.MoveTo.create(medicine.speed, cc.p(g_GameCharacterLayer.screenRect.width, pos.y));
+        var translation = cc.MoveTo.create(medicine.speed, cc.p(g_GameCharacterLayer.screenRect.width+medicine.getContentSize().width, pos.y));
         medicine.runAction(translation);
     },
 
@@ -100,6 +103,7 @@ var Doctor = cc.Sprite.extend({
         this.active = false;
         this.stopAllActions();
         this.unschedule(this.attack);
+        this.unscheduleAllCallbacks();
         PvZ.ACTIVE_DOCTOR--;
         // todo: create a function for this duplicate lines?
         var i = Math.floor(this.getPosition().y / (screenType*50));
