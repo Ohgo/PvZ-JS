@@ -11,6 +11,7 @@ var Bacteria = cc.Sprite.extend({
     zOrder:1000,
     moveType:null,
     moveSpeed:null,
+    textureName:null,
     delayTime:1 + 1.2 * Math.random(),
     attackMode:null,
     attackPower:null,
@@ -31,6 +32,7 @@ var Bacteria = cc.Sprite.extend({
         this.attackMode = arg.attackMode;
         this.bacteriaType = arg.type;
         this.moveSpeed = arg.moveSpeed;
+        this.textureName = arg.textureName;
         this.attackPower = arg.attackPower;
         this.size = this.getContentSize();
         this.textureName = arg.textureName;
@@ -126,6 +128,7 @@ Bacteria.getOrCreateBacteria = function(arg){
             selChild.HP = arg.HP;
             selChild.active = true;
             selChild.moveSpeed = arg.moveSpeed;
+            selChild.textureName = arg.textureName;
             selChild.moveType = arg.moveType;
             selChild.attackMode = arg.attackMode;
             selChild.attackPower = arg.attackPower;
@@ -179,6 +182,7 @@ Bacteria.sharedAnimation = function () {
         cc.log("Creating bacteria which supposed to have name: " + this.textureName);
         var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
         animFrames.push(frame);
+        cc.log(this.textureName);
     }
     var animation = cc.Animation.create(animFrames, 0.5);
     cc.AnimationCache.getInstance().addAnimation(animation, "BacteriaWalkAnimation");
