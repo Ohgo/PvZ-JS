@@ -119,4 +119,3 @@ LayerOptionMenu.create = function () {
     }
     return null;
 };
-
