@@ -59,7 +59,9 @@ var LayerMainMenu = cc.Layer.extend({
     onAbout:function (pSender) {
         cc.log("About");
         this.onButtonEffect();
-        // TODO: Go to about scene
+        var aboutScene = new SceneAbout();
+        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, aboutScene));
+
     }
 
 

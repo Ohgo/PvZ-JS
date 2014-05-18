@@ -18,15 +18,24 @@ var LayerOptionMenu = cc.Layer.extend({
         this.addChild(this._optionComponentsBatch);
 
         // buttons
-         var btn_incMusicNormal = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume);
-         var btn_incMusicSelected = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
-         var btn_decMusicNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume);
-         var btn_decMusicSelected = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
+        var btn_incMusicNormal = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
+        var btn_incMusicSelected = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
+        var btn_decMusicNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
+        var btn_decMusicSelected = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
 
-         var btn_incSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume);
-         var btn_incSoundEffectSelected = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
-         var btn_decSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume);
-         var btn_decSoundEffectSelected = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
+        var btn_incSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
+        var btn_incSoundEffectSelected = cc.Sprite.createWithSpriteFrameName(btn_increaseVolume_sel);
+        var btn_decSoundEffectNormal = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
+        var btn_decSoundEffectSelected = cc.Sprite.createWithSpriteFrameName(btn_decreaseVolume_sel);
+
+        var backNormal = cc.Sprite.create(btn_back, cc.rect(160, 0, 155, 75));
+        var backSelected = cc.Sprite.create(btn_back, cc.rect(160, 80, 155, 75));
+        var backDisabled = cc.Sprite.create(btn_back, cc.rect(126, 33 * 2, 126, 33));
+
+        var back = cc.MenuItemSprite.create(backNormal, backSelected, backDisabled, this.onBack, this);
+
+        var backMenu = cc.Menu.create(back);
+
 
         // sliders for music and sound effect control
         cc.log("Creating sliders");
@@ -42,14 +51,14 @@ var LayerOptionMenu = cc.Layer.extend({
         slider_music.setEnabled(true);
         this.addChild(slider_music, 2);
 
-/*
-        var slider_soundeffect = cc.Sprite.createWithSpriteFrameName(slider_volume_png);
-        var pin_soundeffect = cc.Sprite.createWithSpriteFrameName(pin_volume_png);
-        var slider_soundeffect = cc.ControlSlider.initWithSprites(bg_music, bg_music, pin_music);
-        // var slider_soundeffect = cc.ControlSlider.create(bg_music, bg_music, pin_music);
-        slider_soundeffect.setPosition(winSize.width / 2, winSize.height / 3);
-        this.addChild(slider_soundeffect, 3);
-*/
+        /*
+         var slider_soundeffect = cc.Sprite.createWithSpriteFrameName(slider_volume_png);
+         var pin_soundeffect = cc.Sprite.createWithSpriteFrameName(pin_volume_png);
+         var slider_soundeffect = cc.ControlSlider.initWithSprites(bg_music, bg_music, pin_music);
+         // var slider_soundeffect = cc.ControlSlider.create(bg_music, bg_music, pin_music);
+         slider_soundeffect.setPosition(winSize.width / 2, winSize.height / 3);
+         this.addChild(slider_soundeffect, 3);
+         */
         // put buttons as clickable menu
         var incMusic = cc.MenuItemSprite.create(btn_incMusicNormal, btn_incMusicSelected, this.onMusicIncrease, this);
         var decMusic = cc.MenuItemSprite.create(btn_decMusicNormal, btn_decMusicSelected, this.onMusicDecrease, this);
@@ -63,6 +72,10 @@ var LayerOptionMenu = cc.Layer.extend({
         var SoundEffectControl = cc.Menu.create(decSoundEffect, incSoundEffect);
         SoundEffectControl.alignItemsHorizontallyWithPadding(winSize.width / 2);
         SoundEffectControl.setPosition(winSize.width / 2, winSize.height / 3);
+
+        backMenu.alignItemsHorizontallyWithPadding(90);
+        backMenu.setPosition(500, 85);
+        this.addChild(backMenu, 1);
 
         this.addChild(MusicControl, 0);
         this.addChild(SoundEffectControl, 1);
@@ -88,6 +101,11 @@ var LayerOptionMenu = cc.Layer.extend({
     onSoundEffectDecrease:function (pSender) {
         gSharedEngine.setEffectsVolume(gSharedEngine.getEffectsVolume()-0.1);
         cc.log("Current effect volume: " + gSharedEngine.getEffectsVolume());
+    },
+    onBack:function(){
+        cc.log("Back to the main page");
+        var scene = new SceneMain();
+        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     }
 
 

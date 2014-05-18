@@ -111,3 +111,11 @@ Coffee.create = function () {
     PvZ.CONTAINER.COFFEE.push(coffee);
     return coffee;
 };
+
+//Coffee Animation
+Coffee.scaleAnimation = function () {
+    var1 = this.Coffee.runAction(cc.ScaleTo.create(1.5,1.2,0.8));
+    this.schedule(this.var1, 1.5);
+    var2 = this.Coffee.runAction(cc.ScaleTo.create(1.5,0.8,1.2));
+    this.schedule(this.var2, 1.5);
+};
