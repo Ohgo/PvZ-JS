@@ -44,7 +44,7 @@ var appFiles = [
     'src/Main/LayerMainBg.js',
     'src/Main/LayerMainMenu.js',
     'src/Main/SceneMain.js',
-    'src/Option/LayerOptionBg.js',
+    'src/Option/LayerAboutBg.js',
     'src/Option/LayerOptionMenu.js',
     'src/Option/SceneOption.js',
     'src/config/Level.js',

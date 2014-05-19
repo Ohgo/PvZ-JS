@@ -7,7 +7,6 @@ var Bacteria = cc.Sprite.extend({
     bacteriaType:1,
     active:true,
     speed:200,
-    HP:15,
     zOrder:1000,
     moveType:null,
     moveSpeed:null,
@@ -19,7 +18,6 @@ var Bacteria = cc.Sprite.extend({
     state:null,
     Lane:null,
     _winSize:null,
-    textureName:null,
 
     //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
