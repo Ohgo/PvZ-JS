@@ -47,8 +47,8 @@ var GameCharacterLayer = cc.Layer.extend({
             Bacteria.sharedAnimation();
 
             //coffee counter
-            this._lbCoffee = cc.LabelTTF.create(""+PvZ.COLLECTED_COFFEE, "Arial", 38);
-            this._lbCoffee.setPosition(cc.p(winSize.width/10,5.5*winSize.height/6));
+            this._lbCoffee = cc.LabelTTF.create(""+PvZ.COLLECTED_COFFEE, "Arial", 30);
+            this._lbCoffee.setPosition(cc.p(winSize.width/10,5.7*winSize.height/6));
             this.addChild(this._lbCoffee);
 
             // schedule

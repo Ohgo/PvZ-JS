@@ -6,7 +6,7 @@ var Level1 = {
     bacterias:[
         {
             ShowType:"Repeat",
-            ShowTime:"00:10",
+            ShowTime:"00:50",
             Lane:1,
             Type:0
         },
@@ -30,7 +30,7 @@ var Level1 = {
         },
         {
             ShowType:"Repeat",
-            ShowTime:"00:60",
+            ShowTime:"00:20",
             Lane:2,
             Type:1
         },
@@ -42,7 +42,7 @@ var Level1 = {
         },
         {
             ShowType:"Repeat",
-            ShowTime:"00:15",
+            ShowTime:"00:50",
             Lane:3,
             Type:0
         },
@@ -54,8 +54,26 @@ var Level1 = {
         },
         {
             ShowType:"Repeat",
-            ShowTime:"00:60",
+            ShowTime:"00:40",
             Lane:3,
+            Type:2
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:55",
+            Lane:4,
+            Type:0
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:30",
+            Lane:4,
+            Type:1
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:10",
+            Lane:4,
             Type:2
         }
     ]
