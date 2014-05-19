@@ -6,7 +6,7 @@ var g_MapGridStatus = {free:0,occupied:1};
 var g_MapGridRow;
 var lblLives;
 var n_lives;
-//var sl_lives = {5:s_lives5, 4:s_lives4,3:s_lives3,2:s_lives2,1:s_lives1};
+var _status;
 
 var LayerGameBg = cc.Layer.extend({
 
@@ -49,7 +49,7 @@ var LayerGameBg = cc.Layer.extend({
                 // create a rect on each 2d array element;
                 g_MapGridRow[i][j] = new Array(2);
                 g_MapGridRow[i][j][0] = g_MapGridStatus.free;
-                g_MapGridRow[i][j][1] = cc.rect(50*j*screenType,50*screenType*i,50*screenType,50*screenType);
+                g_MapGridRow[i][j][1] = cc.rect(65+50*j*screenType,30+50*screenType*i,50*screenType,50*screenType);
             }
         }
     }

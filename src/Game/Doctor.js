@@ -91,11 +91,13 @@ var Doctor = cc.Sprite.extend({
     },
 
     attack:function() {
-        var pos = this.getPosition();
-        var medicine = Medicine.getOrCreateMedicine(MedicineType[this.medicineType]);
-        medicine.setPosition(pos.x, pos.y);
-        var translation = cc.MoveTo.create(medicine.speed, cc.p(g_GameCharacterLayer.screenRect.width+medicine.getContentSize().width, pos.y));
-        medicine.runAction(translation);
+        if(_status == g_GameStatus.play){
+            var pos = this.getPosition();
+            var medicine = Medicine.getOrCreateMedicine(MedicineType[this.medicineType]);
+            medicine.setPosition(pos.x, pos.y);
+            var translation = cc.MoveTo.create(medicine.speed, cc.p(g_GameCharacterLayer.screenRect.width+medicine.getContentSize().width, pos.y));
+            medicine.runAction(translation);
+        }
     },
 
     destroy:function() {
