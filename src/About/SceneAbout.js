@@ -6,3 +6,4 @@ var SceneAbout = cc.Scene.extend({
 
         this.addChild(backgroundLayer, 0);
     }
+})
