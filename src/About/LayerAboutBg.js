@@ -8,7 +8,7 @@ var LayerAboutBg = cc.Layer.extend({
         var winSize = cc.Director.getInstance().getWinSize();
 
         // load and place background on screen
-        var backgroundSprite = cc.Sprite.create(bg_MainMenu);
+        var backgroundSprite = cc.Sprite.create(bg_About);
         backgroundSprite.setAnchorPoint(0.5, 0.5);
         backgroundSprite.setPosition(winSize.width / 2, winSize.height / 2);
         backgroundSprite.setScale(winSize.height/backgroundSprite.getContentSize().height);
@@ -18,8 +18,9 @@ var LayerAboutBg = cc.Layer.extend({
         titleLabel.setPosition(winSize.width / 2, winSize.height - 40);
         this.addChild(titleLabel, 1);
 
-        var about = cc.LabelTTF.create("   This game is a student project for the User Interface Programming-2 course in Uppsala University. The game is a replica of the famous game Plants vs. Zombies \n \n Programmer: \n Aries Kurnawian \n Huimim Zang \n Yingjie Chen \n Sercan Caglarca \n \n Illustration:\n Yingjie Chen.", "Arial", 14, cc.size(winSize.width * 0.85, 320), cc.TEXT_ALIGNMENT_LEFT );
-        about.setPosition(winSize.width / 2,  winSize.height/2 -20 );
+        var about = cc.LabelTTF.create("All rights reserved.", "Arial", 14, cc.size(winSize.width * 0.85, 320), cc.TEXT_ALIGNMENT_LEFT );
+        _shadowEnabled:true;
+        about.setPosition(winSize.width / 2,  winSize.height/2-400 );
         about.setAnchorPoint(0.5, 0.5 );
         this.addChild(about);
     }
