@@ -43,12 +43,10 @@ var Bacteria = cc.Sprite.extend({
     },
 
     update:function(dt){
-        if(_status == g_GameStatus.play){
-            var p = this.getPosition();
-            if (p.x < 0 || this.HP <= 0) {
-                this.active = false;
-                this.destroy();
-            }
+        var p = this.getPosition();
+        if (p.x < 0 || this.HP <= 0) {
+            this.active = false;
+            this.destroy();
         }
     },
 
@@ -57,13 +55,12 @@ var Bacteria = cc.Sprite.extend({
     },
 
     walk:function(){
-        if(_status == g_GameStatus.play){
-            var destinationY =  0;
-            var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
-            this.runAction(translation);
-            var frameAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
-            this.runAction(cc.RepeatForever.create(cc.Animate.create(frameAnimation)));
-        }
+
+        var destinationY =  0;
+        var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
+        this.runAction(translation);
+        var frameAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
+        this.runAction(cc.RepeatForever.create(cc.Animate.create(frameAnimation)));
     },
 
     attack:function() {
@@ -103,6 +100,7 @@ var Bacteria = cc.Sprite.extend({
         else this.HP -= damage;
         cc.log("The bacteria took " + damage + " damage. Remaining HP: " + this.HP);
         if(this.HP <= 0) {
+            g_GameCharacterLayer.increaseKilledBacteria();
             this.destroy();
             return true;
         }

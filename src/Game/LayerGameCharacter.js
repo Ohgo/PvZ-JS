@@ -10,6 +10,7 @@ var GameCharacterLayer = cc.Layer.extend({
     screenrect:null,
     curScene:null,
     _lbCoffee:null,
+    _lbKilled:null,
 
     ctor:function () {
         this._super();
@@ -30,6 +31,7 @@ var GameCharacterLayer = cc.Layer.extend({
             PvZ.ACTIVE_DOCTOR = 0;
             PvZ.ACTIVE_COFFEE = 0;
             PvZ.ACTIVE_MEDICINE = 0;
+            PvZ.KILLED_BACTERIA = 0;
             this._state = g_GameStatus.play;
 
             var winSize = cc.Director.getInstance().getWinSize();
@@ -49,6 +51,11 @@ var GameCharacterLayer = cc.Layer.extend({
             this._lbCoffee = cc.LabelTTF.create(""+PvZ.COLLECTED_COFFEE, "Arial", 30);
             this._lbCoffee.setPosition(cc.p(winSize.width/10,5.7*winSize.height/6));
             this.addChild(this._lbCoffee);
+
+            //killed bacteria
+            this._lbKilled = cc.LabelTTF.create(""+PvZ.KILLED_BACTERIA+"/"+Level1.bacteriaToKill, "Arial", 30);
+            this._lbKilled.setPosition(cc.p(winSize.width*9/10,5.5*winSize.height/6));
+            this.addChild(this._lbKilled);
 
             // schedule
             this.scheduleUpdate();
@@ -72,6 +79,12 @@ var GameCharacterLayer = cc.Layer.extend({
         }
     },
 
+    increaseKilledBacteria:function() {
+        PvZ.KILLED_BACTERIA++;
+        this._lbKilled.setString(""+PvZ.KILLED_BACTERIA+"/"+Level1.bacteriaToKill);
+        if(PvZ.KILLED_BACTERIA == Level1.bacteriaToKill) this.onLevelWin();
+    },
+
     increaseCoffee:function() {
         if (_status == g_GameStatus.play){
             PvZ.COLLECTED_COFFEE += 50;
@@ -83,6 +96,11 @@ var GameCharacterLayer = cc.Layer.extend({
         if(amount >= PvZ.COLLECTED_COFFEE) PvZ.COLLECTED_COFFEE = 0;
         else PvZ.COLLECTED_COFFEE -= amount;
         this._lbCoffee.setString(PvZ.COLLECTED_COFFEE);
+    },
+
+    onLevelWin:function() {
+        var scene = new SceneMain();
+        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     },
 
     update:function (dt) {

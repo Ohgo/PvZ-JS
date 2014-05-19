@@ -2,7 +2,8 @@
  * Created by 00 on 14-4-10.
  */
 var Level1 = {
-    bacteriaMax:30,
+    bacteriaMax:6,
+    bacteriaToKill:10,
     bacterias:[
         {
             ShowType:"Repeat",
