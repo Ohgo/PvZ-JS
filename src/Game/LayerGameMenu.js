@@ -40,7 +40,7 @@ var LayerGameMenu = cc.Layer.extend({
 
         resumeMenu = cc.Menu.create(resumeGame);
         resumeMenu.alignItemsHorizontallyWithPadding(90);
-        resumeMenu.setPosition(winSize.width - 100 , winSize.height - 100);
+        resumeMenu.setPosition(winSize.width/2 , winSize.height - 50);
         this.addChild(resumeMenu, 0);
 
         resumeMenu.setVisible(false);
@@ -58,7 +58,7 @@ var LayerGameMenu = cc.Layer.extend({
     onResumeGame:function(){
 
         _status = g_GameStatus.play;
-        cc.log("Game Resumed");
+        cc.log("Game Resumed"+_status);
         menu.setVisible(true);
         resumeMenu.setVisible(false);
     }

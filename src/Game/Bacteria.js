@@ -63,7 +63,6 @@ var Bacteria = cc.Sprite.extend({
             this.runAction(translation);
             var frameAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
             this.runAction(cc.RepeatForever.create(cc.Animate.create(frameAnimation)));
-
         }
     },
 
