@@ -54,12 +54,12 @@ var LevelManager = cc.Class.extend({
         if(_status == g_GameStatus.play){
 
             var addBacteria = Bacteria.getOrCreateBacteria(BacteriaType[selBacteria.Type]);
-            addBacteria.setAnchorPoint(1,1);
+            //addBacteria.setAnchorPoint(1,1);
             addBacteria.setCourse(selBacteria.Lane);
 
             var bacteriaSize =  addBacteria.getContentSize();
             var bacteriaStartingX = winSize.width + bacteriaSize.width / 2;
-            var bacteriaStartingY = g_MapGridRow[selBacteria.Lane][0][1]._origin.y + bacteriaSize.height;
+            var bacteriaStartingY = g_MapGridRow[selBacteria.Lane][0][1]._origin.y + bacteriaSize.height/2;
             var bacteriaStartingPos = cc.p(bacteriaStartingX, bacteriaStartingY);
             addBacteria.setPosition(bacteriaStartingPos);
 
