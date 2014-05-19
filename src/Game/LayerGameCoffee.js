@@ -13,7 +13,7 @@ var LayerGameCoffee = cc.Layer.extend({
     init:function(){
         this._size = cc.Director.getInstance().getWinSize();
         cc.SpriteFrameCache.getInstance().addSpriteFrames(coffee_plist);
-        Coffee.scaleAnimation();
+        //Coffee.scaleAnimation();
         this.schedule(this.spawnCoffee, 3);
 
 
