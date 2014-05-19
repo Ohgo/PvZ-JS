@@ -33,15 +33,18 @@ var LayerGameMenu = cc.Layer.extend({
     initResumeMenu:function(){
         var resumeNormal = cc.Sprite.create(btn_pause, cc.rect(320, 0, 155, 75));
         var resumeSelected = cc.Sprite.create(btn_pause, cc.rect(320, 80, 155, 75));
+        var restartNormal = cc.Sprite.create(btn_pause, cc.rect(0, 0, 155, 75));
+        var restartSelected = cc.Sprite.create(btn_pause, cc.rect(0, 80, 155, 75));
 
         var resumeGame = cc.MenuItemSprite.create(resumeNormal,resumeSelected,this.onResumeGame,this);
+        var restartGame = cc.MenuItemSprite.create(restartNormal,restartSelected,this.onRestartGame,this);
 
         var winSize = cc.Director.getInstance().getWinSize();
 
-        resumeMenu = cc.Menu.create(resumeGame);
+        resumeMenu = cc.Menu.create(resumeGame,restartGame);
         resumeMenu.alignItemsHorizontallyWithPadding(90);
-        resumeMenu.setPosition(winSize.width/2 , winSize.height - 50);
-        this.addChild(resumeMenu, 0);
+        resumeMenu.setPosition(winSize.width/2 , winSize.height/2);
+        this.addChild(resumeMenu, g_GameZOder.ui);
 
         resumeMenu.setVisible(false);
 
@@ -49,6 +52,7 @@ var LayerGameMenu = cc.Layer.extend({
 
     onPauseGame:function(){
         _status = g_GameStatus.stop;
+        cc.Director.getInstance().pause();
         cc.log("Game Paused"+_status);
         menu.setVisible(false);
         resumeMenu.setVisible(true);
@@ -58,8 +62,15 @@ var LayerGameMenu = cc.Layer.extend({
     onResumeGame:function(){
 
         _status = g_GameStatus.play;
+        cc.Director.getInstance().resume();
         cc.log("Game Resumed"+_status);
         menu.setVisible(true);
         resumeMenu.setVisible(false);
+    },
+
+    onRestartGame:function(){
+        cc.Director.getInstance().resume();
+        var newScene = new SceneMain();
+        cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, newScene));
     }
 })
