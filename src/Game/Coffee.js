@@ -3,12 +3,18 @@ var Coffee = cc.Sprite.extend({
     _destinationPosition:null,
     _originPosition:null,
     _active:false,
+    _animation:null,
 
     ctor: function (arg) {
         this._super();
         this._winSize = cc.Director.getInstance().getWinSize();
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame(coffeenormal);
         this.initWithSpriteFrame(pFrame);
+        var scale1 = cc.ScaleTo.create(1.5,1.2,0.8);
+        var scale2 = cc.ScaleTo.create(1.5,0.8,1.2);
+        var animationScale = cc.Sequence.create(scale1, scale2);
+        this._animation = cc.RepeatForever.create(animationScale);
+
         this.reset();
         cc.Director.getInstance().getTouchDispatcher()._addTargetedDelegate(this,0,true);
     },
@@ -29,6 +35,7 @@ var Coffee = cc.Sprite.extend({
         var onComplete = cc.CallFunc.create(this.destroy, this);
         var moveAnim = cc.MoveTo.create(1+g_MapGridRow.length - i, cc.p(destX,destY));
         this.runAction(cc.Sequence.create(moveAnim, cc.DelayTime.create(3),onComplete));
+        this.runAction(this._animation);
         //this.runAction(moveAnim);
     },
 
@@ -113,9 +120,6 @@ Coffee.create = function () {
 };
 
 //Coffee Animation
-Coffee.scaleAnimation = function () {
-    var1 = this.Coffee.runAction(cc.ScaleTo.create(1.5,1.2,0.8));
-    this.schedule(this.var1, 1.5);
-    var2 = this.Coffee.runAction(cc.ScaleTo.create(1.5,0.8,1.2));
-    this.schedule(this.var2, 1.5);
+Coffee.setUpAnimation = function () {
+
 };
