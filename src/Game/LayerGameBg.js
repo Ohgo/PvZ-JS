@@ -26,7 +26,7 @@ var LayerGameBg = cc.Layer.extend({
             var winSize = cc.Director.getInstance().getWinSize();
             lblLives = cc.Sprite.create(s_lives5);
             lblLives.setAnchorPoint(cc.p(1, 1));
-            lblLives.setPosition(winSize.width, winSize.height);
+            lblLives.setPosition(winSize.width - 300, winSize.height - 5);
 
             this.addChild(bg,g_GameZOder.bg);
             this.addChild(lblLives, g_GameZOder.bg);

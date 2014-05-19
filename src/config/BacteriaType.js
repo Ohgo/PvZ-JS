@@ -13,7 +13,7 @@ var BacteriaType = [
     },
     {
         type:1,
-        moveSpeed:25,
+        moveSpeed:30,
         textureName:"bacteriaPink",
         HP:500,
         moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
@@ -22,7 +22,7 @@ var BacteriaType = [
     },
     {
         type:2,
-        moveSpeed:10,
+        moveSpeed:20,
         textureName:"bacteriaPurple",
         HP:250,
         moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
