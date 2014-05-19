@@ -55,6 +55,7 @@ var Bacteria = cc.Sprite.extend({
     },
 
     walk:function(){
+
         var destinationY =  0;
         var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
         this.runAction(translation);
