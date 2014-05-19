@@ -58,7 +58,9 @@
             'src/Main/SceneGameOver.js',
             'src/Option/LayerAboutBg.js',
             'src/Option/LayerOptionMenu.js',
-            'src/Option/SceneOption.js'
+            'src/Option/SceneOption.js',
+            'src/About/LayerAboutBg.js',
+            'src/About/SceneAbout.js'
         ]
     };
 

@@ -17,6 +17,8 @@ var Medicine = cc.Sprite.extend({
     },
 
     reset:function(arg) {
+        this.scheduleUpdate();
+        this.runAction(cc.RepeatForever.create(cc.RotateBy.create(0.5, 360)));
         this.type = arg.type;
         PvZ.ACTIVE_MEDICINE++;
         this.active = true;
@@ -26,10 +28,20 @@ var Medicine = cc.Sprite.extend({
         this.setVisible(true);
     },
 
+
+    update:function(dt){
+        var p = this.getPosition();
+        if (p.x >= this._winSize - this.getContentSize.width) {
+            this.active = false;
+            this.destroy();
+        }
+    },
+
     destroy:function() {
         this.setVisible(false);
         this.active = false;
         this.stopAllActions();
+        this.unscheduleUpdate();
         PvZ.ACTIVE_MEDICINE--;
     }
 
