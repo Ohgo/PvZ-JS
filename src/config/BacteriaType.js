@@ -24,7 +24,7 @@ var BacteriaType = [
     },
     {
         type:2,
-        moveSpeed:10,
+        moveSpeed:75,
         textureName:"bacteriaPurple",
         //bulletType:"W2.png",
         HP:200,
