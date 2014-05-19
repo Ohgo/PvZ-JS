@@ -1,6 +1,4 @@
-/**
- * Created by 00 on 14-5-18.
- */
+
 var LayerAboutBg = cc.Layer.extend({
 
     ctor:function () {

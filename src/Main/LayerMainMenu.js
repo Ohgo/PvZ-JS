@@ -61,6 +61,7 @@ var LayerMainMenu = cc.Layer.extend({
         this.onButtonEffect();
         var aboutScene = new SceneAbout();
         cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, aboutScene));
+
     }
 
 
