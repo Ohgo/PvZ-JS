@@ -27,7 +27,7 @@ var BacteriaType = [
         moveSpeed:75,
         textureName:"bacteriaPurple",
         //bulletType:"W2.png",
-        HP:200,
+        HP:150,
         moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
         attackPower:3,
         attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT

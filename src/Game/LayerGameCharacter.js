@@ -26,7 +26,7 @@ var GameCharacterLayer = cc.Layer.extend({
             this.curScene = new SceneGame();
 
             //PvZ.CONTAINER.BACTERIAS = [];
-            PvZ.COLLECTED_COFFEE = 200;
+            PvZ.COLLECTED_COFFEE = 50;
             PvZ.ACTIVE_BACTERIA = 0;
             PvZ.ACTIVE_DOCTOR = 0;
             PvZ.ACTIVE_COFFEE = 0;
