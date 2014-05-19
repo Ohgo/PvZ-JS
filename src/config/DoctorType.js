@@ -15,7 +15,7 @@ var DoctorType = [
         type:1,
         textureName:"nursePunch01.png",
         attackTextureName:"nursePunch02.png",
-        HP:400,
+        HP:500,
         coffeeCost:100,
         attackDelay:4,
         medicineType:1

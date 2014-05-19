@@ -31,6 +31,7 @@ var s_lives3 = "lives_3.png";
 var s_lives2 = "lives_2.png";
 var s_lives1 = "lives_1.png";
 var bg_gameOver = "GameOver.png";
+var bg_youWin = "YouWin.png";
 var btn_restart = "btn_restart.png";
 var coffeenormal = "coffee_normal.png";
 var coffeespilled = "coffee_spilled.png";
@@ -60,6 +61,7 @@ var g_resources = [
     {src:s_lives2},
     {src:s_lives1},
     {src:bg_gameOver},
+    {src:bg_youWin},
     {src:btn_restart},
     {src:coffeenormal},
     {src:coffeespilled},
