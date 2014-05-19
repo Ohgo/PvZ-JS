@@ -103,7 +103,6 @@ var LayerOptionMenu = cc.Layer.extend({
         cc.log("Current effect volume: " + gSharedEngine.getEffectsVolume());
     },
     onBack:function(){
-        cc.log("Back to the main page");
         var scene = new SceneMain();
         cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     }
