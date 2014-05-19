@@ -54,6 +54,7 @@ var LevelManager = cc.Class.extend({
         if(_status == g_GameStatus.play){
 
             var addBacteria = Bacteria.getOrCreateBacteria(BacteriaType[selBacteria.Type]);
+            addBacteria.setAnchorPoint(1,1);
             addBacteria.setCourse(selBacteria.Lane);
 
             var bacteriaSize =  addBacteria.getContentSize();
