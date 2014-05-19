@@ -114,12 +114,7 @@ Coffee.getOrCreateCoffee = function(){
 
 Coffee.create = function () {
     var coffee = new Coffee();
-    g_GameCharacterLayer.addChild(coffee, coffee.zOrder);
+    g_GameCoffeeLayer.addChild(coffee, coffee.zOrder);
     PvZ.CONTAINER.COFFEE.push(coffee);
     return coffee;
-};
-
-//Coffee Animation
-Coffee.setUpAnimation = function () {
-
 };
