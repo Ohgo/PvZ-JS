@@ -99,6 +99,7 @@ var Bacteria = cc.Sprite.extend({
         else this.HP -= damage;
         cc.log("The bacteria took " + damage + " damage. Remaining HP: " + this.HP);
         if(this.HP <= 0) {
+            g_GameCharacterLayer.increaseKilledBacteria();
             this.destroy();
             return true;
         }
