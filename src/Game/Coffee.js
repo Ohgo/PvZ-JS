@@ -10,8 +10,8 @@ var Coffee = cc.Sprite.extend({
         this._winSize = cc.Director.getInstance().getWinSize();
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame(coffeenormal);
         this.initWithSpriteFrame(pFrame);
-        var scale1 = cc.ScaleTo.create(1.5,1.2,0.8);
-        var scale2 = cc.ScaleTo.create(1.5,0.8,1.2);
+        var scale1 = cc.ScaleTo.create(1.5,1.1,0.9);
+        var scale2 = cc.ScaleTo.create(1.5,0.9,1.1);
         var animationScale = cc.Sequence.create(scale1, scale2);
         this._animation = cc.RepeatForever.create(animationScale);
 
@@ -28,15 +28,12 @@ var Coffee = cc.Sprite.extend({
         var oriY = this._winSize.height;
         var destY = g_MapGridRow[i][j][1]._origin.y+50;
 
-        //this._destinationPosition = g_MapGridRow[i][j][1]._origin.x + 50,g_MapGridRow[i][j][1]._origin.y+50;
-        //this._originPosition = cc.p(g_MapGridRow[i][j][1]._origin.x + 50, this._winSize);
         this.setPosition(cc.p(oriX, oriY));
 
         var onComplete = cc.CallFunc.create(this.destroy, this);
         var moveAnim = cc.MoveTo.create(1+g_MapGridRow.length - i, cc.p(destX,destY));
         this.runAction(cc.Sequence.create(moveAnim, cc.DelayTime.create(3),onComplete));
         this.runAction(this._animation);
-        //this.runAction(moveAnim);
     },
 
     onTouch:function() {
@@ -51,16 +48,6 @@ var Coffee = cc.Sprite.extend({
         this.runAction(cc.Sequence.create(storeAnim, onComplete));
     },
 
-    update:function(dt){
-        /*
-        var p = this.getPosition();
-        if (p.x < 0 || this.HP <= 0) {
-            this.active = false;
-            this.destroy();
-        }
-        */
-    },
-
     containsTouchLocation:function(touch){
         var getPoint = touch.getLocation();
         var contentSize = this.getContentSize();
@@ -73,14 +60,11 @@ var Coffee = cc.Sprite.extend({
     onTouchBegan:function(touch,event){
         if(!this.containsTouchLocation(touch))
             return false;
-        //if(!this._active)
-        //    return false;
         this.onTouch();
         return true;
     },
 
     destroy:function () {
-        cc.log("Coffee.js: Destroy.");
         this.setVisible(false);
         this.active = false;
         this.stopAllActions();
@@ -114,12 +98,7 @@ Coffee.getOrCreateCoffee = function(){
 
 Coffee.create = function () {
     var coffee = new Coffee();
-    g_GameCharacterLayer.addChild(coffee, coffee.zOrder);
+    g_GameCoffeeLayer.addChild(coffee, coffee.zOrder);
     PvZ.CONTAINER.COFFEE.push(coffee);
     return coffee;
-};
-
-//Coffee Animation
-Coffee.setUpAnimation = function () {
-
 };

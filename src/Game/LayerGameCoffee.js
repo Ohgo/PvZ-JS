@@ -2,6 +2,8 @@
  * Created by Ohgo on 4/23/14.
  */
 
+var g_GameCoffeeLayer;
+
 var LayerGameCoffee = cc.Layer.extend({
     _size:null,
 
@@ -11,10 +13,11 @@ var LayerGameCoffee = cc.Layer.extend({
     },
 
     init:function(){
+        g_GameCoffeeLayer = this;
         this._size = cc.Director.getInstance().getWinSize();
         cc.SpriteFrameCache.getInstance().addSpriteFrames(coffee_plist);
         //Coffee.setUpAnimation();
-        this.schedule(this.spawnCoffee, 3);
+        this.schedule(this.spawnCoffee, 14);
 
 
         // top left coffee logo
