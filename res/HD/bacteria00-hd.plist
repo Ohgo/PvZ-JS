@@ -7,80 +7,80 @@
             <key>bacteriaGreen1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,172},{104,120}}</string>
+                <string>{{110,2},{89,104}}</string>
                 <key>offset</key>
-                <string>{4,3}</string>
+                <string>{3,3}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{12,8},{104,120}}</string>
+                <string>{{9,5},{89,104}}</string>
                 <key>sourceSize</key>
-                <string>{120,142}</string>
+                <string>{101,120}</string>
             </dict>
             <key>bacteriaGreen2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{128,2},{96,122}}</string>
+                <string>{{2,75},{83,104}}</string>
                 <key>offset</key>
-                <string>{4,4}</string>
+                <string>{3,3}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{16,6},{96,122}}</string>
+                <string>{{12,5},{83,104}}</string>
                 <key>sourceSize</key>
-                <string>{120,142}</string>
+                <string>{101,120}</string>
             </dict>
             <key>bacteriaPink1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{84,124}}</string>
+                <string>{{2,2},{71,106}}</string>
                 <key>offset</key>
-                <string>{-2,0}</string>
+                <string>{-1,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{16,9},{84,124}}</string>
+                <string>{{14,7},{71,106}}</string>
                 <key>sourceSize</key>
-                <string>{120,142}</string>
+                <string>{101,120}</string>
             </dict>
             <key>bacteriaPink2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,88},{82,122}}</string>
+                <string>{{108,93},{71,104}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{18,9},{82,122}}</string>
+                <string>{{14,7},{71,104}}</string>
                 <key>sourceSize</key>
-                <string>{120,142}</string>
+                <string>{101,120}</string>
             </dict>
             <key>bacteriaPurple1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,216},{108,112}}</string>
+                <string>{{106,166},{93,96}}</string>
                 <key>offset</key>
-                <string>{1,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{7,15},{108,112}}</string>
+                <string>{{4,12},{93,96}}</string>
                 <key>sourceSize</key>
-                <string>{120,142}</string>
+                <string>{101,120}</string>
             </dict>
             <key>bacteriaPurple2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{126,100},{114,120}}</string>
+                <string>{{2,160},{97,102}}</string>
                 <key>offset</key>
-                <string>{2,8}</string>
+                <string>{2,7}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{5,3},{114,120}}</string>
+                <string>{{4,2},{97,102}}</string>
                 <key>sourceSize</key>
-                <string>{120,142}</string>
+                <string>{101,120}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -92,7 +92,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9264b0cfc028578ce43e53de37b4be86:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:ca5d07104a859285e36db16b0f8ff05a:1/1$</string>
             <key>textureFileName</key>
             <string>bacteria00-hd.png</string>
         </dict>

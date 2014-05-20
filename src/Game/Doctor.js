@@ -69,14 +69,13 @@ var Doctor = cc.Sprite.extend({
     updatePosition:function(touch){
         // TODO: optimize this calculation, we should be able to determine to which grid a point (x,y) belongs to
         // TODO: without looping through all the grids
-        //var currentLocation = touch.getLocation();
         var currentLocation = this.getPosition();
         var contentSize = this.getContentSize();
         var i = Math.floor(this.getPosition().y / (screenType*50));
         var j = Math.floor(this.getPosition().x / (screenType*50));
 
         if(i < g_MapGridRow.length && j < g_MapGridRow[i].length && g_MapGridRow[i][j][0] == g_MapGridStatus.free && PvZ.COLLECTED_COFFEE >= this.coffeeCost) {
-            this.setPosition(g_MapGridRow[i][j][1]._origin.x + 50,g_MapGridRow[i][j][1]._origin.y+50);
+            this.setPosition(g_MapGridRow[i][j][1]._origin.x +50,g_MapGridRow[i][j][1]._origin.y+50);
             g_MapGridRow[i][j][0] = g_MapGridStatus.occupied;
             this.doctorStatus = g_DoctorStatus.freeze;
             this.active = true;
@@ -91,11 +90,13 @@ var Doctor = cc.Sprite.extend({
     },
 
     attack:function() {
-        var pos = this.getPosition();
-        var medicine = Medicine.getOrCreateMedicine(MedicineType[this.medicineType]);
-        medicine.setPosition(pos.x, pos.y);
-        var translation = cc.MoveTo.create(medicine.speed, cc.p(g_GameCharacterLayer.screenRect.width+medicine.getContentSize().width, pos.y));
-        medicine.runAction(translation);
+        if(_status == g_GameStatus.play){
+            var pos = this.getPosition();
+            var medicine = Medicine.getOrCreateMedicine(MedicineType[this.medicineType]);
+            medicine.setPosition(pos.x, pos.y);
+            var translation = cc.MoveTo.create(medicine.speed, cc.p(g_GameCharacterLayer.screenRect.width+medicine.getContentSize().width, pos.y));
+            medicine.runAction(translation);
+        }
     },
 
     destroy:function() {

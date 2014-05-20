@@ -6,19 +6,25 @@ var SceneGame = cc.Scene.extend({
 
     gBGLayer:null,
     gCharacterLayer:null,
+    gCoffeeLayer:null,
+    gMenuLayer:null,
 
 
     onEnter:function () {
         //cc.log("SceneGame: onEnter");
         this._super();
 
+        _status = g_GameStatus.play;
+
         gBGLayer = new LayerGameBg();
         gCharacterLayer = new GameCharacterLayer();
         gCoffeeLayer = new LayerGameCoffee();
+        gMenuLayer = new LayerGameMenu();
 
         this.addChild(gBGLayer, g_GameZOder.bg);
         this.addChild(gCharacterLayer, g_GameZOder.ui);
         this.addChild(gCoffeeLayer, g_GameZOder.ui);
+        this.addChild(gMenuLayer,g_GameZOder.ui);
         //gCharacterLayer.init();
     },
 

@@ -24,11 +24,10 @@ var SceneGameOver = cc.Scene.extend({
         bg.setPosition(cc.p(0,0));
 
         // load buttons
-        var newRestartNormal = cc.Sprite.create(btn_restart, cc.rect(0, 0, 178, 56));
-        var newRestartSelected = cc.Sprite.create(btn_restart, cc.rect(0, 10, 178, 56));
-        var newRestartDisabled = cc.Sprite.create(btn_restart, cc.rect(0, 10 * 2, 178, 56));
+        var newRestartNormal = cc.Sprite.create(btn_pause, cc.rect(0, 0, 155, 75));
+        var newRestartSelected = cc.Sprite.create(btn_pause, cc.rect(0, 80, 155, 75));
 
-        var restartGame = cc.MenuItemSprite.create(newRestartNormal, newRestartSelected, newRestartDisabled, this.onRestartGame, this);
+        var restartGame = cc.MenuItemSprite.create(newRestartNormal, newRestartSelected, this.onRestartGame, this);
 
         // place menus on screen
         var menu = cc.Menu.create(restartGame);
