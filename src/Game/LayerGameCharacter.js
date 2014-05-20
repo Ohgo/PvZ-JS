@@ -12,7 +12,7 @@ var GameCharacterLayer = cc.Layer.extend({
     _lbCoffee:null,
     _lbKilled:null,
 
-        ctor:function () {
+    ctor:function () {
         this._super();
         this.init();
     },
@@ -26,7 +26,7 @@ var GameCharacterLayer = cc.Layer.extend({
             this.curScene = new SceneGame();
 
             //PvZ.CONTAINER.BACTERIAS = [];
-            PvZ.COLLECTED_COFFEE = 200;
+            PvZ.COLLECTED_COFFEE = 150;
             PvZ.ACTIVE_BACTERIA = 0;
             PvZ.ACTIVE_DOCTOR = 0;
             PvZ.ACTIVE_COFFEE = 0;
@@ -54,7 +54,7 @@ var GameCharacterLayer = cc.Layer.extend({
 
             //killed bacteria
             this._lbKilled = cc.LabelTTF.create(""+PvZ.KILLED_BACTERIA+"/"+Level1.bacteriaToKill, "Arial", 30);
-            this._lbKilled.setPosition(cc.p(winSize.width*9/10,5.5*winSize.height/6));
+            this._lbKilled.setPosition(cc.p(winSize.width*4/5,5.5*winSize.height/6));
             this.addChild(this._lbKilled);
 
             // schedule
@@ -82,7 +82,9 @@ var GameCharacterLayer = cc.Layer.extend({
     increaseKilledBacteria:function() {
         PvZ.KILLED_BACTERIA++;
         this._lbKilled.setString(""+PvZ.KILLED_BACTERIA+"/"+Level1.bacteriaToKill);
-        if(PvZ.KILLED_BACTERIA == Level1.bacteriaToKill) this.onLevelWin();
+        if(PvZ.KILLED_BACTERIA == Level1.bacteriaToKill){
+            this.onLevelWin();
+        }
     },
 
     increaseCoffee:function() {
@@ -99,7 +101,7 @@ var GameCharacterLayer = cc.Layer.extend({
     },
 
     onLevelWin:function() {
-        var scene = new SceneMain();
+        var scene = new SceneYouWin();
         cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     },
 

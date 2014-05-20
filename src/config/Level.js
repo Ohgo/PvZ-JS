@@ -7,61 +7,79 @@ var Level1 = {
     bacterias:[
         {
             ShowType:"Repeat",
-            ShowTime:"00:50",
-            Lane:1,
+            ShowTime:"01:10",
+            Lane:0,
             Type:0
         },
         {
             ShowType:"Repeat",
-            ShowTime:"00:25",
+            ShowTime:"00:35",
+            Lane:0,
+            Type:1
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"01:40",
+            Lane:0,
+            Type:2
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"01:50",
             Lane:1,
-            Type:1
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:40",
-            Lane:1,
-            Type:2
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:30",
-            Lane:2,
             Type:0
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:20",
-            Lane:2,
-            Type:1
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:25",
-            Lane:2,
-            Type:2
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:50",
-            Lane:3,
-            Type:0
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:50",
-            Lane:3,
-            Type:1
-        },
-        {
-            ShowType:"Repeat",
-            ShowTime:"00:40",
-            Lane:3,
-            Type:2
         },
         {
             ShowType:"Repeat",
             ShowTime:"00:55",
+            Lane:1,
+            Type:1
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:40",
+            Lane:1,
+            Type:2
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"01:30",
+            Lane:2,
+            Type:0
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:10",
+            Lane:2,
+            Type:1
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:25",
+            Lane:2,
+            Type:2
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:50",
+            Lane:3,
+            Type:0
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"01:10",
+            Lane:3,
+            Type:1
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"00:40",
+            Lane:3,
+            Type:2
+        },
+        {
+            ShowType:"Repeat",
+            ShowTime:"01:55",
             Lane:4,
             Type:0
         },
@@ -73,7 +91,7 @@ var Level1 = {
         },
         {
             ShowType:"Repeat",
-            ShowTime:"00:10",
+            ShowTime:"01:00",
             Lane:4,
             Type:2
         }

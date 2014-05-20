@@ -42,7 +42,6 @@ var PvZ = PvZ || {};
         //SingleEngineFile:'',
         appFiles:[
             'src/resource.js',//add your own files in order here
-            'src/About/LayerAboutBack.js',
             'src/About/LayerAboutBg.js',
             'src/About/SceneAbout.js',
             'src/config/GameConfig.js',
@@ -64,6 +63,7 @@ var PvZ = PvZ || {};
             'src/Main/LayerMainMenu.js',
             'src/Main/SceneMain.js',
             'src/Main/SceneGameOver.js',
+            'src/Main/SceneYouWin.js',
             'src/Option/LayerOptionBg.js',
             'src/Option/LayerOptionMenu.js',
             'src/Option/SceneOption.js',

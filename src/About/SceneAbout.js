@@ -1,6 +1,6 @@
 
 var SceneAbout = cc.Scene.extend({
-    onEnter:function () {
+    onEnter: function () {
         this._super();
         var backgroundLayer = new LayerAboutBg();
 

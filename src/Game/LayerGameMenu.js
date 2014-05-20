@@ -24,7 +24,7 @@ var LayerGameMenu = cc.Layer.extend({
         // place menus on screen
         menu = cc.Menu.create(pauseGame);
         menu.alignItemsHorizontallyWithPadding(90);
-        menu.setPosition(winSize.width/2 , winSize.height - 50);
+        menu.setPosition(900, winSize.height - 50);
         menu.setVisible(true);
         this.addChild(menu, 0);
 
