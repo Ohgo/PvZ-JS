@@ -64,6 +64,7 @@ var Bacteria = cc.Sprite.extend({
             var frameAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
             this.runAction(cc.RepeatForever.create(cc.Animate.create(frameAnimation)));
         }
+    },
 
     attack:function() {
         // TODO: Change to a real attacking information
