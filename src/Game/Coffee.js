@@ -10,8 +10,8 @@ var Coffee = cc.Sprite.extend({
         this._winSize = cc.Director.getInstance().getWinSize();
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame(coffeenormal);
         this.initWithSpriteFrame(pFrame);
-        var scale1 = cc.ScaleTo.create(1.5,1.2,0.8);
-        var scale2 = cc.ScaleTo.create(1.5,0.8,1.2);
+        var scale1 = cc.ScaleTo.create(1.5,1.1,0.9);
+        var scale2 = cc.ScaleTo.create(1.5,0.9,1.1);
         var animationScale = cc.Sequence.create(scale1, scale2);
         this._animation = cc.RepeatForever.create(animationScale);
 
