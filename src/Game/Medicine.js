@@ -9,9 +9,11 @@ var Medicine = cc.Sprite.extend({
     speed:0,
     attackPower:0,
     active:null,
+    _winSize:null,
 
     ctor:function(arg){
         this._super();
+        this._winSize = cc.Director.getInstance().getWinSize();
         this.reset(arg);
         this.initWithFile(arg.textureName);
     },

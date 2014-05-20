@@ -22,11 +22,12 @@ var BacteriaType = [
     },
     {
         type:2,
-        moveSpeed:20,
+        moveSpeed:75,
         textureName:"bacteriaPurple",
-        HP:200,
+        //bulletType:"W2.png",
+        HP:150,
         moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
-        attackPower:1,
+        attackPower:3,
         attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
     }
 ]
