@@ -3,7 +3,7 @@
  */
 var Level1 = {
     bacteriaMax:30,
-    bacteriaToKill:3,
+    bacteriaToKill:5,
     bacterias:[
         {
             ShowType:"Repeat",

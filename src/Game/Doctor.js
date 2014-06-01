@@ -109,7 +109,7 @@ var Doctor = cc.Sprite.extend({
         // todo: create a function for this duplicate lines?
         var i = Math.floor(this.getPosition().y / (screenType*50));
         var j = Math.floor(this.getPosition().x / (screenType*50));
-        //if(g_DoctorStatus.freezeg_DoctorStatus.freeze) g_MapGridRow[i][j][0] = g_MapGridStatus.free;
+        if(g_DoctorStatus.freeze) g_MapGridRow[i][j][0] = g_MapGridStatus.free;
     },
 
     //deal with the animation of doctors

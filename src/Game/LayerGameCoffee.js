@@ -17,7 +17,7 @@ var LayerGameCoffee = cc.Layer.extend({
         this._size = cc.Director.getInstance().getWinSize();
         cc.SpriteFrameCache.getInstance().addSpriteFrames(coffee_plist);
         //Coffee.setUpAnimation();
-        this.schedule(this.spawnCoffee, 14);
+        this.schedule(this.spawnCoffee, 10);
 
 
         // top left coffee logo
