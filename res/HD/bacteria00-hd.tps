@@ -165,11 +165,11 @@
         <key>fileList</key>
         <array>
             <filename>../../../../../../../Users/00/Desktop/HCI/UIP2/PvZ Design/bacteriaGreen1.png</filename>
-            <filename>../../../../../../../Users/00/Desktop/HCI/UIP2/PvZ Design/bacteriaGreen2.psd</filename>
             <filename>../../../../../../../Users/00/Desktop/HCI/UIP2/PvZ Design/bacteriaPink1.png</filename>
             <filename>../../../../../../../Users/00/Desktop/HCI/UIP2/PvZ Design/bacteriaPink2.png</filename>
             <filename>../../../../../../../Users/00/Desktop/HCI/UIP2/PvZ Design/bacteriaPurple1.png</filename>
             <filename>../../../../../../../Users/00/Desktop/HCI/UIP2/PvZ Design/bacteriaPurple2.png</filename>
+            <filename>../../../../../../../Users/00/Desktop/HCI/UIP2/PvZ Design/bacteriaGreen2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
