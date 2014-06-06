@@ -8,7 +8,7 @@ var DoctorType = [
         attackTextureName:"doctorPunch02.png",
         HP:300,
         coffeeCost:50,
-        attackDelay:8,
+        attackDelay:4,
         medicineType:0
     },
     {
@@ -17,7 +17,7 @@ var DoctorType = [
         attackTextureName:"nursePunch02.png",
         HP:500,
         coffeeCost:100,
-        attackDelay:6,
+        attackDelay:3,
         medicineType:1
     }
 ]
