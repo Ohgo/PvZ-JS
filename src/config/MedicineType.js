@@ -6,12 +6,12 @@ var MedicineType = [
         type:0,
         textureName:"pill.png",
         speed:3, // smaller number is faster
-        attackPower:80
+        attackPower:100
     },
     {
         type:1,
         textureName:"tablet.png",
-        speed:8, // smaller number is faster
-        attackPower:120
+        speed:5, // smaller number is faster
+        attackPower:150
     }
 ]

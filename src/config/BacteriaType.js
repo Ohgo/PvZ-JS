@@ -5,26 +5,25 @@ var BacteriaType = [
     {
         type:0,
         textureName:"bacteriaGreen",
-        HP:800,
-        moveSpeed:50,
+        HP:600,
+        moveSpeed:70,
         moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
         attackPower:3,
         attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
     },
     {
         type:1,
-        moveSpeed:30,
+        moveSpeed:50,
         textureName:"bacteriaPink",
-        HP:400,
+        HP:300,
         moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
         attackPower:2,
         attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
     },
     {
         type:2,
-        moveSpeed:75,
+        moveSpeed:30,
         textureName:"bacteriaPurple",
-        //bulletType:"W2.png",
         HP:150,
         moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
         attackPower:3,

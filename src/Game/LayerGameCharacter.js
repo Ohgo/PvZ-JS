@@ -21,11 +21,9 @@ var GameCharacterLayer = cc.Layer.extend({
         var bRet = false;
         if (this._super()) {
             g_GameCharacterLayer = this;
-            //cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bacteria_plist);
 
             this.curScene = new SceneGame();
 
-            //PvZ.CONTAINER.BACTERIAS = [];
             PvZ.COLLECTED_COFFEE = 50;
             PvZ.ACTIVE_BACTERIA = 0;
             PvZ.ACTIVE_DOCTOR = 0;
@@ -185,25 +183,6 @@ var GameCharacterLayer = cc.Layer.extend({
         return cc.rectIntersectsRect(aRect, bRect);
     },
 
-
-//    initBacteria:function(){
-//        //add bacteriaSprite
-//        var bacteria = new BacteriaHappyGray();
-//        bacteria.initData();
-//       bacteria.setPosition(cc.p(960,320));
-//
-//        this.addChild(bacteria,1);
-//       // bacteria.runAction(cc.MoveBy.create(5, cc.p(500,320)));
-////        bacteria.update(2);
-//        cc.log("add bacteria");
-//        this.addChild(bacteria,1);
-       // bacteria.runAction(cc.MoveBy.create(5, cc.p(500,320)));
-//        bacteria.update(2);
-//        cc.log("add bacteria");
-//    },
-
-    //Create Doctor Sprite
-
     initDoctorPicker:function(){
 
         var size = cc.Director.getInstance().getWinSize();
@@ -213,16 +192,8 @@ var GameCharacterLayer = cc.Layer.extend({
         var nurse = Doctor.getOrCreateDoctor(DoctorType[1]);
         nurse.setAnchorPoint(cc.p(0.5,0.5));
         nurse.setPosition(size.width/5+100,5.5*size.height/6);
-
-        //this.addChild(doctor,1);
     }
-
-//    update:function(dt){
-//        this.bacteria.update(dt);
-//    }
 
 });
 
-//GameCharacterLayer.prototype.addEnemy = function (bacteria, z, tag) {
-//    this._texTransparentBatch.addChild(bacteria, z, tag);
-//};
+

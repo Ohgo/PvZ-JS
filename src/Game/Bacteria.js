@@ -1,8 +1,4 @@
 var Bacteria = cc.Sprite.extend({
-    isHit: false,   //for collision detection
-    HP:0,
-    radius:0,    //collision radius
-    size:0,
 
     bacteriaType:1,
     active:true,
