@@ -1,5 +1,5 @@
 /**
- * Created by 00 on 14-4-28.
+ * MedicineType.js contains MedicineType[] array to store all doctor types and parameters
  */
 var MedicineType = [
     {

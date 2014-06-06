@@ -1,5 +1,5 @@
 /**
- * Created by 00 on 14-4-28.
+ * BacteriaType.js contains BacteriaType[] array to store all bacteria types and parameters
  */
 var BacteriaType = [
     {

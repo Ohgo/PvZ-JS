@@ -1,5 +1,5 @@
 /**
- * Created by 00 on 14-4-10.
+ * Added buttons to navigate to about, options, or game play
  */
 
 var LayerMainMenu = cc.Layer.extend({
@@ -10,7 +10,6 @@ var LayerMainMenu = cc.Layer.extend({
     },
 
     init:function () {
-        cc.log("LayerMainMenu");
         var bRet = false;
         if(this._super()) {
             var winSize = cc.Director.getInstance().getWinSize();
@@ -41,16 +40,17 @@ var LayerMainMenu = cc.Layer.extend({
         return bRet;
     },
     onButtonEffect:function(){
-        // TODO: Play sound effects
-        // cc.log("onButtonEffect");
+    // Placeholder for sound effects when buttons are pressed
     },
     onPlayGame:function (pSender) {
+    // Play button selected, navigate to Game Scene
         this.onButtonEffect();
         var scene = new SceneGame();
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
 
     },
     onOption:function (pSender) {
+    // Option button selected, navigate to Option Scene
         this.onButtonEffect();
         var optionScene = new SceneOption();
         cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, optionScene));

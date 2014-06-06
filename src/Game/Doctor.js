@@ -1,6 +1,6 @@
 /**
- * Created by HuiminZhang on 14-4-8.
-
+ * General Doctor class
+ * Handles all coffee related activities
  */
 
 var g_DoctorStatus = {normal:1, freeze:0};
@@ -67,8 +67,7 @@ var Doctor = cc.Sprite.extend({
         //this.doctorStatus = g_DoctorStatus.freeze;
     },
     updatePosition:function(touch){
-        // TODO: optimize this calculation, we should be able to determine to which grid a point (x,y) belongs to
-        // TODO: without looping through all the grids
+    // "Stick" the doctor to a certain square in the grid
         var currentLocation = this.getPosition();
         var contentSize = this.getContentSize();
         var i = Math.floor(this.getPosition().y / (screenType*50));
@@ -90,6 +89,7 @@ var Doctor = cc.Sprite.extend({
     },
 
     attack:function() {
+    // order the doctor to attack by spitting medicine
         if(_status == g_GameStatus.play){
             var pos = this.getPosition();
             var medicine = Medicine.getOrCreateMedicine(MedicineType[this.medicineType]);
@@ -100,6 +100,7 @@ var Doctor = cc.Sprite.extend({
     },
 
     destroy:function() {
+    // put it as inactive
         this.setVisible(false);
         this.active = false;
         this.stopAllActions();
@@ -131,6 +132,7 @@ var Doctor = cc.Sprite.extend({
     },
 
     hurt:function(damage) {
+    // doctors take damage. if the damage is greater than its HP, dies
         if(damage > this.HP) this.HP = 0;
         else this.HP -= damage;
         //cc.log("The doctor took " + damage + " damage. Remaining HP: " + this.HP);
@@ -145,6 +147,8 @@ var Doctor = cc.Sprite.extend({
 
 
 Doctor.getOrCreateDoctor = function(arg){
+// either activate and unused doctor object or create a new object
+// this will optimize memory usage
     var selChild = null;
 
     // if there is a reusable bacteria object in the container, use it
@@ -173,6 +177,7 @@ Doctor.getOrCreateDoctor = function(arg){
 };
 
 Doctor.create = function (arg) {
+// Allocate memory for a new coffee object
     var doctor = new Doctor(arg);
     g_GameCharacterLayer.addChild(doctor, doctor.zOrder);
     PvZ.CONTAINER.DOCTOR.push(doctor);

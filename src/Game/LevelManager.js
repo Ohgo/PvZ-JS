@@ -1,12 +1,11 @@
 /**
- * Created by Yingjie on 14-4-28.
+ * Spawn bacterias according to the level design
  */
 var LevelManager = cc.Class.extend({
     _currentLevel: null,
     _layerGameCharacter: null,
 
     ctor:function(layerGameCharacter){
-        cc.log("LevelManager");
         if(!layerGameCharacter){
             throw "gameLayer must be non-nil";
         }
@@ -22,15 +21,7 @@ var LevelManager = cc.Class.extend({
     },
 
     loadLevelResource:function(deltaTime){
-    // TODO: Optimize this, slow! *Aries
-        /*
-        // Safeguard of enemies overload on screen
-        if(PvZ.ACTIVE_BACTERIA>= this._currentLevel.bacteriaMax){
-            return;
-        }
-        */
-
-        //load bacteria
+    //load bacteria according to the level design
         var locCurrentLevel = this._currentLevel;
         for(var i = 0; i< locCurrentLevel.bacterias.length; i++){
             var selBacteria = locCurrentLevel.bacterias[i];
@@ -52,9 +43,7 @@ var LevelManager = cc.Class.extend({
         var winSize = cc.Director.getInstance().getWinSize();
 
         if(_status == g_GameStatus.play){
-
             var addBacteria = Bacteria.getOrCreateBacteria(BacteriaType[selBacteria.Type]);
-            //addBacteria.setAnchorPoint(1,1);
             addBacteria.setCourse(selBacteria.Lane);
 
             var bacteriaSize =  addBacteria.getContentSize();
@@ -62,7 +51,6 @@ var LevelManager = cc.Class.extend({
             var bacteriaStartingY = g_MapGridRow[selBacteria.Lane][0][1]._origin.y + bacteriaSize.height/2 - 10;
             var bacteriaStartingPos = cc.p(bacteriaStartingX, bacteriaStartingY);
             addBacteria.setPosition(bacteriaStartingPos);
-
 
             // MOVEMENTS IS NOW HANDLED IN BACTERIA.JS
             var bacteriaDestinationPos = cc.p(- bacteriaSize.width / 2, bacteriaStartingY);
@@ -78,12 +66,10 @@ var LevelManager = cc.Class.extend({
             }
 
         }
-
-        //addBacteria.runAction(tmpAction);
-
     },
 
     _minuteToSecond:function(minuteStr){
+    // convert minute in String to seconds
         if(!minuteStr)
             return 0;
         if(typeof(minuteStr) !=  "number"){

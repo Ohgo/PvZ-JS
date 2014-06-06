@@ -1,5 +1,5 @@
 /**
- * Created by Ohgo on 4/23/14.
+ * Contains pause button and other HUD elements
  */
 
 var LayerGameMenu = cc.Layer.extend({

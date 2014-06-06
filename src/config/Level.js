@@ -1,5 +1,6 @@
 /**
- * Created by 00 on 14-4-10.
+ * Level.js is contains level design parameters as LevelX arrays (currently only Level1).
+ * It controls bacteria spawn times and their position in the map.
  */
 var Level1 = {
     bacteriaMax:30,

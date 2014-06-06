@@ -1,5 +1,5 @@
 /**
- * Created by Ohgo on 4/23/14.
+ * Load background image for the main menu
  */
 
 var LayerMainBg = cc.Layer.extend({

@@ -1,3 +1,8 @@
+/**
+ * Contains all bacteria, doctors, and medicines sprites
+ * Handles game logic (collision, etc.)
+ */
+
 var g_GameCharacterLayer;
 
 MAX_CONTAINT_WIDTH = 40;

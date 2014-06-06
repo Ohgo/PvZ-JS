@@ -1,3 +1,10 @@
+/****************************************************************************
+ Scene Game is the main gameplay scene, it contains:
+ - LayerGameCharacter : Contains bacteria, doctors, medicine, and all logic between them
+ - LayerGameCoffee    : Contains falling coffee and handles their collection
+ - LayerGameMenu      : Contains pause button and HUD
+ ****************************************************************************/
+
 var g_GameZOder = {bg:0, ui:1, front:100};//present layer
 var g_GameStatus = {play:0, stop:1, gameOver:2};//game status
 

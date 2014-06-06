@@ -1,3 +1,7 @@
+/*
+    Contains background image for the About page
+ */
+
 
 var LayerAboutBg = cc.Layer.extend({
 
@@ -26,7 +30,7 @@ var LayerAboutBg = cc.Layer.extend({
     },
 
     onBack:function(){
-        cc.log("Back to the main page");
+    // back to main menu
         var scene = new SceneMain();
         cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     }

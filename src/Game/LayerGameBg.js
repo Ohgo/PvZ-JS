@@ -1,5 +1,5 @@
 /**
- * Created by 00 on 14-4-10.
+ * Contains background image for the game scene and the grid of the game
  */
 
 var g_MapGridStatus = {free:0,occupied:1};
@@ -9,8 +9,6 @@ var n_lives;
 var _status;
 
 var LayerGameBg = cc.Layer.extend({
-
-
     ctor:function () {
         this._super();
         this.init();
@@ -31,16 +29,14 @@ var LayerGameBg = cc.Layer.extend({
             this.addChild(bg,g_GameZOder.bg);
             this.addChild(lblLives, g_GameZOder.bg);
 
-            cc.log("Game on!");
             this.initMap();
         }
         return bRet;
     },
 
-    //Initial the grid, need to be fixed -Huimin
+    //Initialize the grid
     initMap:function(){
         //numbers will be replaced ,should be as constant
-        //cc.log("initializing the map!!!!!!!!");
         var winSize = cc.Director.getInstance().getWinSize();
         g_MapGridRow = new Array(5);
         for (var i = 0; i < g_MapGridRow.length ; i++){

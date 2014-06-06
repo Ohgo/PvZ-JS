@@ -1,6 +1,6 @@
 /**
- * Created by Ohgo on 14-5-17.
-
+ * General Medicine class
+ * Handles all medicine related activities
  */
 
 var Medicine = cc.Sprite.extend({

@@ -1,3 +1,8 @@
+/**
+ * General Bacteria class
+ * Handles all bacteria related activities
+ */
+
 var Bacteria = cc.Sprite.extend({
 
     bacteriaType:1,
@@ -39,6 +44,7 @@ var Bacteria = cc.Sprite.extend({
     },
 
     update:function(dt){
+        // Check if bacteria has gone off map, destroy as necessary
         if(_status == g_GameStatus.play){
             var p = this.getPosition();
             if (p.x < 0 || this.HP <= 0) {
@@ -50,10 +56,12 @@ var Bacteria = cc.Sprite.extend({
     },
 
     setCourse:function(lane) {
+    // place the bacteria according to assigned lane
         this.Lane = lane;
     },
 
     walk:function(){
+    // order bacteria to walk horizontally to the left using built-in MoveBy animation
         if(_status == g_GameStatus.play){
             var destinationY =  0;
             var translation = cc.MoveBy.create(this.moveSpeed, cc.p(-g_GameCharacterLayer.screenRect.width - this.size.width, destinationY));
@@ -64,18 +72,21 @@ var Bacteria = cc.Sprite.extend({
     },
 
     attack:function() {
-        // TODO: Change to a real attacking information
+        // order bacteria to attack by changing its animation model
+        // TODO: Change to a real attacking animation when the asset is ready
         var attackAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
         this.runAction(cc.RepeatForever.create(cc.Animate.create(attackAnimation)));
     },
 
     defend:function() {
-        // TODO: Change to a real defending information
+        // order bacteria to defend by changing its animation model
+        // TODO: Change to a real defending animation when the asset is ready
         var defendAnimation = cc.AnimationCache.getInstance().getAnimation(this.textureName + "Walk");
         this.runAction(cc.Animate.create(defendAnimation));
     },
 
     changeState:function(arg) {
+    // change bacteria's order (e.g. walking to attacking, etc.)
         if(this.state != arg) {
             this.stopAllActions();
             this.state = arg;
@@ -96,6 +107,7 @@ var Bacteria = cc.Sprite.extend({
     },
 
     hurt:function(damage) {
+    // take damage, if it's greater than its HP, dies
         if(damage > this.HP) this.HP = 0;
         else this.HP -= damage;
         cc.log("The bacteria took " + damage + " damage. Remaining HP: " + this.HP);
@@ -108,6 +120,7 @@ var Bacteria = cc.Sprite.extend({
     },
 
     destroy:function () {
+    // destroy the bacteria and put the asset as inactive
         this.setVisible(false);
         this.active = false;
         this.stopAllActions();
@@ -117,6 +130,8 @@ var Bacteria = cc.Sprite.extend({
 });
 
 Bacteria.getOrCreateBacteria = function(arg){
+// either activate and unused bacteria object or create a new object
+// this will optimize memory usage
     var selChild = null;
 
     // if there is a reusable bacteria object in the container, use it
@@ -134,34 +149,28 @@ Bacteria.getOrCreateBacteria = function(arg){
             selChild.attackPower = arg.attackPower;
             selChild.state = PvZ.BACTERIA_STATE.WALK;
             selChild.textureName = arg.textureName;
-            //selChild._hurtColorLife = 0;
-
-            // does it have anything routine to do?
-            //selChild.schedule();
 
             selChild.setVisible(true);
             PvZ.ACTIVE_BACTERIA++;
-            //cc.log("Bacteria.js: Getting an old bacteria from container index " + j);
             return selChild;
         }
     }
 
     // otherwise, create a new one
-
     selChild = Bacteria.create(arg);
     PvZ.ACTIVE_BACTERIA++;
     return selChild;
 };
 
 Bacteria.create = function (arg) {
-
+// allocate memory for a new bacteria object
     var bacteria = new Bacteria(arg);
     g_GameCharacterLayer.addChild(bacteria, bacteria.zOrder);
     PvZ.CONTAINER.BACTERIAS.push(bacteria);
     return bacteria;
 };
 
-//Bacteria Animation
+//Bacteria spritesheet animation
 Bacteria.sharedAnimation = function () {
     //walk animation for each bacteria
     for(var i = 0; i< BacteriaType.length ; i++) {
@@ -175,16 +184,4 @@ Bacteria.sharedAnimation = function () {
         var animation = cc.Animation.create(animFrames, 0.5);
         cc.AnimationCache.getInstance().addAnimation(animation, BacteriaType[i].textureName + "Walk");
     }
-
-    /*
-    for (var j = 1; j < 3; j++) {
-        str = "bacteriaPink" + j + ".png";
-        cc.log("Creating bacteria which supposed to have name: " + this.textureName);
-        var frame = cc.SpriteFrameCache.getInstance().getSpriteFrame(str);
-        animFrames.push(frame);
-        cc.log(this.textureName);
-    }
-    var animation = cc.Animation.create(animFrames, 0.5);
-    cc.AnimationCache.getInstance().addAnimation(animation, "BacteriaWalkAnimation");
-    */
 };

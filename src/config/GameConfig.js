@@ -1,5 +1,5 @@
 /**
- * Created by 00 on 14-4-28.
+ * GameConfig.js contains global variables in the game
  */
 //enemy move type
 PvZ.BACTERIA_MOVE_TYPE = {

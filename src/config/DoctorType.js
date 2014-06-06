@@ -1,5 +1,5 @@
 /**
- * Created by 00 on 14-4-28.
+ * DoctorType.js contains DoctorType[] array to store all doctor types and parameters
  */
 var DoctorType = [
     {
