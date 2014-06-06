@@ -33,7 +33,7 @@ var Medicine = cc.Sprite.extend({
 
     update:function(dt){
         var p = this.getPosition();
-        if (p.x >= this._winSize - this.getContentSize.width) {
+        if (p.x >= this._winSize.width - this.getContentSize().width) {
             this.active = false;
             this.destroy();
         }

@@ -48,6 +48,7 @@ var Bacteria = cc.Sprite.extend({
             if (p.x < 0 || this.HP <= 0) {
                 this.active = false;
                 this.destroy();
+
             }
         }
     },
