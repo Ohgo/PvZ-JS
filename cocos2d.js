@@ -25,6 +25,7 @@
  THE SOFTWARE.
  ****************************************************************************/
 (function () {
+
     var d = document;
     var c = {
         COCOS2D_DEBUG:2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
@@ -38,9 +39,29 @@
         engineDir:'../cocos2d/',
         //SingleEngineFile:'',
         appFiles:[
-            'src/resource.js',
-            'src/MainMenuLayer.js',
-            'src/GameLayer.js'//add your own files in order here
+            'src/resource.js',//add your own files in order here
+            'src/config/BacteriaType.js',
+            'src/config/GameConfig.js',
+            'src/config/Level.js',
+            'src/Game/Bacteria.js',
+            'src/Game/Coffee.js',
+            'src/Game/Doctor.js',
+            'src/Game/LayerGameBg.js',
+            'src/Game/LayerGameCharacter.js',
+            'src/Game/LayerGameCoffee.js',
+            'src/Game/LayerGameMenu.js',
+            'src/Game/Medicine.js',
+            'src/Game/SceneGame.js',
+            'src/Main/LayerMainBg.js',
+            'src/Main/LayerMainMenu.js',
+            'src/Main/SceneMain.js',
+            'src/Main/SceneGameOver.js',
+            'src/Main/SceneYouWin.js',
+            'src/Option/LayerAboutBg.js',
+            'src/Option/LayerOptionMenu.js',
+            'src/Option/SceneOption.js',
+            'src/About/LayerAboutBg.js',
+            'src/About/SceneAbout.js'
         ]
     };
 
@@ -62,7 +83,6 @@
     window.addEventListener('DOMContentLoaded', function () {
         this.removeEventListener('DOMContentLoaded', arguments.callee, false);
         //first load engine file if specified
-        var s = d.createElement('script');
         /*********Delete this section if you have packed all files into one*******/
         if (c.SingleEngineFile && !c.engineDir) {
             s.src = c.SingleEngineFile;

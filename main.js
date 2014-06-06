@@ -1,28 +1,30 @@
 /****************************************************************************
- Copyright (c) 2010-2012 cocos2d-x.org
- Copyright (c) 2008-2010 Ricardo Quesada
- Copyright (c) 2011      Zynga Inc.
- ssssswe
- http://www.cocos2d-x.org
+ User Interface Programming II - Doctor vs Bacteria Project
+ Group 6
+ - Yingjie Chen
+ - Huimin Zhang
+ - Sercan Caglarca
+ - Ignatius Aries Kurniawan
 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
+ Spring 2014
 
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
+ The game structure is composed of Scenes and Layers
+ - SceneMain        : The main welcome menu
+   - LayerMainBg    : Contains background image
+   - LayerMainMenu  : Contains buttons
+ - SceneGame        : In-game scene
+   - LayerGameCharacter : Contains bacteria, doctors, medicine, and all logic between them
+   - LayerGameCoffee    : Contains falling coffee and handles their collection
+   - LayerGameMenu      : Contains pause button and HUD
+ - SceneOption      : Option menu
+   - LayerOptionBg  : Contains background image
+   - LayerOptionMenu    : Contains volume controls, etc.
+ - SceneAbout       : About page
+   - LayerAboutBg   : Contains background image
+ - SceneYouWin      : Appear when the game is won
+ - SceneGameOver    : Appear when the game is lost
  ****************************************************************************/
+var screenType;
 
 var cocos2dApp = cc.Application.extend({
     config:document['ccConfig'],
@@ -31,13 +33,12 @@ var cocos2dApp = cc.Application.extend({
         this.startScene = scene;
         cc.COCOS2D_DEBUG = this.config['COCOS2D_DEBUG'];
         // cc.initDebugSetting();
-        cc.setup(this.config['tag']);
+        cc.setup(this.config['tag']); // cc.log("Cocos2d-html5-v2.2.2") aka engineversion is written here
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
     },
     applicationDidFinishLaunching:function () {
         // initialize director
         var director = cc.Director.getInstance();
-
         cc.EGLView.getInstance()._adjustSizeToBrowser();
         var screenSize = cc.EGLView.getInstance().getFrameSize();
         var resourceSize = cc.size(960, 640);
@@ -50,19 +51,15 @@ var cocos2dApp = cc.Application.extend({
         cc.FileUtils.getInstance().setSearchPaths(searchPaths);
 
         var platform = cc.Application.getInstance().getTargetPlatform();
+
+        // Check the platform and select assets accordingly
         if (platform == cc.TARGET_PLATFORM.MOBILE_BROWSER) {
-
             resDirOrders.push("HD");
-            cc.log("HD");
-
-            //resourceSize = cc.size(320, 480);
-            //designSize = cc.size(320, 480);
-            //resDirOrders.push("Normal");
-            //cc.log("Normal");
+            screenType = 2;
         }
         else if (platform == cc.TARGET_PLATFORM.PC_BROWSER) {
             resDirOrders.push("HD");
-            cc.log("HD");
+            screenType = 2;
         }
 
         cc.FileUtils.getInstance().setSearchResolutionsOrder(resDirOrders);
@@ -80,9 +77,9 @@ var cocos2dApp = cc.Application.extend({
         cc.LoaderScene.preload(g_resources, function () {
             director.replaceScene(new this.startScene());
         }, this);
-
         return true;
     }
 });
 
-var myApp = new cocos2dApp(MyScene);
+// The game starts with Main Scene
+var myApp = new cocos2dApp(SceneMain);

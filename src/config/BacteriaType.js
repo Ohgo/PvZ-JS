@@ -1,0 +1,32 @@
+/**
+ * BacteriaType.js contains BacteriaType[] array to store all bacteria types and parameters
+ */
+var BacteriaType = [
+    {
+        type:0,
+        textureName:"bacteriaGreen",
+        HP:600,
+        moveSpeed:70,
+        moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
+        attackPower:3,
+        attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
+    },
+    {
+        type:1,
+        moveSpeed:50,
+        textureName:"bacteriaPink",
+        HP:300,
+        moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
+        attackPower:2,
+        attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
+    },
+    {
+        type:2,
+        moveSpeed:30,
+        textureName:"bacteriaPurple",
+        HP:150,
+        moveType:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
+        attackPower:3,
+        attackMode:PvZ.BACTERIA_ATTACK_TYPE.INFECT
+    }
+]
