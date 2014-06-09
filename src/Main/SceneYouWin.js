@@ -1,5 +1,6 @@
 /**
- * Created by 00 on 14-5-19.
+ * Display when the player win the game
+ * handle restart game function
  */
 var SceneYouWin = cc.Scene.extend({
 

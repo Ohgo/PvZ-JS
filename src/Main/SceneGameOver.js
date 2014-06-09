@@ -1,5 +1,6 @@
 /**
- * Created by HuiminZhang on 14-5-16.
+ * display when the player lose the game
+ * handle restart function
  */
 
 var SceneGameOver = cc.Scene.extend({
