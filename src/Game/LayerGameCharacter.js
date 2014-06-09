@@ -46,7 +46,7 @@ var GameCharacterLayer = cc.Layer.extend({
             cc.SpriteFrameCache.getInstance().addSpriteFrames(bacteria_plist);
             var bacteriaAnimationTexture = cc.TextureCache.getInstance().addImage(bacteria_png);
             this._bacteriaAnimation = cc.SpriteBatchNode.createWithTexture(bacteriaAnimationTexture);
-            //this._bacteriaAnimation.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
+            this._bacteriaAnimation.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
             this.addChild(this._bacteriaAnimation);
             Bacteria.sharedAnimation();
 
@@ -63,12 +63,7 @@ var GameCharacterLayer = cc.Layer.extend({
             // schedule
             this.scheduleUpdate();
             this.schedule(this.oneSecondTick, 1);
-//            this.schedule(this.scoreCounter, 1);
 			this.initDoctorPicker();
-            bRet = true;
-
-            //pre set
-            //Bacteria.preSet();
             bRet = true;
         }
         return bRet;
@@ -104,6 +99,7 @@ var GameCharacterLayer = cc.Layer.extend({
     },
 
     onLevelWin:function() {
+        //change scene to "SceneYouWin"
         var scene = new SceneYouWin();
         cc.Director.getInstance().replaceScene(cc.TransitionSlideInT.create(0.4, scene));
     },
@@ -189,7 +185,6 @@ var GameCharacterLayer = cc.Layer.extend({
     },
 
     initDoctorPicker:function(){
-
         var size = cc.Director.getInstance().getWinSize();
         var doctor = Doctor.getOrCreateDoctor(DoctorType[0]);
         doctor.setAnchorPoint(cc.p(0.5,0.5));

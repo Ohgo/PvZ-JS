@@ -20,12 +20,10 @@ var Bacteria = cc.Sprite.extend({
     Lane:null,
     _winSize:null,
 
-    //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK,
 
     ctor: function (arg) {
         this._super();
         this._winSize = cc.Director.getInstance().getWinSize();
-        //attackMode:PvZ.BACTERIA_MOVE_TYPE.HORIZONTAL_WALK;
         this.HP = arg.HP;
         this.moveType = arg.moveType;
         this.attackMode = arg.attackMode;
@@ -36,8 +34,6 @@ var Bacteria = cc.Sprite.extend({
         this.size = this.getContentSize();
         this.textureName = arg.textureName;
         cc.log("tex: " + this.textureName + " text: " + arg.textureName);
-        //this.initWithFile("BacteriaHappyGray.png");
-        //this.initWithSpriteFrameName(arg.textureName);
         var pFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("bacteriaGreen1.png");
         this.initWithSpriteFrame(pFrame);
         this.changeState(PvZ.BACTERIA_STATE.WALK);
